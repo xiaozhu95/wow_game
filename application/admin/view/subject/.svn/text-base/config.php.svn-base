@@ -1,0 +1,128 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+    1 => 'forbid',
+    2 => 'resume',
+  ),
+  'create_config' => true,
+  'controller' => 'Subject',
+  'title' => '产品管理',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => 'ID',
+      'name' => 'id',
+      'type' => 'number',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => '标题',
+      'name' => 'name',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search' => '1',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => '价格',
+      'name' => 'price',
+      'type' => 'number',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    4 => 
+    array (
+      'title' => '简介',
+      'name' => 'intro',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    5 => 
+    array (
+      'title' => '回调方法',
+      'name' => 'callback',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    6 => 
+    array (
+      'title' => '自定义',
+      'name' => 'extra',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    7 => 
+    array (
+      'title' => '状态',
+      'name' => 'status',
+      'type' => 'text',
+      'option' => '0:锁定#1:正常',
+      'default' => '1',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+  'validate' => '1',
+);

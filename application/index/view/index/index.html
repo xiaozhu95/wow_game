@@ -1,0 +1,18 @@
+{extend name="template/base" /}
+{block name="style"}
+<style>
+    ul li{ text-decoration: underline}
+    </style>
+{/block}
+{block name="content"}
+<a href="{:\\think\\Url::build('index/article/index',['cid'=>5])}" target="_blank">这是一个内容</a>
+{/block}
+{block name="script"}
+<script>
+    let  cid = 5;
+
+$.get("{:\\think\\Url::build('api/article/getlist')}"+"/cid/"+cid,{},function(data){
+
+},'json');
+</script>
+{/block}

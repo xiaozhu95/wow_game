@@ -1,0 +1,4 @@
+ALTER TABLE `tp_tradelist` CHANGE `type` `type` VARCHAR(30) NOT NULL COMMENT '1 微信 2支付宝';
+
+ALTER TABLE `tp_user` ADD `wechat_openid_1` VARCHAR(32) NULL COMMENT '服务号openid' AFTER `wechat_openid`;
+ALTER TABLE `tp_user` ADD `wechat_openid_2` VARCHAR(32) NULL COMMENT '小程序openid' AFTER `wechat_openid_1`;

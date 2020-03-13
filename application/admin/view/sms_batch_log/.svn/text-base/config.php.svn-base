@@ -1,0 +1,65 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+    1 => 'forbid',
+    2 => 'resume',
+  ),
+  'create_config' => true,
+  'controller' => 'SmsBatchLog',
+  'title' => '群发记录',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => 'ID',
+      'name' => 'id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => '模板',
+      'name' => 'template_id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => '内容',
+      'name' => 'content',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+  'auto_timestamp' => '1',
+  'validate' => '1',
+);

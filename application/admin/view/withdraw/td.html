@@ -1,0 +1,5 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.user.tel|high_light=$Request.param.tel} {$vo.user.nickname|high_light=$Request.param.nickname} {$vo.user.userProfile.name}</td>
+<td>{$vo.amount}</td>
+<td>{$vo.create_time}</td>
+<td>{$vo.status|get_status}</td>

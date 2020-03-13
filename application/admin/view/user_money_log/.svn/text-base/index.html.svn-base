@@ -1,0 +1,46 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <input type="text" class="input-text" style="width:250px" placeholder="用户手机号" name="tel" value="{$Request.param.tel}" >
+        <input type="text" class="input-text" style="width:250px" placeholder="用户昵称" name="nickname" value="{$Request.param.nickname}" >
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">用户</th>
+            <th width="">类型</th>
+            <th width="">数量</th>
+            <th width="">备注</th>
+            <th width="">时间</th>
+            <!-- <th width="">状态</th> -->
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.user.tel|high_light=$Request.param.tel} {$vo.user.nickname|high_light=$Request.param.nickname}</td>
+            <td>{$vo.type_text}</td>
+            <td>{$vo.amount}</td>
+            <td>{$vo.msg}</td>
+            <td>{$vo.create_time}</td>
+            <!-- <td>{$vo.status|get_status}</td> -->
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+

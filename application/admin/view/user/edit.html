@@ -1,0 +1,197 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <input type="hidden" name="id" value="{$vo.id ?? ''}">
+        <!--
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">上级用户：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="number" class="input-text" placeholder="上级用户" name="parent_id" value="{$vo.parent_id ?? ''}" >
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        -->
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">手机号：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="number" class="input-text" placeholder="手机号" name="tel" value="{$vo.tel ?? ''}" style=" width: 200px;">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">昵称：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="昵称" name="nickname" value="{$vo.nickname ?? ''}" style=" width: 200px;">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {notpresent name="vo.password"}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>密码：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="password" class="input-text" placeholder="请填写6-32位任意字符" name="password" datatype="/^[\w\W]{6,32}$/" nullmsg="请填写密码" errormsg="请填写6-32位任意字符">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {/notpresent}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">头像地址：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="头像地址" name="avatar" value="{$vo.avatar ?? ''}">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">状态：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-1" value="1">
+                    <label for="status-1">启用</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-0" value="0">
+                    <label for="status-0">禁用</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">性别：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" name="gender" id="gender-0" value="0">
+                    <label for="gender-0">未知</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="gender" id="gender-1" value="1">
+                    <label for="gender-1">男</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="gender" id="gender-2" value="2">
+                    <label for="gender-0">女</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">地区：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="select-box" id="address">
+				</div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		{if !empty($vo.wechat_nickname)}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">微信昵称：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                {$vo.wechat_nickname}
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {/if}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">微信UnionId：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="微信号" name="wechat_unionid" value="{$vo.wechat_unionid ?? ''}">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">微信OpenId：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="微信号" name="wechat_openid" value="{$vo.wechat_openid ?? ''}">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <!-- <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">微信OpenId_2：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="微信号" name="wechat_openid_2" value="{$vo.wechat_openid_2 ?? ''}">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div> -->
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">类型：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                {foreach name="$Think.config.user_types" item='v' key='k'}
+                <div class="radio-box">
+                    <input type="radio" name="type" id="type-{$k}" value="{$k}">
+                    <label for="type-{$k}">{$v}</label>
+                </div>
+                {/foreach}
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;</button>
+                <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+	var region_types = ['country','province','city','district'];
+	function region(parent_id){
+		$.ajax({
+			url:'{:\\think\\Url::build("api/region/children")}',
+			type:'POST',
+			async:false,
+			data:{
+				parent_id:parent_id
+			},
+			dataType:'json',
+			success:function(data){
+				var len = data.length;
+				if(len>0){
+					var html = "<select name='"+region_types[data[0].region_type]+"' class=select style='width:33.3%;' onchange='region(this.value)'><option value=0>请选择</option>";
+					for(i=0;i<len;i++){
+						html += "<option value="+data[i].region_id+">"+data[i].region_name+"</option>";
+					}
+					html += "<select>";
+					if($("select[name="+region_types[data[0].region_type]+"]").length)
+						$("select[name="+region_types[data[0].region_type]+"]").replaceWith(html);
+					else
+					   $("#address").append(html);
+				}
+			}
+		});
+	}	
+    region(1); // 1 中国 数据库中也没存用户的国籍 只让选中国地区
+	{if !empty($vo.province)}
+    $("[name='province']").val("{$vo.province}").trigger("change");
+	{if $vo.city}
+	$("[name='city']").val("{$vo.city}").trigger("change");
+	{/if}
+	{if $vo.district}
+	$("[name='district']").val("{$vo.district}");
+	{/if}
+	{/if}
+    
+    $(function () {
+        $("[name='status'][value='{$vo.status ?? 1}']").attr("checked", true);
+        $("[name='type'][value='{$vo.type ?? 0}']").attr("checked", true);
+        $("[name='gender'][value='{$vo.gender ?? 0}']").attr("checked", true);
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype: 2,
+            ajaxPost: true,
+            showAllError: true,
+            callback: function (ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}

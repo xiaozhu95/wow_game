@@ -1,0 +1,107 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+  ),
+  'create_config' => true,
+  'controller' => 'CronLog',
+  'title' => '定时任务记录',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => 'ID',
+      'name' => 'id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => 'module',
+      'name' => 'module',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => 'controller',
+      'name' => 'controller',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    4 => 
+    array (
+      'title' => 'action',
+      'name' => 'action',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    6 => 
+    array (
+      'title' => 'data',
+      'name' => 'data',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    7 => 
+    array (
+      'title' => 'resp',
+      'name' => 'resp',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+  'auto_timestamp' => '1',
+);

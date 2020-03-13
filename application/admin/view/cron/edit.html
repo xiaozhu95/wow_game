@@ -1,0 +1,128 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <input type="hidden" name="id" value="{$vo.id ?? ''}">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>模块：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="模块" name="module" value="{$vo.module ?? ''}"  datatype="*" nullmsg="请填写模块">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>控制器：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="控制器" name="controller" value="{$vo.controller ?? ''}"  datatype="*" nullmsg="请填写控制器">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>操作：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="操作" name="action" value="{$vo.action ?? ''}"  datatype="*" nullmsg="请填写操作">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">开始时间：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text Wdate" placeholder="开始时间" name="start_time" value="{$vo.start_time ?? ''}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" {/literal} >
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">下次运行时间：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text Wdate" placeholder="下次运行时间" name="next_time" value="{$vo.next_time ?? ''}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" {/literal} >
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>间隔时间：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="number" class="input-text" placeholder="间隔时间" name="interval_time" value="{$vo.interval_time ?? '86400'}"  datatype="*" nullmsg="请填写间隔时间">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>排序：</label>
+        <div class="formControls col-xs-6 col-sm-6">
+          <input type="number" class="input-text" value="{$vo.sort ?? '50'}" placeholder=""
+                         name="sort" datatype="*" nullmsg="请填写排序">
+        </div>
+        <div class="col-xs-3 col-sm-3"></div>
+      </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">键值对：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" style="width:100px" id="diyname" class="input-text" placeholder="自定义名" >
+                <input type="text" style="width: 100px" id="diyvalue" class="input-text" placeholder="自定义值" >
+            </div>
+            <div class="col-xs-3 col-sm-3"><a class="btn btn-primary" onClick="crediy()" href="javascript:;">点击增加</a></div>
+        </div>
+
+        <div class="row cl ">
+            <label class="form-label col-xs-3 col-sm-3">自定义：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <textarea name="data" class="input-text textarea" placeholder="自定义值">{$vo.data ?? ''}</textarea>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius formOk">&nbsp;&nbsp;提交&nbsp;</button>
+                <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__LIB__/My97DatePicker/WdatePicker.js"></script>
+<script>
+    $(function () {
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype: 2,
+            ajaxPost: true,
+            showAllError: true,
+            callback: function (ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+    var other = '';
+
+    function crediy() {
+        var sidArr = {}
+        if($('textarea[name="data"]').val()){
+            sidArr=JSON.parse($('textarea[name="data"]').val());
+        }
+
+
+        var name  = $('#diyname').val();
+        var value = $('#diyvalue').val();
+        sidArr[name]=value;
+        sidArr = JSON.stringify(sidArr)
+        $('textarea[name="data"]').val(sidArr)
+//        console.log(sidArr)
+
+        /*var student = new Object();
+        student.name = "Lanny";
+        student.age = "25";
+        student.location = "China";
+        var json = JSON.stringify(student);
+        alert(json);*/
+    }
+</script>
+{/block}

@@ -1,0 +1,7 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.id}</td>
+<td>{$vo.type_text}</td>
+<td>{$vo.sign_name}</td>
+<td>{$vo.app_key}</td>
+<td>{$vo.app_secret}</td>
+<td>{$vo.status|get_status}</td>

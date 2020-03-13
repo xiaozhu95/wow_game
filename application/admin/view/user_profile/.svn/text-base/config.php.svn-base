@@ -1,0 +1,61 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+  ),
+  'create_config' => true,
+  'controller' => 'UserProfile',
+  'title' => '用户信息管理',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => '用户ID',
+      'name' => 'user_id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => '名字',
+      'name' => 'name',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => '住址',
+      'name' => 'address',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+);

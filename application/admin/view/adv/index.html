@@ -1,0 +1,66 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <div class="select-box" style="width:250px">
+            <select name="type" class="select">
+                <option value="">请选择广告位</option>
+                {custom:adv_type/}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            {tp:menu menu="add,forbid,resume,saveorder" /}
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">图片</th>
+            <th width="350">链接</th>
+            <th width="">类型</th>
+            <th width="">{:sort_by('排序','sort')}</th>
+            <th width="120">时间</th>
+            <th width="">状态</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td><img src="{$vo.pic}" height="40" /></td>
+            <td><a href="{$vo.link_text}" target="_blank">{$vo.link_text}</a></td>
+            <td>{$vo.type_text}</td>
+            <td style="padding: 0">
+    <input type="number" name="sort[{$vo.id}]" value="{$vo.sort}" style="width: 60px;"
+        class="input-text text-c order-input" data-id="{$vo.id}"></td>
+            <td>{$vo.st}<br />{$vo.et}</td>
+            <td>{$vo.status|get_status}</td>
+            <td class="f-14">
+                {$vo.status|show_status=$vo.id}
+                {tp:menu menu='sedit' /}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+
+
+        $("[name='type']").find("[value='{$Request.param.type}']").attr("selected", true);
+    })
+</script>
+{/block}
+

@@ -1,0 +1,78 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <input type="text" class="input-text" style="width:150px" placeholder="手机号" name="tel" value="{$Request.param.tel}" >
+        <input type="text" class="input-text" style="width:150px" placeholder="昵称" name="nickname" value="{$Request.param.nickname}" >
+        <input type="text" class="input-text" style="width:150px" placeholder="订单号" name="trade_no" value="{$Request.param.trade_no}" >
+        <div class="select-box" style="width:150px">
+            <select name="status" class="select">
+                <option value="">状态</option>
+                <option value="0">未付款</option>
+                <option value="1">已付款</option>
+            </select>
+        </div>
+        <div class="select-box" style="width:150px">
+            <select name="type" class="select">
+                <option value="">支付方式</option>
+               	{volist name="Think.config.pay_types" key="k" id="vo"}
+                <option value="{$k}">{$vo}</option>
+                {/volist}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">ID</th>
+            <th width="">上下级ID</th>
+            <th width="">产品</th>
+            <th width="">用户</th>
+            <th width="">总价</th>
+            <th width="">第三方支付</th>
+            <th width="">{:sort_by('支付渠道','type')}</th>
+            <th width="">订单号</th>
+            <th width="">状态</th>
+            <th width="">付款时间</th>
+            <th width="">创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.parent_id ? $vo.parent_id : $vo.sub_ids}</td>
+            <td>{$vo.subject.name}</td>
+            <td>{$vo.user.tel|high_light=$Request.param.tel} {$vo.user.nickname|high_light=$Request.param.nickname}</td>
+            <td>{$vo.total_amount}</td>
+            <td>{$vo.third_party_payed}</td>
+            <td>{$vo.type_text}</td>
+            <td>{$vo.trade_no|high_light=$Request.param.trade_no}</td>
+            <td>{$vo.status|get_status}</td>
+            <td>{if $vo.status}{$vo.update_time}{/if}</td>
+            <td>{$vo.create_time}</td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+        $("[name='type']").find("[value='{$Request.param.type}']").attr("selected", true);
+        $("[name='status']").find("[value='{$Request.param.status}']").attr("selected", true);
+    })
+</script>
+{/block}

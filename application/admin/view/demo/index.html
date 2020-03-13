@@ -1,0 +1,50 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <p>主键不为ID的表，生成后需修改模板中的id为对应的主键，可参考user_profile的例子，编辑按钮带上pk参数并修改状态等切换也许带上对应参数 {$vo.status|show_status=$vo.user_id,'user_id'} {tp:menu menu='sedit' pk='user_id' /}</p>
+    <div class="mt-20 markdown">
+```
+{literal}
+{$vo.status|show_status=$vo.user_id,'user_id'}
+{tp:menu menu='sedit' pk='user_id' /}
+{/literal}
+```
+    </div>
+    <p>页面上其他字段使用状态切换方法如下 {$vo.rec|get_status=true,'rec'} {$vo.rec|show_status=$vo.rec,'id','rec'}</p>
+    <div class="mt-20 markdown">
+```
+{literal}
+{$vo.rec|get_status=true,'rec'}
+{$vo.rec|show_status=$vo.rec,'id','rec'}
+{/literal}
+```
+    </div>
+    <p>切换按钮的名称若不想叫做禁用/恢复，可如下设置 {$vo.rec|show_status=$vo.rec,'id','rec','','开启,锁定'}</p>
+    <div class="mt-20 markdown">
+```
+{literal}
+{$vo.rec|show_status=$vo.rec,'id','rec','','开启,锁定'}
+{/literal}
+```
+    </div>
+    <p>多个选项值的切换 {custom:select field="status" value="$vo[status]" values="0,1,2" texts="待审,已审,结束" /}</p>
+    <div class="mt-20 markdown">
+```
+{literal}
+{custom:select field="status" value="$vo[status]" values="0,1,2" texts="待审,已审,结束" /}
+{/literal}
+```
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/showdown/1.4.2/showdown.min.js"></script>
+<script>
+    $(function () {
+        var converter = new showdown.Converter();
+        $(".markdown").each(function () {
+            $(this).html(converter.makeHtml($(this).html()))
+        });
+    })
+</script>
+{/block}

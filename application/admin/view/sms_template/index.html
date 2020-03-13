@@ -1,0 +1,65 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <div class="select-box" style="width:250px">
+            <select name="type" class="select">
+                    {volist name="Think.config.sms_types" id="v"}
+                    <option value="{$key}">{$v}</option>
+                    {/volist}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            {tp:menu menu="add,forbid,resume" /}
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">ID</th>
+            <th width="">名字</th>
+            <th width="">内容</th>
+            <th width="">Code</th>
+            <th width="">所属平台</th>
+            <th width="">平台模板ID</th>
+            <th width="">状态</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.name}</td>
+            <td>{$vo.content|subtext=20}</td>
+            <td>{$vo.code}</td>
+            <td>{$vo.type_text}</td>
+            <td>{$vo.template_code}</td>
+            <td>{$vo.status|get_status}</td>
+            <td class="f-14">
+                {$vo.status|show_status=$vo.id}
+                {tp:menu menu='sedit' /}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+        $("[name='type']").find("[value='{$Request.param.type}']").attr("selected", true);
+    })
+</script>
+{/block}
+

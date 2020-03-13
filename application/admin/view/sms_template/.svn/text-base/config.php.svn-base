@@ -1,0 +1,132 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+    1 => 'forbid',
+    2 => 'resume',
+    3 => 'saveorder',
+  ),
+  'create_config' => true,
+  'controller' => 'SmsTemplate',
+  'title' => '短信模板',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => 'ID',
+      'name' => 'id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => '名字',
+      'name' => 'name',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => '内容',
+      'name' => 'content',
+      'type' => 'textarea',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    4 => 
+    array (
+      'title' => 'Code',
+      'name' => 'code',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    5 => 
+    array (
+      'title' => '所属平台',
+      'name' => 'type',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search' => '1',
+      'search_type' => 'select',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    6 => 
+    array (
+      'title' => '平台模板ID',
+      'name' => 'template_code',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    7 => 
+    array (
+      'title' => '状态',
+      'name' => 'status',
+      'type' => 'text',
+      'option' => '',
+      'default' => '1',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+  'auto_timestamp' => '1',
+  'validate' => '1',
+);

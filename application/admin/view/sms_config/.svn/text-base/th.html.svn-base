@@ -1,0 +1,7 @@
+<th width="25"><input type="checkbox"></th>
+<th width="">ID</th>
+<th width="">平台</th>
+<th width="">签名</th>
+<th width="">接口key</th>
+<th width="">接口secret</th>
+<th width="">状态</th>

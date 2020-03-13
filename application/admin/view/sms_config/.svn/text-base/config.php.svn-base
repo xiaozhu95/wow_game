@@ -1,0 +1,116 @@
+<?php
+
+return array (
+  'module' => 'admin',
+  'menu' => 
+  array (
+    0 => 'add',
+    1 => 'forbid',
+    2 => 'resume',
+    3 => 'delete',
+    4 => 'recyclebin',
+    5 => 'saveorder',
+  ),
+  'create_config' => true,
+  'controller' => 'SmsConfig',
+  'title' => '短信设置',
+  'form' => 
+  array (
+    1 => 
+    array (
+      'title' => 'ID',
+      'name' => 'id',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    2 => 
+    array (
+      'title' => '平台',
+      'name' => 'type',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    3 => 
+    array (
+      'title' => '签名',
+      'name' => 'sign_name',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    4 => 
+    array (
+      'title' => '接口key',
+      'name' => 'app_key',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    5 => 
+    array (
+      'title' => '接口secret',
+      'name' => 'app_secret',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'require' => '1',
+      'validate' => 
+      array (
+        'datatype' => '*',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+    6 => 
+    array (
+      'title' => '状态',
+      'name' => 'status',
+      'type' => 'text',
+      'option' => '',
+      'default' => '',
+      'search_type' => 'text',
+      'validate' => 
+      array (
+        'datatype' => '',
+        'nullmsg' => '',
+        'errormsg' => '',
+      ),
+    ),
+  ),
+  'model' => '1',
+  'validate' => '1',
+);

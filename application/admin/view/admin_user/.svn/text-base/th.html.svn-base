@@ -1,0 +1,12 @@
+<th><input type="checkbox" value="" name=""></th>
+<th>{:sort_by('ID','id')}</th>
+<th>姓名</th>
+<th>帐号</th>
+<th>邮箱</th>
+<th>手机</th>
+<th>{:sort_by('添加时间','create_time')}</th>
+<th>{:sort_by('最后登录时间','last_login_time')}</th>
+<th>{:sort_by('登录次数','login_count')}</th>
+<th>对应用户</th>
+<th>状态</th>
+<th>备注</th>

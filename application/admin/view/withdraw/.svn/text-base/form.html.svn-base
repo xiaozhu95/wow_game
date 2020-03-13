@@ -1,0 +1,12 @@
+<form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    <input type="text" class="input-text" style="width:250px" placeholder="手机号" name="tel" value="{$Request.param.tel}" >
+    <input type="text" class="input-text" style="width:250px" placeholder="昵称" name="nickname" value="{$Request.param.nickname}" >
+    <div class="select-box" style="width:250px">
+        <select name="status" class="select">
+            <option value="">全部</option>
+            <option value="0">未打款</option>
+            <option value="1">已打款</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>
