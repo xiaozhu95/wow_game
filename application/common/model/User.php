@@ -11,30 +11,11 @@ class User extends Model
     protected $name = 'user';
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = 'int';
-	
-	//自动完成
-    protected $insert = ['create_ip','password'];  
-    
-    protected static function init() {
-        User::event( 'after_insert', function ( $user ) {
-            //注册时直接创建对应UserProfile
-            model("UserProfile")->data([
-                'user_id'=>$user->id
-            ])->save();
+    protected $createTime  = "ctime";
+    protected $updateTime = "utime";
 
-            //注册送1000积分
-            // model('UserMoneyLog')->data([
-            //     'user_id'=>$user->id,
-            //     'amount'=>1000,
-            //     'msg'=>'注册送',
-            //     'type'=>1,
-                // 'controller' => 'user',
-                // 'action' => 'register'
-            // ])->save();
-        } );
-    }
-
-	protected function setCreateIpAttr()
+  
+    protected function setCreateIpAttr()
     {
         return Request::instance()->ip();
     }
@@ -102,18 +83,9 @@ class User extends Model
     }
   
 	public function getUserInfo($condition){
-		$user = $this->field("id,parent_id,tel,money,integral,nickname,avatar,wechat_nickname,wechat_unionid,gender,province,city,district,subscribe,type")->where($condition)->find();
-        if($user['id']){
-            $user['province_text'] = $user['province_text'];
-            $user['city_text'] = $user['city_text'];
-            $user['district_text'] = $user['district_text'];
-            $user['sign'] = $user['sign'];
-            $user['auth'] = $user['auth'];
+            $user = $this->field("id,openid,avatar,nickname,mobile,balance")->where($condition)->find();
 
-            $user['userProfile'] = $user['userProfile'];
-        }
-		
-		return $user;
+            return $user;
 	}
 
     public function parentUser()

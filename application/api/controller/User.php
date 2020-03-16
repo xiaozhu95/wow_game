@@ -15,8 +15,8 @@ class User extends Controller
 	use \app\api\traits\controller\Controller;
 	
 	protected static $blacklist = ['getlist'];
-	private $db_field = "wechat_openid";
-	private $db_field_allowed = ["wechat_openid", "wechat_openid_2", "wechat_openid_3"];
+	private $db_field = "openid";
+	private $db_field_allowed = ["openid", "wechat_openid_2", "wechat_openid_3"];
 	
 	public function account(){
 		$uid = $this->request->post("user_id");
@@ -144,17 +144,23 @@ class User extends Controller
 	}
 
 	public function wechatLoginMiniProgram(){
-		$user_info = array2object($this->request->post());
+		$user_info = $this->request->post('user_info');
+     
+       	$user_info = json_decode(htmlspecialchars_decode($user_info));
+        $user_info->nickname = $user_info->nickName;
         $res = model('Wechat')->jscode2session($this->request->param('code'));
         if(isset($res->openid)){
 			$user_info->openid = $res->openid;
 			$sessionKey = $res->session_key;
+            $user_info->session_key =  $res->session_key;
         }else
             return front_ajax_return('获取openid失败');
         
 		$iv = $this->request->param('iv');
 		$encryptedData = $this->request->param('encryptedData');
-		$data = model('Wechat')->decryptData($sessionKey,$iv,$encryptedData);	
+      	
+		$data = model('Wechat')->decryptData($sessionKey,$iv,$encryptedData);
+      
         if(!$data)
             return front_ajax_return('登录失败，请重试');
         if(isset($data->unionId))
@@ -215,7 +221,7 @@ class User extends Controller
 						$user['wechat_nickname'] = $user_info->nickname;
 						if(!$user['nickname'])
 							$user['nickname'] = $this->getValidNickname($user_info->nickname);
-						$user['avatar'] = $user_info->headimgurl;
+						$user['avatar'] = $user_info->avatarUrl;
 					}
 					$user->allowField(true)->save();
 					return front_ajax_return("绑定成功",1,$user);
@@ -229,7 +235,7 @@ class User extends Controller
 					$user['wechat_nickname'] = $user_info->nickname;
 					if(!$user['nickname'])
 						$user['nickname'] = $this->getValidNickname($user_info->nickname);
-					$user['avatar'] = $user_info->headimgurl;
+					$user['avatar'] = $user_info->avatarUrl;
 				}
 				$user['last_login_time'] = time();
 				$user['last_login_ip'] = $this->request->ip();
@@ -241,44 +247,15 @@ class User extends Controller
 				return front_ajax_return("登录成功",1,$data);
 			}elseif($user = $model->getUserInfo([$this->db_field=>$user_info->openid])){ // openid登录
 				if(isset($user_info->nickname)){
-					$user['wechat_nickname'] = $user_info->nickname;
 					if(!$user['nickname'])
 						$user['nickname'] = $this->getValidNickname($user_info->nickname);
-					$user['avatar'] = $user_info->headimgurl;
+					$user['avatar'] = $user_info->avatarUrl;
 				}
-				$user['wechat_unionid'] = $user_info->unionid ?? '';
-				$user['last_login_time'] = time();
-				$user['last_login_ip'] = $this->request->ip();
-				$user['subscribe_prev'] = $user['subscribe'];
-				if(isset($user_info->subscribe))
-					$user['subscribe'] = $user_info->subscribe;
         		$data = $user->getData();
 				$user->allowField(true)->save();
 				return front_ajax_return("登录成功",1,$data);
 			}else{ //注册
-				$data['auth'] = strtolower($auth);
-				if($data['auth']=='sqb' || $data['auth']==''){
-					$data['parent_id'] = 0;
-				}else{
-					$parent_id = base_convert($data['auth'],36,10);
-					if($parent_id && $model::get(['id'=>$parent_id/*,'vip'=>['>',0],'vip_expire'=>['>',time()]*/]))
-						$data['parent_id'] = $parent_id;
-					//else 这里的auth要么为空 要么正确 即时错误也不提示没必要
-					//	return front_ajax_return("邀请码输入有误");
-				}
-
-				if(isset($user_info->country) && $user_info->country == '中国'){
-					$province = model('Region')->where(['parent_id'=>1,'region_name'=>$user_info->province])->value('id');
-					if($province){
-						$user['province'] = $province;
-						$city = str_replace('市','',$user_info->city);
-						$city = model('Region')->where(['parent_id'=>$province,'region_name'=>['exp', '=\''.$city.'\' or region_name = \''.$city.'市\'']])->value('id');
-						if($city){
-							$user['city'] = $city;
-						}
-					}
-				}
-
+				
 				if(isset($user_info->sex))
 					$user['gender'] = $user_info->sex;
 				
@@ -286,28 +263,15 @@ class User extends Controller
 					$data['app'] = $app;
 				else
 				  $data[$this->db_field] = $user_info->openid;
-
-				$data['wechat_unionid'] = $user_info->unionid ?? '';
-				if(isset($user_info->subscribe))
-					$data['subscribe'] = $user_info->subscribe;
 				if(isset($user_info->nickname)){
-					$data['wechat_nickname'] = $user_info->nickname;
 					$data['nickname'] = $this->getValidNickname($user_info->nickname);
-					$data['avatar'] = $user_info->headimgurl;
+					$data['avatar'] = $user_info->avatarUrl;
 				}
+                $data['session_key'] = $user_info->session_key;
+              	
 				$model->allowField(true)->save($data);
 				$user = $model->getUserInfo(['id'=>$model['id']]);
-				$user['subscribe_prev'] = -1;
 				
-				//记录任务宝邀请记录
-				$invite_id = $invite_id ?? $this->request->param('invite_id');
-				if(isset($parent_id) && $invite_id){
-					model('WechatInviteUser')->data([
-						'wechat_invite_id' => $invite_id,
-						'user_id' => $parent_id,
-						'user_id_invited' => $user['id']
-					])->save();
-				}
 
 				return front_ajax_return("登录成功",1,$user);
 			}

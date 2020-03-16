@@ -9,12 +9,12 @@ class Wechat extends Model
 {
 	private $wechatKeys = [
 		3 => [ //公众号
-			'appId' => 'wxb76fe20a514815c7',
-			'appSecret' => '24a0cd10946f515274291de5d39ff7e1',
+			'appId' => '',
+			'appSecret' => '',
 		],
 		4 => [ //小程序
-			'appId' => 'wxb76fe20a514815c7',
-			'appSecret' => '24a0cd10946f515274291de5d39ff7e1',
+			'appId' => 'wxa07d866227c5c901',
+			'appSecret' => 'dbe400b609953d04f5b43bfb16e0c280',
 		], 
 	];
 	// private $siteUrl = "http://www.fengsh.com/";
