@@ -1,0 +1,59 @@
+<?php
+namespace app\api\controller;
+
+use think\Cache;
+use think\Request;
+					
+class Wechat
+{
+	private $wechatKeys = [
+		3 => [ //公众号
+			'appId' => 'wxb76fe20a514815c7',
+			'appSecret' => '24a0cd10946f515274291de5d39ff7e1',
+		],
+		4 => [ //小程序
+			'appId' => 'wxb76fe20a514815c7',
+			'appSecret' => '24a0cd10946f515274291de5d39ff7e1',
+		], 
+	];
+	// private $siteUrl = "https://vote.fengsh.cn/";
+	// private $db_field = "wechat_openid";
+	
+	private $token = "xJ4EPvdb7Pk8bm85y8JN";
+	private $request;
+	
+	public function __construct(){
+		$this->request = Request::instance();
+	}
+	
+	
+	public function checkToken(){ 
+		$echoStr = $this->request->param("echostr");
+		$signature = $this->request->param("signature");
+		$timestamp = $this->request->param("timestamp");
+		$nonce = $this->request->param("nonce");
+		if($this->checkSignature($signature,$timestamp,$nonce)){
+			return $echoStr;
+		}
+	}
+	public function index(){
+
+	}
+	
+  // public function config(){
+  //   $url = $this->request->post("url","","htmlspecialchars_decode");
+  //   $config = [
+  //     'timestamp' => time(),
+  //     'noncestr' => md5(uniqid('', true)),
+  //     'url' => $url,
+  //     'jsapi_ticket' => $this->getJsTicket()
+  //   ];
+  //   $config['signature'] = $this->calculateSign($config);
+  //   $config['appid'] = $this->wechatKeys[3]['appId'];
+  //   $config['title'] = $this->request->post('title');
+  //   $config['imgUrl'] = $this->request->post('pic');
+  //   $config['desc'] = $this->request->post('message');
+    
+  //   return json($config);
+  // }
+}

@@ -16,7 +16,7 @@ namespace app\common\validate;
 
 use think\Validate;
 
-class AdminGroup extends Validate
+class Room extends Validate
 {
     protected $rule = [
       

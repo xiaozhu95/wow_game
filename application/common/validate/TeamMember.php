@@ -16,7 +16,7 @@ namespace app\common\validate;
 
 use think\Validate;
 
-class AdminGroup extends Validate
+class TeamMember extends Validate
 {
     protected $rule = [
       
