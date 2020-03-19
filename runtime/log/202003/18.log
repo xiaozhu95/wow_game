@@ -1,0 +1,3068 @@
+[ 2020-03-18T11:38:34+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：1.049603s][吞吐率：0.95req/s] [内存消耗：1,803.70kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '287',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '6172b1c0-97d3-4243-836c-59415e2bfb4e',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '',
+  'camp_name' => '',
+  'transcript_id' => '',
+  'transcript_name' => '',
+  'boss_id' => '',
+  'boss_name' => '',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'purple' => '',
+  'blue' => '',
+  'green' => '',
+  'status' => '1',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:24:23+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.373262s][吞吐率：2.68req/s] [内存消耗：1,805.76kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1084',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '532df98d-278a-401c-9777-77cd526aebc5',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{
+&quot;currency_type&quot;:1,
+&quot;status&quot;:1,
+&quot;subsidy&quot;:[
+{
+&quot;name&quot;:&quot;指挥&quot;,
+&quot;value&quot;:2
+},
+{
+&quot;name&quot;:&quot;MT&quot;,
+&quot;value&quot;:2
+},
+{
+&quot;name&quot;:&quot;FT&quot;,
+&quot;value&quot;:2
+},
+{
+&quot;name&quot;:&quot;DPS1st&quot;,
+&quot;value&quot;:2
+},
+{
+&quot;name&quot;:&quot;HPS1st&quot;,
+&quot;value&quot;:2
+}
+]
+}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:25:41+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.017901s][吞吐率：55.86req/s] [内存消耗：1,805.63kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '82b9343b-613c-47da-9caf-d37101d000cd',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:26:27+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.025446s][吞吐率：39.30req/s] [内存消耗：1,804.29kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '675',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '1e12a35b-fbe0-46a2-9823-aa0fd0a47ec9',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:26:39+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.019410s][吞吐率：51.52req/s] [内存消耗：1,805.63kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'bba03b93-acca-4fd7-a624-3a718e6c3b92',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:27:17+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.017884s][吞吐率：55.92req/s] [内存消耗：1,805.70kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'f9d462ff-8a46-41ae-982d-580a0a0fb482',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:27:52+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.115923s][吞吐率：8.63req/s] [内存消耗：1,805.89kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '00653836-485e-4eed-b11d-0c1f750ebaa2',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:29:03+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.019936s][吞吐率：50.16req/s] [内存消耗：1,799.52kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '336',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'bff3f08c-cf9e-4acc-821f-3207464242a1',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------010666196145258318426103',
+)
+[ info ] [ PARAM ] array (
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:29:16+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.018716s][吞吐率：53.43req/s] [内存消耗：1,799.62kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '336',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'a2d04950-19c5-41be-a609-ba181a126a2c',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------444989034873790854302874',
+)
+[ info ] [ PARAM ] array (
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:32:16+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.021025s][吞吐率：47.56req/s] [内存消耗：1,805.89kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'da9625be-1df7-47c8-81ed-caece991e5c0',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:32:29+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.020296s][吞吐率：49.27req/s] [内存消耗：1,806.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'ab816ff4-34fa-44f2-a236-768d28e17032',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:32:52+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.022436s][吞吐率：44.57req/s] [内存消耗：1,806.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '03daf358-22fb-4a8b-9e6b-c2a088d69984',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:33:44+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.022787s][吞吐率：43.88req/s] [内存消耗：1,806.59kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '93e6306a-899e-4e4d-8310-4f8adceb01b2',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:35:02+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.030580s][吞吐率：32.70req/s] [内存消耗：1,806.52kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '25d5aaa2-73da-4fcd-b6ee-58c13821ac48',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:45:41+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.048146s][吞吐率：20.77req/s] [内存消耗：1,806.79kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'd29f57fa-24a4-43f2-a771-a7cbb753c74b',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:46:10+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.117410s][吞吐率：8.52req/s] [内存消耗：1,806.93kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'a518372e-f058-41cc-9f4b-3de6bc97be0d',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:46:18+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.032965s][吞吐率：30.34req/s] [内存消耗：1,807.15kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '30d76cd3-d3a7-4de1-9f1c-d3edf8b97c8d',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T15:47:02+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.018189s][吞吐率：54.98req/s] [内存消耗：1,806.79kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '87872b36-68bd-402d-9cff-5a96cf2fbbb5',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T16:02:50+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.307692s][吞吐率：3.25req/s] [内存消耗：1,971.40kb] [文件加载：55]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '30ce7d8a-0b26-47bc-9bbf-0297cd20b822',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.146093s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.052486s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:03:00+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.043295s][吞吐率：23.10req/s] [内存消耗：1,971.65kb] [文件加载：55]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'b99af6ac-c656-42d9-967b-c3f12e28c125',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000731s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.020302s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:03:19+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.027651s][吞吐率：36.16req/s] [内存消耗：1,808.53kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '0b7c3779-0e86-4193-a159-fa91751e8529',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T16:03:38+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.038840s][吞吐率：25.75req/s] [内存消耗：1,901.63kb] [文件加载：53]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'ca82c781-45c1-448c-8c2d-08d9f5df2883',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000709s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.019281s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:11:43+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.288140s][吞吐率：3.47req/s] [内存消耗：2,003.38kb] [文件加载：57]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '82893c17-07e2-4a45-82b9-2543fe4d5d1f',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007358s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.047558s ]
+[ error ] [0]数据表字段不存在:[floor_info][D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\library\think\db\Builder.php:103]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:14:12+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.047266s][吞吐率：21.16req/s] [内存消耗：1,901.63kb] [文件加载：53]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '22a57162-5c08-4097-914c-c231bce57222',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000773s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.023087s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:14:26+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.220008s][吞吐率：4.55req/s] [内存消耗：1,874.75kb] [文件加载：52]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'f77d3371-8bc0-4dfa-acd6-264b395798bc',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000855s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.022185s ]
+[ sql ] [ SQL ] INSERT INTO `wow_room` (`room_num` , `service_id` , `service_name` , `camp_id` , `camp_name` , `transcript_id` , `transcript_name` , `boss_id` , `boss_name` , `team_type` , `equipment_score` , `subsidy` , `yy_room_number` , `expenditure` , `high_dps` , `high_hps` , `floor_status`) VALUES (875461 , 1 , '阿鲁高' , 1 , '联盟&middot;种族' , 3 , '黑翼之巢' , 16 , '中文：克洛玛古斯英文：Chromaggus' , '自强' , 80 , '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}' , '889956' , 1000 , 0 , 0 , 1) [ RunTime:0.071492s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:16:56+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.047244s][吞吐率：21.17req/s] [内存消耗：1,877.77kb] [文件加载：52]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1009',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '7118783d-529c-496f-926d-d2020b118a0e',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000730s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.021871s ]
+[ sql ] [ SQL ] INSERT INTO `wow_room` (`room_num` , `service_id` , `service_name` , `camp_id` , `camp_name` , `transcript_id` , `transcript_name` , `boss_id` , `boss_name` , `team_type` , `equipment_score` , `subsidy` , `yy_room_number` , `expenditure` , `high_dps` , `high_hps` , `floor_status` , `name` , `create_time` , `update_time`) VALUES (875461 , 1 , '阿鲁高' , 1 , '联盟&middot;种族' , 3 , '黑翼之巢' , 16 , '中文：克洛玛古斯英文：Chromaggus' , '自强' , 80 , '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}' , '889956' , 1000 , 0 , 0 , 1 , '系统房间名' , 1584519416 , 1584519416) [ RunTime:0.000729s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:38:04+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.074352s][吞吐率：13.45req/s] [内存消耗：1,990.34kb] [文件加载：55]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '024e926e-6913-4e61-87e4-dce34ae79fa6',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011312s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.020604s ]
+[ sql ] [ SQL ] INSERT INTO `wow_room` (`room_num` , `service_id` , `service_name` , `camp_id` , `camp_name` , `transcript_id` , `transcript_name` , `boss_id` , `boss_name` , `team_type` , `equipment_score` , `subsidy` , `yy_room_number` , `expenditure` , `high_dps` , `high_hps` , `floor_status` , `name` , `create_time` , `update_time`) VALUES (875461 , 1 , '阿鲁高' , 1 , '联盟&middot;种族' , 3 , '黑翼之巢' , 16 , '中文：克洛玛古斯英文：Chromaggus' , '自强' , 80 , '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}' , '889956' , 1000 , 0 , 0 , 1 , '系统房间名' , 1584520684 , 1584520684) [ RunTime:0.000482s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_auction_floor` [ RunTime:0.016329s ]
+[ sql ] [ SQL ] INSERT INTO `wow_auction_floor` (`currency_type` , `price` , `add_price` , `purple` , `blue` , `green` , `end_time` , `pay_end_time` , `create_time` , `update_time` , `team_id`) VALUES (1 , 200 , 50 , 1 , 1 , 1 , 30 , 5 , 1584520684 , 1584520684 , 3) [ RunTime:0.000344s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:49:45+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.179339s][吞吐率：5.58req/s] [内存消耗：1,996.85kb] [文件加载：56]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '374719c8-7236-4bb3-8b4f-c3a8745a6e74',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001760s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.015392s ]
+[ sql ] [ SQL ] INSERT INTO `wow_room` (`room_num` , `service_id` , `service_name` , `camp_id` , `camp_name` , `transcript_id` , `transcript_name` , `boss_id` , `boss_name` , `team_type` , `equipment_score` , `subsidy` , `yy_room_number` , `expenditure` , `high_dps` , `high_hps` , `floor_status` , `name` , `create_time` , `update_time`) VALUES (875461 , 1 , '阿鲁高' , 1 , '联盟&middot;种族' , 3 , '黑翼之巢' , 16 , '中文：克洛玛古斯英文：Chromaggus' , '自强' , 80 , '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}' , '889956' , 1000 , 0 , 0 , 1 , '系统房间名' , 1584521385 , 1584521385) [ RunTime:0.000416s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:50:59+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.036209s][吞吐率：27.62req/s] [内存消耗：1,941.08kb] [文件加载：55]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '137ed53d-b177-45eb-8918-1e794ddcc1ba',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011988s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+
+---------------------------------------------------------------
+[ 2020-03-18T16:51:15+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.023033s][吞吐率：43.42req/s] [内存消耗：1,959.80kb] [文件加载：57]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '0e404f99-9a46-4279-9b5e-339b2909b329',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [2]json_decode() expects parameter 1 to be string, array given[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\common\model\Room.php:38]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:51:58+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.024457s][吞吐率：40.89req/s] [内存消耗：1,963.01kb] [文件加载：56]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '3e5b6870-bb75-4a64-a629-289b0c21cb4e',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [0]类的属性不存在:app\common\model\Room->id[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\library\think\Model.php:473]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:52:46+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.061137s][吞吐率：16.36req/s] [内存消耗：1,992.48kb] [文件加载：57]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'a74abc5f-c2e8-4b75-a76d-37aff7a5d26d',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001178s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_auction_floor` [ RunTime:0.025003s ]
+[ sql ] [ SQL ] INSERT INTO `wow_auction_floor` (`currency_type` , `price` , `add_price` , `purple` , `blue` , `green` , `end_time` , `pay_end_time` , `create_time` , `update_time` , `team_id`) VALUES (1 , 200 , 50 , 1 , 1 , 1 , 30 , 5 , 1584521566 , 1584521566 , 3) [ RunTime:0.000307s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T16:54:54+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.048508s][吞吐率：20.62req/s] [内存消耗：2,007.99kb] [文件加载：58]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'f634fe72-1dee-4630-baf4-0c7ee84aa219',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000686s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_team` [ RunTime:0.020880s ]
+[ error ] [0]数据表字段不存在:[team_id][D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\library\think\db\Builder.php:103]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:05:12+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.021903s][吞吐率：45.66req/s] [内存消耗：1,812.93kb] [文件加载：51]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '2bbcc0f9-5c16-49c1-8940-ab53c587c083',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-18T17:21:26+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.209831s][吞吐率：4.77req/s] [内存消耗：2,006.85kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'c5dbd89f-5403-474a-9928-55b9ce15e807',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001439s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.022034s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000300s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:21:45+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.056053s][吞吐率：17.84req/s] [内存消耗：2,006.61kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'e856a4cc-f191-4a11-ac7a-b0cb44e2a9cc',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001018s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.021362s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000251s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:22:09+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.097843s][吞吐率：10.22req/s] [内存消耗：2,077.81kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '35d6eb0e-a74b-4c10-9370-92a0877e428d',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000821s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.015573s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000202s ]
+[ error ] [0]致命错误: Call to undefined method think\model\Collection::asArray()[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\common\model\Room.php:79]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:22:25+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.108264s][吞吐率：9.24req/s] [内存消耗：1,996.65kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'f0e3e3c5-25fe-4c3e-9321-852a6945a2b7',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000763s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.085296s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000288s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:25:21+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.052842s][吞吐率：18.92req/s] [内存消耗：2,078.13kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'c6b2da7b-69c2-4f78-8e49-bac36b02d3f4',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011266s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.016012s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000358s ]
+[ error ] [0]致命错误: Call to undefined function app\common\model\deep_in_array()[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\common\model\Room.php:81]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:26:47+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.041140s][吞吐率：24.31req/s] [内存消耗：1,997.24kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '7ea2cdb6-5466-4687-a6c8-64bddf3f7f2c',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000822s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.020263s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000273s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:31:02+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.047952s][吞吐率：20.85req/s] [内存消耗：1,997.33kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '548a268a-3f06-4807-9c86-423a6f9c9729',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001609s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.023000s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000397s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:35:06+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.020841s][吞吐率：47.98req/s] [内存消耗：1,231.63kb] [文件加载：48]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'a445cce4-e479-4e11-bff9-6c2a9319e1a5',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected ')'[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\common\model\Room.php:85]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:35:17+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.044202s][吞吐率：22.62req/s] [内存消耗：1,998.01kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '0f916313-3367-49df-8110-c3ccbae90a91',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000831s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.022401s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000371s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:42:47+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.075710s][吞吐率：13.21req/s] [内存消耗：2,034.82kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'a93aa33f-baca-4efe-aff7-7629c570ec5b',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001155s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.027598s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] INSERT INTO `wow_room` (`room_num` , `service_id` , `service_name` , `camp_id` , `camp_name` , `transcript_id` , `transcript_name` , `boss_id` , `boss_name` , `team_type` , `equipment_score` , `subsidy` , `yy_room_number` , `expenditure` , `high_dps` , `high_hps` , `floor_status` , `name` , `create_time` , `update_time`) VALUES (875461 , 1 , '阿鲁高' , 1 , '联盟&middot;种族' , 3 , '黑翼之巢' , 16 , '中文：克洛玛古斯英文：Chromaggus' , '自强' , 80 , '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}' , '889956' , 1000 , 0 , 0 , 1 , '系统房间名' , 1584524567 , 1584524567) [ RunTime:0.000355s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_team` [ RunTime:0.016589s ]
+[ sql ] [ SQL ] INSERT INTO `wow_team` (`user_id` , `room_id` , `user_role_name` , `role_id` , `attar` , `create_time` , `update_time` , `identity` , `gold_coin` , `amount` , `isdel`) VALUES (1 , 5 , '好游戏' , 1 , 'https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132' , 1584524567 , 1584524567 , 1 , 0 , 0 , 0) [ RunTime:0.000374s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:19+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.058055s][吞吐率：17.22req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'fe3c586d-e388-400c-bc83-6c2562d652b6',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010715s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.022588s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000379s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:21+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.050516s][吞吐率：19.80req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '5616b83e-07a8-4bc5-895f-21ec4956029e',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011008s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.019711s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000387s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:21+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.041836s][吞吐率：23.90req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '2a68a9b9-260f-4ba9-9df4-87484b543393',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001092s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.014066s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000343s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:22+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.055401s][吞吐率：18.05req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '6ecdc591-792d-438d-ae9d-6f4511c60bf8',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011312s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.025442s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000360s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:22+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.057857s][吞吐率：17.28req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '5bf7c637-3297-439e-8d44-329329bd83aa',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011645s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.025777s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000410s ]
+
+---------------------------------------------------------------
+[ 2020-03-18T17:43:23+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.045039s][吞吐率：22.20req/s] [内存消耗：1,997.18kb] [文件加载：54]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '9ab9937a-0ff8-455b-9ae6-83d1900e5593',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.014262s ]
+[ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000358s ]
+
+---------------------------------------------------------------

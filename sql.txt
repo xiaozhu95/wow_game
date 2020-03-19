@@ -1,4 +1,41 @@
-ALTER TABLE `tp_tradelist` CHANGE `type` `type` VARCHAR(30) NOT NULL COMMENT '1 微信 2支付宝';
+ALTER TABLE `wow_room`
+ADD COLUMN `yy_room_number`  varchar(100) NULL AFTER `subsidy`,
+ADD COLUMN `expenditure`  int(11) NULL AFTER `yy_room_number`;
 
-ALTER TABLE `tp_user` ADD `wechat_openid_1` VARCHAR(32) NULL COMMENT '服务号openid' AFTER `wechat_openid`;
-ALTER TABLE `tp_user` ADD `wechat_openid_2` VARCHAR(32) NULL COMMENT '小程序openid' AFTER `wechat_openid_1`;
+ALTER TABLE `wow_room`
+DROP COLUMN `purple`,
+DROP COLUMN `blue`,
+DROP COLUMN `green`,
+ADD COLUMN `floor_status`  tinyint(1) NULL COMMENT '是否开启底板，1-开启，2-不开启' AFTER `high_hps`;
+
+
+CREATE TABLE `wow_auction_floor`  (
+  `id` bigint(12) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `team_id` int(11) NOT NULL DEFAULT 0,
+  `currency_type` int(11) NOT NULL DEFAULT 1 COMMENT '1-金币,2-人民币',
+  `purple` tinyint(1) NULL DEFAULT NULL COMMENT '紫',
+  `blue` tinyint(1) NULL DEFAULT NULL COMMENT '蓝',
+  `green` tinyint(1) NULL DEFAULT NULL COMMENT '绿',
+  `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '起拍价格',
+  `add_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '每次价格',
+  `end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '结束时间',
+  `pay_end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '支付结束时间',
+  `create_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+
+ALTER TABLE `wow_team`
+ADD COLUMN `role_id`  int(11) NULL COMMENT '角色id' AFTER `user_role_name`,
+ADD COLUMN `identity`  tinyint(1) NULL COMMENT '身份1-团长，2-未确认团员，3-确认团员' AFTER `gold_coin`;
+ALTER TABLE `wow_team`
+MODIFY COLUMN `user_role_name`  char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色名' AFTER `room_id`,
+ADD COLUMN `attar`  varchar(255) NULL DEFAULT NULL COMMENT '用户头像' AFTER `amount`;
+
+
+
+
+
+
+

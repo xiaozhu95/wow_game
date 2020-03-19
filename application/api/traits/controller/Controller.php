@@ -25,8 +25,8 @@ trait Controller
 		if (method_exists($this, 'filter')) {
 			$this->filter($map);
 		}
-      $data = $this->datalist($model, $map);
-      // 特殊过滤器，后缀是方法名的
+        $data = $this->datalist($model, $map);
+        // 特殊过滤器，后缀是方法名的
 		$actionFilter = 'after' . $this->request->action();
 		if (method_exists($this, $actionFilter)) {
 			$this->$actionFilter($data);
