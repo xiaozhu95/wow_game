@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ALTER TABLE `wow_room`
 ADD COLUMN `yy_room_number`  varchar(100) NULL AFTER `subsidy`,
 ADD COLUMN `expenditure`  int(11) NULL AFTER `yy_room_number`;
@@ -34,8 +35,10 @@ MODIFY COLUMN `user_role_name`  char(50) CHARACTER SET utf8 COLLATE utf8_general
 ADD COLUMN `attar`  varchar(255) NULL DEFAULT NULL COMMENT '用户头像' AFTER `amount`;
 
 
+ALTER TABLE `wow_auction_log`
+ADD COLUMN `auction_equipment_id`  int(11) NULL COMMENT '竞拍的ID' AFTER `team_id`;
 
-
-
-
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 交易中 1 交易成功 2流拍' AFTER `boss_id`,
+ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT '交易成功是才会出现用户id' AFTER `type`;
 

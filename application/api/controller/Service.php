@@ -5,7 +5,7 @@ namespace app\api\controller;
 
 use app\api\Controller;
 
-class Adv extends Controller
+class Service extends Controller
 {
 	use \app\api\traits\controller\Controller;
 
