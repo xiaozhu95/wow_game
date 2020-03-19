@@ -67,7 +67,7 @@ git clone https://github.com/hzjianshi/tpadmin
 * layer
 * jQuery Validform
 * 七牛
-* ...
+* ... 
 
 >非常感谢这些框架、插件的支持
 
