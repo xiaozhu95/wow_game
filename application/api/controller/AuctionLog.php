@@ -10,23 +10,26 @@ use app\api\Controller;
  */
 class AuctionLog extends Controller
 {
-	use \app\api\traits\controller\Controller;
+    
+    use \app\api\traits\controller\Controller;
+        
 
-  protected function filter(&$map)
-  {
-      
-  }
-  /**竞拍的装备的分类 装备竞拍的ID*/
-  public function auctionType($equipment_ids)
-  {
-      $model = $this->getModel();
-      $list = $model->where($equipment_ids)->field("equipment_id,max(price) as price")->where($model)->group("equipment_id")->select();
-      if($list){
-           $list = $list->toArray();
-           $list = array_column($list, "price", "equipment_id");
-      }
-      return $list;
-  }
+    protected function filter(&$map)
+    {
+        $map['_relation']="User,BossArms";
+    }
+    
+    
+    /**
+     * 添加竞拍记录
+     */
+    public function addAuction()
+    {
+        define('SKIP_AUTH',true);
+        $this->request->post(['_ajax'=>1]);
+        return action('admin/auction_log/add');
+
+    }
 
   protected function aftergetList(&$data){
 

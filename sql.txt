@@ -1,4 +1,7 @@
-ALTER TABLE `tp_tradelist` CHANGE `type` `type` VARCHAR(30) NOT NULL COMMENT '1 微信 2支付宝';
 
-ALTER TABLE `tp_user` ADD `wechat_openid_1` VARCHAR(32) NULL COMMENT '服务号openid' AFTER `wechat_openid`;
-ALTER TABLE `tp_user` ADD `wechat_openid_2` VARCHAR(32) NULL COMMENT '小程序openid' AFTER `wechat_openid_1`;
+ALTER TABLE `wow_auction_log`
+ADD COLUMN `auction_equipment_id`  int(11) NULL COMMENT '竞拍的ID' AFTER `team_id`;
+
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 交易中 1 交易成功 2流拍' AFTER `boss_id`,
+ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT '交易成功是才会出现用户id' AFTER `type`;
