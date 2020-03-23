@@ -16,7 +16,7 @@ class AuctionEquipment extends Model
     const TYPE_IN_TRANSACTION = 0; //交易中
     const TYPE_SUCCESSFUL_TRANSACTION = 1; //交易成功
     const TYPE_STREAM_SHOT = 2; //流拍
-
+    const TYPE_OF_CREATE = 3; //我的交易(拍卖结束后支付时间前的这一段时间)
 
     /**批量添加装备*/
     public function add($data)
@@ -28,9 +28,7 @@ class AuctionEquipment extends Model
         foreach ($data as $key => $value) {
             $time  = time() + (is_integer($value['finsih_after_time']) ? $value['finsih_after_time'] : 0) * 60;
             $data[$key]['end_time'] =  $time;
-            $data[$key]['pay_end_time'] = $time +(is_integer($value['pay_after_time']) ? $value['pay_after_time'] : 0) * 60;
-            unset($data[$key]['finsih_after_time']);
-            unset($data[$key]['pay_after_time']);
+            $data[$key]['pay_end_time'] = $time +(is_integer($value['pay_after_time']) ? $value['pay_after_time'] : 0) * 60 * 2;
            if (!$validate->check($data[$key])) {
                 return ajax_return_adv_error($validate->getError());
             }
@@ -41,5 +39,10 @@ class AuctionEquipment extends Model
         }
         return ajax_return_adv_error('保存失败');
        
+    }
+    /**获取竞拍的最大价格*/
+    public function auctionMaxPrice()
+    {
+        
     }
 }

@@ -28,7 +28,8 @@ class AuctionEquipment extends Controller
         
         return $model->add($param);
     }
-    
+
+
     protected function aftergetList(&$data){
       if($data){
           $data = $data->toArray();

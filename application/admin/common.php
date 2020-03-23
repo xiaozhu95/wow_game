@@ -205,7 +205,9 @@ function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root 
 {
     // 创建Tree
     $tree = [];
+    $list = $list->toArray();
     if (is_array($list)) {
+           
         // 创建基于主键的数组引用
         $refer = [];
         foreach ($list as $key => $data) {
@@ -213,13 +215,14 @@ function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root 
                 $list[$key] = $data->toArray();
             }
             $refer[$data[$pk]] =& $list[$key];
-        }
+        }  
         foreach ($list as $key => $data) {
             // 判断是否存在parent
             if (!isset($list[$key][$child])) {
                 $list[$key][$child] = [];
             }
             $parentId = $data[$pid];
+           
             if ($root == $parentId) {
                 $tree[] =& $list[$key];
             } else {

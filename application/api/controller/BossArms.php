@@ -13,7 +13,7 @@ class BossArms extends Controller
 
   protected function filter(&$map)
   {
-      
+      $map['type'] = "布甲";
   }
 
   protected function aftergetList(&$data){

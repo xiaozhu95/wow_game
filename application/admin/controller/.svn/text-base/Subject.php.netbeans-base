@@ -13,5 +13,10 @@ class Subject extends Controller
 
     protected static $isdelete = false;
 
-    
+    protected function filter(&$map)
+    {
+        if ($this->request->param("name")) {
+            $map['name'] = ["like", "%" . $this->request->param("name") . "%"];
+        }
+    }
 }

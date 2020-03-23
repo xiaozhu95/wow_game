@@ -48,6 +48,7 @@ class AuctionLog extends Validate
     /**验证同一装备出价必须必上一个高*/
     protected function morePrice($price, $minPrice, $data)
     {
+        model('auction_equipment')->where(['id'=>$data['auction_equipment_id']])->find();
         $where["team_id"] = $data['team_id'];
         $where['equipment_id'] = $data['equipment_id'];
         $list = Db::name("AuctionLog")->field('max(price) as price')->where($where)->find();

@@ -31,7 +31,7 @@ trait Controller
 		if (method_exists($this, $actionFilter)) {
 			$this->$actionFilter($data);
 		}
-
-		return json($data);
+                
+		return ajax_return($data);
     }
 }

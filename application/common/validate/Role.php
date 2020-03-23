@@ -28,7 +28,7 @@ class Role extends Validate
         'occupation_name' =>'require',
         'role_name' => 'require|max:15',
         'grade' => 'integer',
-//        'talent' => 'require',
+        'talent' => 'require',
         'equipment_grade' => 'integer'
     ];
     protected $message = [
@@ -39,12 +39,19 @@ class Role extends Validate
         'service_name.require' => '服务器必须填',
         'camp_id.integer' => '阵营ID是数字',
         'camp_name.require' => '阵营必须',
-        'occupation_id.integer' => '角色种族ID',
-        'occupation_name.require' => '角色种族必填',
+        
+        'race_id.require' => '种族',
+        'race_id.integer' => '种族ID数字',
+         'race_name.require' => '种族名称须填',
+        
+        'occupation_id.require' => '职业必填',
+        'occupation_id.integer' => '职业ID数字',
+        'occupation_name.require' => '职业必须填',
+        
         'role_name.require' => '必填',
         'role_name.max' => '角色名称不能大于15',
         'grade.integer' => '角色等级',
-//        'talent.require' => '',
+        'talent.require' => '天赋必选',
         'equipment_grade.require' => '角色装备评分',
     ];
 }
