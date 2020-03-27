@@ -28,9 +28,9 @@ class AuctionEquipment extends Model
         if (!$data)
              return ajax_return_adv_error('参数不能为空');
         foreach ($data as $key => $value) {
-            $time  = time() + (is_integer($value['finsih_after_time']) ? $value['finsih_after_time'] : 0) * 60;
+            $time  = time() + (($value['finsih_after_time']) ? $value['finsih_after_time'] : 0) * 60;
             $data[$key]['end_time'] =  $time;
-            $data[$key]['pay_end_time'] = $time +(is_integer($value['pay_after_time']) ? $value['pay_after_time'] : 0) * 60 * 2;
+            $data[$key]['pay_end_time'] = $time +(($value['pay_after_time']) ? $value['pay_after_time'] : 0) * 60 * 2;
            if (!$validate->check($data[$key])) {
                 return ajax_return_adv_error($validate->getError());
             }
