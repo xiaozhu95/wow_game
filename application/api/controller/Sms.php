@@ -67,6 +67,8 @@ class Sms extends Controller
         $data['user_id'] = $user_id;
         return json($userModel->smsVeri($data));
     }
+    
+
     protected function aftergetList(&$data){
 
     }

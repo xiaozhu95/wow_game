@@ -80,7 +80,7 @@ function ajax_return_error($msg = "出现错误", $code = 1, $data = [], $extend
 }
 
 function front_ajax_return($msg,$status=0,$data=null){
-	return json(['status'=>$status,'msg'=>$msg,'data'=>$data]);
+	return json(['code'=>$status,'msg'=>$msg,'data'=>$data]);
 }
 
 /**

@@ -66,6 +66,10 @@ ALTER TABLE `wow_pay_log`
 ADD COLUMN `confirm_payment_id`  int(11) NULL DEFAULT 0 COMMENT '确认订单支付ID' AFTER `subject_name`;
 
 
+ALTER TABLE `wow_auction_pay`
+ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0（钱支付为零） 1 团员  2 团长确认（订单未为完成状态）' AFTER `confirm_payment_id`;
 
 
 
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `add_price`  int NULL COMMENT '每次加价必须大于或等于' AFTER `currency_type`;

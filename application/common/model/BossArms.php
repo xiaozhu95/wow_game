@@ -13,4 +13,16 @@ class BossArms extends Model
     {
         return $this->where(["transcript_boss_id" => $transcript_boss_id])->select();
     }
+    
+    public function arrayList($ids)
+    {
+       $data  = $this->field('id,icon,grade,type')->where("id",'in',$ids)->select();
+       if(!$data) return $data;
+
+       $data =  $data->toArray();
+      
+       $data = array_columns($data, "icon,grade,type", "id");
+      
+       return $data  ;
+    }
 }

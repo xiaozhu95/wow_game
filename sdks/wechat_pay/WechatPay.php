@@ -34,7 +34,7 @@ class WechatPay
 				'signType'  => 'MD5',
 				'package'   => 'prepay_id='.$prepay_id,
 				'nonceStr'  => $this->generateNonce(),
-				'timeStamp' => '"'.time().'"',  //坑爹的需要字符串
+				'timeStamp' => ''.time(),  //坑爹的需要字符串
 			);
 			$response['paySign'] = $this->calculateSign($response, $this->app_key);
 		// }elseif($data['trade_type']=='NATIVE'){
@@ -154,11 +154,13 @@ class WechatPay
 		);
                 
 		$params = array_merge($params,$data);
+                
 		// add sign
 		$params['sign'] = $this->calculateSign($params, $this->app_key);
                
 		// var_dump($params);
 		// create xml
+                
 		$xml = getXMLFromArray($params);
                
 		// send request

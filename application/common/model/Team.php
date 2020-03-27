@@ -33,4 +33,10 @@ class Team extends Model
 
         return $this->id;
     }
+    
+    public function teamCheck($data)
+    {
+        
+        return $this->field('id,user_id')->where($data)->find();
+    }
 }

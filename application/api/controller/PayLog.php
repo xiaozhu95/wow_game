@@ -23,7 +23,7 @@ class PayLog extends Controller
 			'app_key' => '87da6600103d56eb0a27e2eaf48bdeb0' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		],
 		4 => [ // 小程序
-			'app_id' => 'wxaf2657b223a45530', // APPID (开户邮件中可查看)
+			'app_id' => 'wxa07d866227c5c901', // APPID (开户邮件中可查看)
 			'mch_id' => '1502367711', // 商户号 (开户邮件中可查看)
 			'app_key' => 'fbdbcda9e93b2c8f7275d8a792491bb5' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		]
@@ -260,7 +260,7 @@ class PayLog extends Controller
                                 $data = [];
                                 break;
                 }
-                return front_ajax_return($pay_log->id,1,$data);
+                return front_ajax_return($pay_log->id,0,$data);
             }
 	}
 

@@ -48,15 +48,28 @@ class AuctionLog extends Validate
     /**验证同一装备出价必须必上一个高*/
     protected function morePrice($price, $minPrice, $data)
     {
-        model('auction_equipment')->where(['id'=>$data['auction_equipment_id']])->find();
+       $auction_equipment =  model('auction_equipment')->where(['id'=>$data['auction_equipment_id']])->find();
+       if(!$auction_equipment){
+           return '竞拍id不存在,无法拍卖';
+       }
+        if($auction_equipment['end_time']< time()){
+            return '竞拍活动已结束';
+        }
         $where["team_id"] = $data['team_id'];
         $where['equipment_id'] = $data['equipment_id'];
         $list = Db::name("AuctionLog")->field('max(price) as price')->where($where)->find();
         if(!$list['price']){
             $list['price'] = $minPrice;
         }
-        if($list['price']>$price){
-            return '竞拍价格低于上次出价,出价失败';
+        if(($list['price'] + $auction_equipment['price'])>$price){
+            $currency_type = "";
+            if($auction_equipment['currency_type'] == 1){
+                $currency_type = '金币';
+            }
+            if($auction_equipment['currency_type'] == 2){
+                $currency_type = '元';
+            }
+            return '竞拍价格低于上次出价格'.$auction_equipment['price'].$currency_type;
         }
         return true;
     }
