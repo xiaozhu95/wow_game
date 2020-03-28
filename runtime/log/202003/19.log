@@ -73,3 +73,825 @@
 [ sql ] [ SQL ] SELECT `room_num` FROM `wow_room` WHERE  `status` = 1 [ RunTime:0.000715s ]
 
 ---------------------------------------------------------------
+[ 2020-03-19T13:33:02+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/api/transcript_boss/transcriptAndBoos/parent_id/3
+[ log ] www.wow_game.com/index.php/api/transcript_boss/transcriptAndBoos/parent_id/3 [运行时间：0.271440s][吞吐率：3.68req/s] [内存消耗：2,136.76kb] [文件加载：58]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'transcript_boss',
+    2 => 'transcriptAndBoos',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  'parent_id' => '3',
+)
+[ info ] [ RUN ] app\api\controller\TranscriptBoss->transcriptAndBoos[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\TranscriptBoss.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011240s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_transcript_boss` [ RunTime:0.062689s ]
+[ sql ] [ SQL ] SELECT `id`,`parent_id`,`name`,`type` FROM `wow_transcript_boss` WHERE  `parent_id` = 3 [ RunTime:0.000394s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_boss_arms` [ RunTime:0.144671s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 16 [ RunTime:0.001906s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 17 [ RunTime:0.000595s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 18 [ RunTime:0.000513s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 19 [ RunTime:0.000638s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 20 [ RunTime:0.000550s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 21 [ RunTime:0.000531s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 22 [ RunTime:0.000683s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_boss_arms` WHERE  `transcript_boss_id` = 23 [ RunTime:0.000708s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:09+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/room/index
+[ log ] www.wow_game.com/index.php/admin/room/index [运行时间：0.355069s][吞吐率：2.82req/s] [内存消耗：6,115.09kb] [文件加载：68]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'room',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.173852s ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.157099s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011543s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_web_log_all` [ RunTime:0.088178s ]
+[ sql ] [ SQL ] INSERT INTO `wow_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (0 , '127.0.0.1' , '本机地址 本机地址  ' , 'Windows 98' , 'Chrome(80.0.3987.132)' , 'http://www.wow_game.com/index.php/admin/room/index' , 'admin' , 'Room' , 'index' , 'GET' , 'a:0:{}' , 1584595989) [ RunTime:0.037946s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:09+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex
+[ log ] www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex [运行时间：0.070309s][吞吐率：14.22req/s] [内存消耗：6,087.22kb] [文件加载：66]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'pub',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/room/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'http://www.wow_game.com/index.php/admin/room/index',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.004034s ]
+[ info ] [ RUN ] app\admin\controller\Pub->login[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Pub.php ]
+[ info ] [ VIEW ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\pub\login.html [ array (
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.038483s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002101s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_web_log_all` [ RunTime:0.014038s ]
+[ sql ] [ SQL ] INSERT INTO `wow_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (0 , '127.0.0.1' , '本机地址 本机地址  ' , 'Windows 98' , 'Chrome(80.0.3987.132)' , 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex' , 'admin' , 'Pub' , 'login' , 'GET' , 'a:1:{s:8:\"callback\";s:50:\"http://www.wow_game.com/index.php/admin/room/index\";}' , 1584595989) [ RunTime:0.000579s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:09+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/captcha
+[ log ] www.wow_game.com/index.php/captcha [运行时间：0.067221s][吞吐率：14.88req/s] [内存消耗：1,048.02kb] [文件加载：39]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => '',
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:14+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/captcha?t=1584595994784
+[ log ] www.wow_game.com/index.php/captcha?t=1584595994784 [运行时间：0.015422s][吞吐率：64.84req/s] [内存消耗：1,048.44kb] [文件加载：39]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  't' => '1584595994784',
+  'id' => '',
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:20+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/admin/pub/checklogin
+[ log ] www.wow_game.com/index.php/admin/pub/checklogin [运行时间：0.428977s][吞吐率：2.33req/s] [内存消耗：6,182.11kb] [文件加载：71]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'pub',
+    2 => 'checklogin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex',
+  'origin' => 'http://www.wow_game.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '42',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  'account' => 'admin',
+  'password' => '123456',
+  'captcha' => 'wq6u',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.004209s ]
+[ info ] [ RUN ] app\admin\controller\Pub->checkLogin[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Pub.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.013262s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001017s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_admin_user` [ RunTime:0.162263s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_admin_user` WHERE  `account` = 'admin'  AND `status` = 1 LIMIT 1 [ RunTime:0.001812s ]
+[ sql ] [ SQL ] UPDATE `wow_admin_user`  SET `last_login_time`=1584596000,`login_count`=login_count+1,`last_login_ip`='127.0.0.1'  WHERE  `id` = 1 [ RunTime:0.043094s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_login_log` [ RunTime:0.098887s ]
+[ sql ] [ SQL ] INSERT INTO `wow_login_log` (`uid` , `login_ip` , `login_location` , `login_browser` , `login_os`) VALUES (1 , '127.0.0.1' , '本机地址 本机地址  ' , 'Chrome(80.0.3987.132)' , 'Windows 98') [ RunTime:0.054998s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_web_log_all` [ RunTime:0.012388s ]
+[ sql ] [ SQL ] INSERT INTO `wow_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (0 , '127.0.0.1' , '本机地址 本机地址  ' , 'Windows 98' , 'Chrome(80.0.3987.132)' , 'http://www.wow_game.com/index.php/admin/pub/checklogin' , 'admin' , 'Pub' , 'checklogin' , 'POST' , 'a:3:{s:7:\"account\";s:5:\"admin\";s:8:\"password\";s:6:\"123456\";s:7:\"captcha\";s:4:\"wq6u\";}' , 1584596000) [ RunTime:0.000432s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:20+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/room/index
+[ log ] www.wow_game.com/index.php/admin/room/index [运行时间：0.162288s][吞吐率：6.16req/s] [内存消耗：6,678.22kb] [文件加载：81]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'room',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.008672s ]
+[ info ] [ RUN ] app\admin\controller\Room->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\index.html [ array (
+  0 => 'list',
+  1 => 'count',
+  2 => 'page',
+  3 => 'numPerPage',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000852s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.025747s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_room` LIMIT 1 [ RunTime:0.000936s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_room` ORDER BY id desc LIMIT 0,20 [ RunTime:0.000554s ]
+[ error ] [0]类的属性不存在:app\common\model\Room->purple[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\library\think\Model.php:473]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:36+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/index
+[ log ] www.wow_game.com/index.php/admin/index [运行时间：0.285576s][吞吐率：3.50req/s] [内存消耗：6,180.13kb] [文件加载：71]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.004035s ]
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001007s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_admin_node` [ RunTime:0.248371s ]
+[ sql ] [ SQL ] SELECT `id`,`pid`,`name`,`group_id`,`title`,`type` FROM `wow_admin_node` WHERE  (  status=1 AND group_id > 0 ) ORDER BY sort ASC [ RunTime:0.000862s ]
+[ error ] [0]没有权限[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\helper.php:59]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:45+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/room/index
+[ log ] www.wow_game.com/index.php/admin/room/index [运行时间：0.075387s][吞吐率：13.26req/s] [内存消耗：6,495.03kb] [文件加载：77]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'room',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.007095s ]
+[ info ] [ RUN ] app\admin\controller\Room->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\index.html [ array (
+  0 => 'list',
+  1 => 'count',
+  2 => 'page',
+  3 => 'numPerPage',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010940s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_room` [ RunTime:0.022155s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_room` LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_room` ORDER BY id desc LIMIT 0,20 [ RunTime:0.000571s ]
+[ error ] [0]类的属性不存在:app\common\model\Room->purple[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\library\think\Model.php:473]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:46+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex
+[ log ] www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex [运行时间：0.064050s][吞吐率：15.61req/s] [内存消耗：6,090.95kb] [文件加载：67]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'pub',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/room/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+  'callback' => 'http://www.wow_game.com/index.php/admin/room/index',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.006024s ]
+[ info ] [ RUN ] app\admin\controller\Pub->login[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Pub.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.037389s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011445s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_web_log_all` [ RunTime:0.021746s ]
+[ sql ] [ SQL ] INSERT INTO `wow_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '127.0.0.1' , '本机地址 本机地址  ' , 'Windows 98' , 'Chrome(80.0.3987.132)' , 'http://www.wow_game.com/index.php/admin/pub/login?callback=http%3A%2F%2Fwww.wow_game.com%2Findex.php%2Fadmin%2Froom%2Findex' , 'admin' , 'Pub' , 'login' , 'GET' , 'a:1:{s:8:\"callback\";s:50:\"http://www.wow_game.com/index.php/admin/room/index\";}' , 1584596026) [ RunTime:0.000393s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:33:46+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin/index/index
+[ log ] www.wow_game.com/index.php/admin/index/index [运行时间：0.048543s][吞吐率：20.60req/s] [内存消耗：6,180.50kb] [文件加载：71]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=5alqgrn8k4j99o401s5sg6hd46',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.wow_game.com/index.php/admin/room/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.wow_game.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.004446s ]
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001028s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_admin_node` [ RunTime:0.015588s ]
+[ sql ] [ SQL ] SELECT `id`,`pid`,`name`,`group_id`,`title`,`type` FROM `wow_admin_node` WHERE  (  status=1 AND group_id > 0 ) ORDER BY sort ASC [ RunTime:0.000820s ]
+[ error ] [0]没有权限[D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\helper.php:59]
+
+---------------------------------------------------------------
+[ 2020-03-19T13:55:17+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.035747s][吞吐率：27.97req/s] [内存消耗：1,151.10kb] [文件加载：43]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '9533c259-c337-4091-895d-9495c223bc12',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T13:55:50+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/room/createRoom
+[ log ] www.wow_game.com/index.php/api/room/createRoom [运行时间：0.030950s][吞吐率：32.31req/s] [内存消耗：1,151.44kb] [文件加载：43]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'room',
+    2 => 'createRoom',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '1321',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '9a238844-e8c6-4312-a402-ef18746158c7',
+  'cache-control' => 'no-cache',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'room_num' => '875461',
+  'service_id' => '1',
+  'service_name' => '阿鲁高',
+  'camp_id' => '1',
+  'camp_name' => '联盟&middot;种族',
+  'transcript_id' => '3',
+  'transcript_name' => '黑翼之巢',
+  'boss_id' => '16',
+  'boss_name' => '中文：克洛玛古斯英文：Chromaggus',
+  'team_type' => '自强',
+  'equipment_score' => '80',
+  'subsidy' => '{&quot;currency_type&quot;:1,&quot;status&quot;:1,&quot;subsidy&quot;:[{&quot;name&quot;:&quot;指挥&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;MT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;FT&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;DPS1st&quot;,&quot;value&quot;:2},{&quot;name&quot;:&quot;HPS1st&quot;,&quot;value&quot;:2}]}',
+  'yy_room_number' => '889956',
+  'expenditure' => '1000',
+  'high_dps' => '',
+  'high_hps' => '',
+  'floor_status' => '1',
+  'floor_info' => '{
+&quot;currency_type&quot;:1,
+&quot;price&quot;:200,
+&quot;add_price&quot;:50,
+&quot;purple&quot;:1,
+&quot;blue&quot;:1,
+&quot;green&quot;:1,
+&quot;end_time&quot;:30,
+&quot;pay_end_time&quot;:5
+}',
+  'user_info' => '{
+&quot;user_id&quot;:1,
+&quot;room_id&quot;:2,
+&quot;user_role_name&quot;:&quot;好游戏&quot;,
+&quot;role_id&quot;:1,
+&quot;attar&quot;:&quot;https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132&quot;
+}',
+)
+[ info ] [ RUN ] app\api\controller\Room->createRoom[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Room.php ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T17:57:59+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/team/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/team/getlist/team_id/1 [运行时间：0.310192s][吞吐率：3.22req/s] [内存消耗：1,030.26kb] [文件加载：41]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'team',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'c590e06c-df24-49cf-94b7-849ca3abdd75',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------522213841675911808393528',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T17:58:45+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/team/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/team/getlist/team_id/1 [运行时间：0.317235s][吞吐率：3.15req/s] [内存消耗：2,079.88kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'team',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'e9403093-37cc-463c-9514-c0574f4af955',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------741499541900109518197188',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ RUN ] app\api\controller\Team->getList[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001601s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_team` [ RunTime:0.018838s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_team` LIMIT 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_team` ORDER BY id desc LIMIT 0,20 [ RunTime:0.000182s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T18:00:06+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/teammember/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/teammember/getlist/team_id/1 [运行时间：0.015083s][吞吐率：66.30req/s] [内存消耗：1,030.24kb] [文件加载：41]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'teammember',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '70afd33e-7958-44b8-9854-0496cdb5ace9',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------360368662924562445930215',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T18:00:48+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/teammember/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/teammember/getlist/team_id/1 [运行时间：0.014607s][吞吐率：68.46req/s] [内存消耗：1,030.24kb] [文件加载：41]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'teammember',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '1a86a366-a6cf-4d77-8994-c43032d293a7',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------519745502201506076143691',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2020-03-19T18:00:57+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/team_member/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/team_member/getlist/team_id/1 [运行时间：0.049446s][吞吐率：20.22req/s] [内存消耗：2,078.80kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'team_member',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => '05b1c524-b09d-4f3f-9908-4b59c73c33fa',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------734496003412260126494615',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ RUN ] app\api\controller\TeamMember->getList[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001120s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_team_member` [ RunTime:0.022633s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_team_member` WHERE  `team_id` = 1 LIMIT 1 [ RunTime:0.000321s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_team_member` WHERE  `team_id` = 1 ORDER BY id desc LIMIT 0,20 [ RunTime:0.000367s ]
+
+---------------------------------------------------------------
+[ 2020-03-19T18:01:32+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/team_member/getlist/team_id/1
+[ log ] www.wow_game.com/index.php/api/team_member/getlist/team_id/1 [运行时间：0.085287s][吞吐率：11.73req/s] [内存消耗：2,079.23kb] [文件加载：59]
+[ info ] [ LANG ] D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'team_member',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '487',
+  'accept-encoding' => 'gzip, deflate',
+  'host' => 'www.wow_game.com',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.1.1',
+  'postman-token' => 'c2fea279-baf8-406d-8b8b-39b790d95f93',
+  'cache-control' => 'no-cache',
+  'content-type' => 'multipart/form-data; boundary=--------------------------326833474741677559362603',
+)
+[ info ] [ PARAM ] array (
+  'room_number' => '',
+  'service_id' => '',
+  'camp_id' => '',
+  'role_id' => '',
+  'team_id' => '1',
+)
+[ info ] [ RUN ] app\api\controller\TeamMember->getList[ D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\application\api\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000751s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_team_member` [ RunTime:0.040414s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_team_member` WHERE  `team_id` = 1 LIMIT 1 [ RunTime:0.001211s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_team_member` WHERE  `team_id` = 1 ORDER BY id desc LIMIT 0,20 [ RunTime:0.000472s ]
+
+---------------------------------------------------------------

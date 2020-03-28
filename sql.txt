@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ALTER TABLE `wow_room`
 ADD COLUMN `yy_room_number`  varchar(100) NULL AFTER `subsidy`,
 ADD COLUMN `expenditure`  int(11) NULL AFTER `yy_room_number`;
@@ -41,4 +40,42 @@ ADD COLUMN `auction_equipment_id`  int(11) NULL COMMENT '竞拍的ID' AFTER `team_i
 ALTER TABLE `wow_auction_equipment`
 ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 交易中 1 交易成功 2流拍' AFTER `boss_id`,
 ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT '交易成功是才会出现用户id' AFTER `type`;
+
+ALTER TABLE `wow_auction_equipment`
+ENGINE=InnoDB;
+
+ALTER TABLE `wow_team`
+ENGINE=InnoDB;
+
+ALTER TABLE `wow_team_member`
+ENGINE=InnoDB;
+
+ALTER TABLE `wow_team_statistics`
+ENGINE=InnoDB;
+
+ALTER TABLE `wow_auction_floor`
+ENGINE=InnoDB;
+
+ALTER TABLE `wow_room`
+MODIFY COLUMN `high_dps`  varchar(255) NULL DEFAULT NULL COMMENT 'DPS需高于第一名的百分比' AFTER `expenditure`,
+MODIFY COLUMN `high_hps`  varchar(255) NULL DEFAULT NULL COMMENT 'HPS需高于第一名的百分比' AFTER `high_dps`;
+
+
+ALTER TABLE `wow_team`
+DROP COLUMN `identity`;
+
+ALTER TABLE `wow_team_member`
+ADD COLUMN `role_id`  int(11) NULL COMMENT '角色id' AFTER `avatar`;
+
+
+ALTER TABLE `wow_team_member`
+ADD COLUMN `user_role_name`  varchar(255) NULL COMMENT '角色名称' AFTER `role_id`;
+
+
+
+ALTER TABLE `wow_team`
+CHANGE COLUMN `attar` `avatar`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户头像' AFTER `amount`;
+
+ALTER TABLE `wow_room`
+ADD COLUMN `note`  varchar(255) NULL AFTER `status`;
 

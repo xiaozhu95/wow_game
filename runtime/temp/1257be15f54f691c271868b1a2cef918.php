@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:102:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\index.html";i:1584428327;s:105:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\template\base.html";i:1584354964;s:116:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\template\javascript_vars.html";i:1584354964;s:101:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\form.html";i:1584428327;s:99:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\th.html";i:1584428498;s:99:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\td.html";i:1584428327;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:102:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\index.html";i:1584428327;s:105:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\template\base.html";i:1584354964;s:116:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\template\javascript_vars.html";i:1584354964;s:101:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\form.html";i:1584428327;s:99:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\th.html";i:1584431815;s:99:"D:\ruanjiananzhuang\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\room\td.html";i:1584431963;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -70,6 +70,8 @@
 <th width="">boss名称</th>
 <th width="">团队名称</th>
 <th width="">装备评分</th>
+<th width="">YY房间号</th>
+<th width="">支出</th>
 <th width="">补贴方式</th>
 <th width="">DPS需高于第一名的百分比</th>
 <th width="">HPS需高于第一名的百分比</th>
@@ -100,6 +102,8 @@
 <td><?php echo $vo['team_type']; ?></td>
 <td><?php echo $vo['equipment_score']; ?></td>
 <td><?php echo $vo['subsidy']; ?></td>
+<td><?php echo $vo['yy_room_number']; ?></td>
+<td><?php echo $vo['expenditure']; ?></td>
 <td><?php echo $vo['high_dps']; ?></td>
 <td><?php echo $vo['high_hps']; ?></td>
 <td><?php echo $vo['purple']; ?></td>

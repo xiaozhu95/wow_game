@@ -32,6 +32,6 @@ trait Controller
 			$this->$actionFilter($data);
 		}
 
-		return json($data);
+        return ajax_return($data);
     }
 }

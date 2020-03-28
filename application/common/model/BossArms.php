@@ -11,6 +11,9 @@ class BossArms extends Model
 
     public function getList ($transcript_boss_id)
     {
-        return $this->where(["transcript_boss_id" => $transcript_boss_id])->select();
+        return $this
+            ->where(["transcript_boss_id" => $transcript_boss_id])
+            ->where("type", "not in", ["杂项", "设计图", "锻造图", "配方", "垃圾", "方程", "消耗品", "施法材料", "图样", "书籍"])
+            ->select();
     }
 }

@@ -7,113 +7,173 @@ use think\Cache;
 
 class Room extends Model
 {
-    const FLOOR_STATUS_OPEN = 1;    // å¼€å¯floor
-    const FLOOR_STATUS_CLOSE = 2;    // å…³é—­floor
+    const FLOOR_STATUS_OPEN = 1;    // ¿ªÆôfloor
+    const FLOOR_STATUS_CLOSE = 2;    // ¹Ø±Õfloor
 
-    // æˆ¿é—´æ˜¯å¦å…³é—­ 1-å¼€å¯ï¼Œ2-å…³é—­
-    const ROOM_STATUS_OPEN = 1;    // å¼€å¯
-    const ROOM_STATUS_CLOSE = 2;    // å…³é—­
-    private static $roomNum;    // æˆ¿é—´å·
+    // ·¿¼äÊÇ·ñ¹Ø±Õ 1-¿ªÆô£¬2-¹Ø±Õ
+    const ROOM_STATUS_OPEN = 1;    // ¿ªÆô
+    const ROOM_STATUS_CLOSE = 2;    // ¹Ø±Õ
+    private static $roomNum;    // ·¿¼äºÅ
 
-    // æŒ‡å®šè¡¨å,ä¸å«å‰ç¼€
+    // Ö¸¶¨±íÃû,²»º¬Ç°×º
     protected $name = 'room';
 
-    // æ·»åŠ æˆ¿é—´
+    public function getList($roomId, $teamId)
+    {
+        $result = $this->where(['id' => $roomId])->find();
+        $auctionFloorMode = new AuctionFloor();
+        $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // µØ°åÐÅÏ¢
+        if ($result) {
+            $result["high_dps"] = json_decode(json_decode($result["high_dps"]));
+            $result["high_hps"] = json_decode($result["high_hps"]);
+            $subsidy = json_decode($result["subsidy"], true);
+            $newSubsidy = array();
+            $tempArray = array();
+            if ($subsidy["subsidy"]) {
+                foreach ($subsidy["subsidy"] as $key =>$value) {
+                    $tempArray = array_merge($tempArray, $value["list"]);
+                }
+                $newSubsidy["currency_type"] = $subsidy["currency_type"];
+                $newSubsidy["status"] = $subsidy["status"];
+                $newSubsidy["subsidy"] = $tempArray;
+                $result["subsidy"] = $newSubsidy ;
+            }
+
+        }
+        $result["floorInfo"] = $auctionFloorInfo;
+        $resultData = [
+            'code' => 0,
+            'msg' => 'success!',
+            'data' => $result
+        ];
+        return json($resultData);
+    }
+    /**
+     * @param $params
+     * @return \think\response\Json
+     * Ìí¼Ó·¿¼ä
+     */
     public function add ($params)
     {
-        $subsidy = '{"currency_type":1,"status":1,"subsidy":[{"name":"æŒ‡æŒ¥","value":2},{"name":"MT","value":2},{"name":"FT","value":2},{"name":"DPS1st","value":2},{"name":"HPS1st","value":2}]}';
-        $floor_info = json_decode('{
-"currency_type":1,
-"price":200,
-"add_price":50,
-"purple":1,
-"blue":1,
-"green":1,
-"end_time":30,
-"pay_end_time":5
-}', true);
-        $userInfo = json_decode('{
-"user_id":1,
-"room_id":2,
-"user_role_name":"å¥½æ¸¸æˆ",
-"role_id":1,
-"attar":"https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132"
-}', true);
+        $floor_info = $params["floor_info"];
+        $userInfo = $params["user_info"];
+        $roomExit = $this->checkUserRoomExit($userInfo["user_id"]);
+        if ($roomExit) {
+            $result = [
+                'code' => 1,
+                'msg' => 'ÄúÒÑ¾­ÔÚ·¿¼äÖÐ!'
+            ];
+            return json($result);
+        }
 
         Db::startTrans();
         try {
-            // åˆ›å»ºæˆ¿é—´
+            // ´´½¨·¿¼ä
             $otherInfo = [
-                'name' => "ç³»ç»Ÿæˆ¿é—´å",
+                'name' => "ÏµÍ³·¿¼äÃû",
                 'create_time' => time(),
                 'update_time' => time(),
             ];
             unset($params["floor_info"]);
             unset($params["user_info"]);
+            unset($params["token"]);
+            if ($params['high_hps']) {
+                $params['high_hps'] = json_encode($params['high_hps']);
+            }
+            if ($params['high_hps']) {
+                $params['high_dps'] = json_encode($params['high_hps']);
+            }
+            var_dump(array_merge($params,$otherInfo));exit;
             $this->data(array_merge($params,$otherInfo))->save();
 
-            // åˆ›å»ºå›¢
+            // ´´½¨ÍÅ
             $teamModel = \model("Team");
-            $teamId = $teamModel->add($userInfo, $this->id, Team::IDENTITY_TEAM_LEADER);
+            $teamId = $teamModel->add($userInfo, $this->id);
 
-            // å¦‚æžœæœ‰åº•æ¿ï¼Œåˆ›å»ºæ‹å–åº•æ¿
+            // Èç¹ûÓÐµ×°å£¬´´½¨ÅÄÂôµ×°å
             if ($params["floor_status"] == Room::FLOOR_STATUS_OPEN && !empty($floor_info)) {
-                $floor_info = json_decode($floor_info, true);
-
                 $auctionFloorModel = \model("AuctionFloor");
                 $auctionFloorModel->add($floor_info, $teamId);
             }
+            // ÔÚÍÅÔ±ÐÅÏ¢ÖÐÉú³ÉÍÅ³¤ÐÅÏ¢
+            $teamMemberModel = \model("TeamMember");
+            $teamMemberModel->add($userInfo, $teamId, TeamMember::IDENTITY_TEAM_LEADER);
             Db::commit();
+            $result = [
+                'code' => 0,
+                'msg' => 'success',
+                'data' => [
+                    'team_id' => $teamId,
+                ]
+            ];
         } catch (\Exception $e) {
+            return $e;
             Db::rollback();
+            $result = [
+                'code' => 1,
+                'msg' => 'error'
+            ];
         }
+        return json($result);
     }
 
-    // åŠ å…¥æˆ¿é—´
-    public function joinRoom ()
+    /**
+     * @param $userId
+     * @return array|false|\PDOStatement|string|Model
+     * ÅÐ¶Ï¸ÃÓÃ»§ÊÇ·ñ´æÔÚ·¿¼äÀï»òÒÑ¾­´´½¨·¿¼ä
+     */
+    public function checkUserRoomExit ($userId)
     {
-        $roomNumber = input("room_number", 3);    // æˆ¿é—´å·
-        $serviceId = input("service_id");    // æœåŠ¡å™¨id
-        $campId = input("camp_id");    // é˜µè¥id
-        $roleId = input("role_id");    // è§’è‰²id
+        $teammember = TeamMember::where("user_id",$userId)
+            ->where(["is_del" => TeamMember::IS_DEL_CREATE])
+            ->where(["is_sign_out"=> TeamMember::NOT_SIGN_OUT])
+            ->where("identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
+            ->select()->toArray();
 
-        $roomInfo = $this->where(['room_num' => $roomNumber])->find();
+        return Team::where("id","in",array_column($teammember, "team_id"))->find();
+    }
+
+
+    /**
+     * @param $params
+     * @return \think\response\Json
+     * ¼ÓÈë·¿¼ä
+     */
+    public function joinRoom ($params)
+    {
+        $roomInfo = $this->where(['room_num' => $params['room_number']])->find();
         if (empty($roomInfo)) {
             $result = [
                 'code' => 1,
-                'msg' => "æˆ¿é—´ä¸å­˜åœ¨!",
+                'msg' => "·¿¼ä²»´æÔÚ!",
             ];
             return json($result);
         }
 
-        if ($serviceId != $roomInfo->service_id || $campId != $roomInfo->camp_id) {
+        if ($params['service_id'] != $roomInfo->service_id || $params['camp_id'] != $roomInfo->camp_id) {
             $result = [
                 'code' => 1,
-                'msg' => "è§’è‰²æœåŠ¡å™¨é˜µè¥ä¸ç»Ÿä¸€!",
+                'msg' => "½ÇÉ«·þÎñÆ÷ÕóÓª²»Í³Ò»!",
             ];
             return json($result);
         }
 
-        $userInfo = json_decode('{
-"user_id":1,
-"room_id":2,
-"user_role_name":"å¥½æ¸¸æˆ",
-"role_id":1,
-"attar":"https://wx.qlogo.cn/mmopen/vi_32/DASx3Yn7B8DNEqSJ16Nf8UBXoq1FJ2BO7wzhdwtrkscZtaZ36z2TKzMrAsp8iaI4LE6f3gVlSkwnsdHjIdDa51Q/132"
-}', true);
-
-        // è¿›å…¥å›¢
-        $teamModel = \model("Team");
-        $teamId = $teamModel->add($userInfo, $roomInfo->id, Team::IDENTITY_TEAM_MEMBER);
+        // ¸ù¾Ý·¿¼äºÅÕÒ³öÍÅid
+        $team = new Team();
+        $teamInfo = $team->where(['room_id' => $roomInfo->id])->find();
+        // ½øÈëÍÅ
+        $teamMemberModel = \model("TeamMember");
+        $teamId = $teamMemberModel->add($params["user_info"], $teamInfo->id, TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM);
         if ($teamId) {
             $result = [
                 'code' => 0,
-                'msg' => "åŠ å…¥æˆåŠŸ",
+                'msg' => "¼ÓÈë³É¹¦",
+                'data' => $teamInfo->id
             ];
         } else {
             $result = [
                 'code' => 1,
-                'msg' => "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·é‡æ–°è¾“å…¥",
+                'msg' => "ÍøÂçÒì³££¬ÇëÖØÐÂÊäÈë",
             ];
         }
 
@@ -121,7 +181,11 @@ class Room extends Model
     }
 
 
-    // ç”Ÿæˆæˆ¿é—´å·
+    /**
+     * @param $params
+     * @return \think\response\Json
+     * Éú³É·¿¼äºÅ
+     */
     public function createRoomNumber ($params)
     {
         $existenceRoomNum = $this->field("room_num")->where(['status' => Room::ROOM_STATUS_OPEN])->select()->toArray();
@@ -140,6 +204,13 @@ class Room extends Model
         return json($result);
     }
 
+    /**
+     * @param int $min
+     * @param int $max
+     * @param int $num
+     * @return string
+     * Éú³É·¿¼ä×Ö·û´®
+     */
     private function createRoomNumberString  ($min = 0, $max = 9, $num = 6)
     {
         $str = "";
@@ -153,5 +224,146 @@ class Room extends Model
             $this->createRoomNumberString();
         }
         return $str;
+    }
+
+    // ¼ÆËã²¹Ìù·½Ê½
+    public function calculationUserSubsidy ($params)
+    {
+        $room = new Room();
+        $roomInfo = $room->where(["id" => $params['room_id']])->find();
+        $team = new Team();
+        $teamInfo = $team->where(["id" => $params['team_id']])->find();
+        $teamMember = new TeamMember();
+        $teamMemberInfo = $teamMember->where(["team_id" => $params['team_id']])->select()->toArray();
+        $teamMemberNum = count($teamMemberInfo);
+
+        // currency_type 1-ÈËÃñ±Ò£¬2-½ð±Ò,  status ²¹ÌùÀàÐÍ£¬1-°Ù·Ö±È£¬2-¹Ì¶¨±ÈÀý
+        if ($params["currency_type"] == 1) {
+            $balance = $teamInfo->amount - $roomInfo->expenditure;
+            $userDistributionInfo = $this->calculationMoneySubsidy($balance, $params["status"], $params["subsidy"], $teamMemberNum, $teamInfo->gold_coin);
+        } elseif ($params["currency_type"] == 2) {
+            $balance = $teamInfo->gold_coin - $roomInfo->expenditure;
+            $userDistributionInfo = $this->calculationGoldCoinSubsidy($balance, $params["status"], $params["subsidy"], $teamMemberNum);
+        }
+        $result = $this->userDistributionInfo($userDistributionInfo, $params['team_id']);
+        $result = [
+            'code' => 0,
+            'msg' => "success",
+            'data' => $result,
+        ];
+        return json($result);
+    }
+
+    private function calculationMoneySubsidy ($balance, $status, $subsidy, $teamMemberNum, $goldCoin)
+    {
+        $arrayUserSubsidy = array();
+        $notMoneyUserNum = 0;
+        $userDistributionInfo = array();
+        $i = 0;
+
+        if ($status == 1) {    // 1-°Ù·Ö±È
+            foreach ($subsidy as $subsidyKey => $subsidyValue) {
+                $subsidyRate = (int)$subsidyValue["value"] /100;
+                foreach ($subsidyValue["user_id"] as $subsidyUserIdKey => $subsidyUserIdValue) {
+                    if (array_key_exists($subsidyUserIdValue, $arrayUserSubsidy)) {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $arrayUserSubsidy[$subsidyUserIdValue]  + bcmul($balance , $subsidyRate, 2);
+                    } else {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = bcmul($balance , $subsidyRate, 2);
+                    }
+                }
+                if ($subsidyValue["name"] == "²»·ÖÇ®") {
+                    $notMoneyUserNum = count($subsidyValue["user_id"]);
+                }
+            }
+
+            $balance = $balance - array_sum($arrayUserSubsidy);
+            $haveMoneyUserNum = $teamMemberNum - $notMoneyUserNum;
+            $everyMoney = bcdiv($balance, $haveMoneyUserNum, 2);
+
+            foreach ($arrayUserSubsidy as $arrayUserSubsidyKey => $arrayUserSubsidyValue) {
+                if ($arrayUserSubsidyValue == 0) {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                } else {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                }
+                $i++;
+            }
+
+            $userEveryOneGoldCoin = $this->calculationGoldCoin($goldCoin, $haveMoneyUserNum);
+            foreach ($userDistributionInfo as $userDistributionInfoKey=> $userDistributionInfoValue) {
+                if ($userDistributionInfoValue["money"] == 0) {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = 0;
+                } else {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
+                }
+            }
+            return $userDistributionInfo;
+        }
+        elseif ($status == 2) {    // 2-¹Ì¶¨±ÈÀý
+            foreach ($subsidy as $subsidyKey => $subsidyValue) {
+                foreach ($subsidyValue["user_id"] as $subsidyUserIdKey => $subsidyUserIdValue) {
+                    if (array_key_exists($subsidyUserIdValue, $arrayUserSubsidy)) {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $arrayUserSubsidy[$subsidyUserIdValue] + (int)$subsidyValue["value"];
+                    } else {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $subsidyValue["value"];
+                    }
+                }
+                if ($subsidyValue["name"] == "²»·ÖÇ®") {
+                    $notMoneyUserNum = count($subsidyValue["user_id"]);
+                }
+            }
+            $balance = $balance - array_sum($arrayUserSubsidy);
+            $haveMoneyUserNum = $teamMemberNum - $notMoneyUserNum;
+            $everyMoney = bcdiv($balance, $haveMoneyUserNum, 2);
+
+            foreach ($arrayUserSubsidy as $arrayUserSubsidyKey => $arrayUserSubsidyValue) {
+                if ($arrayUserSubsidyValue == 0) {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                } else {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                }
+                $i++;
+            }
+
+            $userEveryOneGoldCoin = $this->calculationGoldCoin($goldCoin, $haveMoneyUserNum);
+            foreach ($userDistributionInfo as $userDistributionInfoKey=> $userDistributionInfoValue) {
+                if ($userDistributionInfoValue["money"] == 0) {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = 0;
+                } else {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
+                }
+            }
+            return $userDistributionInfo;
+        }
+    }
+
+
+    private function calculationGoldCoinSubsidy ($balance, $status, $subsidy)
+    {
+        if ($status == 1) {
+
+        } elseif ($status == 2) {
+            // Èç¹û´æÔÚ
+        }
+    }
+
+    public function calculationGoldCoin ($goldCoin, $haveMoneyUserNum)
+    {
+        return $surplusMoney = bcdiv($goldCoin, $haveMoneyUserNum, 2);
+    }
+
+    public function userDistributionInfo ($userDistributionInfo, $teamId)
+    {
+        $teamMember = new TeamMember();
+        foreach ($userDistributionInfo as $key => $value) {
+            $teamMemberInfo = $teamMember->where(["user_id" => $value["userId"]])->where(["team_id" => $teamId])->find();
+            $userDistributionInfo[$key]["userInfo"] = empty($teamMemberInfo) ? "" : $teamMemberInfo;
+        }
+
+        return $userDistributionInfo;
     }
 }

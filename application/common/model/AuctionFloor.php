@@ -20,5 +20,14 @@ class AuctionFloor extends Model
         $this->data(array_merge($floor_info, $otherInfo))->save();
     }
 
+    /**
+     * @param $teamId
+     * @return array|false|\PDOStatement|string|Model
+     * 获取地板信息
+     */
+    public function getAuctionFloor ($teamId)
+    {
+        return $this->where(["team_id" => $teamId])->find();
+    }
 
 }

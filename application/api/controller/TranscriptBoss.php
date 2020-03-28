@@ -10,17 +10,17 @@ use app\api\Controller;
  */
 class TranscriptBoss extends Controller
 {
-	use \app\api\traits\controller\Controller;
+    use \app\api\traits\controller\Controller;
 
-  protected function filter(&$map)
-  {
-      
-  }
+    protected function filter(&$map)
+    {
 
-  protected function aftergetList(&$data){
+    }
 
-  }
+    protected function aftergetList(&$data){
 
+    }
+    // 杂项、设计图、锻造图、配方、垃圾、方程、消耗品、施法材料、图样、书籍
     // 获取所有副本
     public function transcriptAndBoos ()
     {
@@ -29,10 +29,18 @@ class TranscriptBoss extends Controller
 
         if ($parent_id) {
             $boss = $model->getChildren($parent_id);
+            $explodeStr = "英文：";
             if (!empty($boss)) {
                 foreach ($boss as $key => $value) {
                     $bossArms = new \app\common\model\BossArms();
-                    $boss[$key]["equipment"] = $bossArms->getList($value->id);
+                    $equipment = $bossArms->getList($value->id);    // $boss[$key]["equipment"]
+
+                    foreach ($equipment as $equipmentKey => $equipmentValue) {
+                        $equipmentName = explode($explodeStr, $equipmentValue["name"]);
+                        $equipment[$equipmentKey]["equipmentChineseName"] = substr($equipmentName[0], 9);
+                        $equipment[$equipmentKey]["equipmentEnglishName"] = $equipmentName[1];
+                    }
+                    $boss[$key]["equipment"] = $equipment;
                 }
             }
             return json($boss);
