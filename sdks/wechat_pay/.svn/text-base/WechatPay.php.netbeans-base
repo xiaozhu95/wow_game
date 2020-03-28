@@ -34,7 +34,7 @@ class WechatPay
 				'signType'  => 'MD5',
 				'package'   => 'prepay_id='.$prepay_id,
 				'nonceStr'  => $this->generateNonce(),
-				'timeStamp' => ''.time(),  //坑爹的需要字符串
+				'timeStamp' => '"'.time().'"',  //坑爹的需要字符串
 			);
 			$response['paySign'] = $this->calculateSign($response, $this->app_key);
 		// }elseif($data['trade_type']=='NATIVE'){
@@ -56,7 +56,7 @@ class WechatPay
 				'timestamp' => time(),
 			);
 			$response['sign'] = $this->calculateSign($response, $this->app_key);
-		}         
+		}
 		// send it to APP
 		return $response;
 	}
@@ -152,17 +152,12 @@ class WechatPay
 			'mch_id'           => $this->mch_id,
 			'nonce_str'        => $this->generateNonce(),
 		);
-                
 		$params = array_merge($params,$data);
-                
 		// add sign
 		$params['sign'] = $this->calculateSign($params, $this->app_key);
-               
 		// var_dump($params);
 		// create xml
-                
 		$xml = getXMLFromArray($params);
-               
 		// send request
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
@@ -174,9 +169,8 @@ class WechatPay
 			CURLOPT_VERBOSE => true
 		));
 		$result = curl_exec($ch);
-                 
 		curl_close($ch);
-                
+		
 		if($raw)
 			return $result;
 

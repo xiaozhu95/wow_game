@@ -42,6 +42,7 @@ ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 交易中 1 交易成功 2流拍'
 ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT '交易成功是才会出现用户id' AFTER `type`;
 
 ALTER TABLE `wow_auction_equipment`
+
 ENGINE=InnoDB;
 
 ALTER TABLE `wow_team`
@@ -79,3 +80,34 @@ CHANGE COLUMN `attar` `avatar`  varchar(255) CHARACTER SET utf8 COLLATE utf8_gen
 ALTER TABLE `wow_room`
 ADD COLUMN `note`  varchar(255) NULL AFTER `status`;
 
+MODIFY COLUMN `pay_end_time`  bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '支付最后结束时间' AFTER `end_time`,
+ADD COLUMN `finsih_after_time`  int(10) NULL DEFAULT 0 COMMENT '拍卖时间' AFTER `price`,
+ADD COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT '保留两个可以支付的时间' AFTER `finsih_after_time`;
+
+ALTER TABLE `wow_auction_equipment`
+MODIFY COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT '两次支付的时间间隔d' AFTER `finsih_after_time`;
+
+
+ALTER TABLE `wow_role`
+ADD COLUMN `race_id`  int(11) NULL AFTER `camp_name`,
+ADD COLUMN `race_name`  varchar(255) NULL AFTER `race_id`;
+
+
+ALTER TABLE `wow_pay_log`
+ADD COLUMN `subject_id`  int(11) NULL COMMENT '支付类型' AFTER `equipment_id`;
+
+ALTER TABLE `wow_pay_log`
+ADD COLUMN `subject_name`  varchar(255) NULL AFTER `subject_id`;
+
+
+ALTER TABLE `wow_pay_log`
+ADD COLUMN `confirm_payment_id`  int(11) NULL DEFAULT 0 COMMENT '确认订单支付ID' AFTER `subject_name`;
+
+
+ALTER TABLE `wow_auction_pay`
+ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0（钱支付为零） 1 团员  2 团长确认（订单未为完成状态）' AFTER `confirm_payment_id`;
+
+
+
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `add_price`  int NULL COMMENT '每次加价必须大于或等于' AFTER `currency_type`;

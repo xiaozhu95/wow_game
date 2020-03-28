@@ -27,6 +27,7 @@ class AuctionEquipment extends Validate
         "price"  => "require|number",
         "end_time"  => "require|number",
         "pay_end_time"  => "require|number",
+        "add_price"  => "require|integer",
     ];
     protected $message = [
         'team_id.require' => '房间ID必填',
@@ -43,5 +44,7 @@ class AuctionEquipment extends Validate
         'end_time.number' => '结束时间数字',
         'pay_end_time.require' => '支付时间必填',
         'pay_end_time.number' => '支付时间数字',
+        'add_price.require' => '每次加价必填',
+        'add_price.integer' => '每次加价必须为整数',
     ];
 }

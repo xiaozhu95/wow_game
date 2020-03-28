@@ -82,4 +82,9 @@ class Team extends Model
     {
         return $this->field("id, room_id, isdel")->where(["id" => $teamId])->find();
     }
+
+    public function teamCheck($data)
+    {
+        return $this->field('id,user_id')->where($data)->find();
+    }
 }

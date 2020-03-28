@@ -18,14 +18,14 @@ class PayLog extends Controller
 			'app_key' => '' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		],
 		3 => [ // 公众号
-			'app_id' => 'wx106b5cdb5f2fd6ac', // APPID (开户邮件中可查看)
+			'app_id' => 'wxaf2657b223a45530', // APPID (开户邮件中可查看)
 			'mch_id' => '1271649801', // 商户号 (开户邮件中可查看)
 			'app_key' => '87da6600103d56eb0a27e2eaf48bdeb0' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		],
 		4 => [ // 小程序
-			'app_id' => 'wx50469908b44f8b95', // APPID (开户邮件中可查看)
-			'mch_id' => '1271649801', // 商户号 (开户邮件中可查看)
-			'app_key' => '87da6600103d56eb0a27e2eaf48bdeb0' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
+			'app_id' => 'wxa07d866227c5c901', // APPID (开户邮件中可查看)
+			'mch_id' => '1502367711', // 商户号 (开户邮件中可查看)
+			'app_key' => 'fbdbcda9e93b2c8f7275d8a792491bb5' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		]
 	];
 	private $alipayrsaPublicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmwTFRV01G5R2ErVM/RVvOHC6HlsvQ8en1KfLtQTOuP6VzXRBgCoUPZQMzco1oEaznvB9aEbGeHVXTvhuCV4QaEQ7LjYBYyyfmLKhoBOutBr/A57XYOMRBFMGT55EZXuViB+9kzvmmRzUtl+kUDb9Sa814o7H9+a+EgNhFmJ+UK7Klu4QI9bE/Bm1HBqz+TwfxsP66+M0GhSlgUC/NjCazrsEkD6AusMUoweMscKm9LoyUV60UHjgevepUFlyJdGLQWKyP9NTLwMZi+9Tg2weElBs1WY/eKLDE1EPxnVawWRgeiH1waQDYzSt1KtDzoIjAJ1eB99eEq2AmSEmklJn0wIDAQAB';
@@ -176,150 +176,92 @@ class PayLog extends Controller
 	
   public function add()
   {
-		$id = $this->request->param('id/d');
-		$type = $this->request->param('type/d');
-		$user_id = $this->request->param('user_id/d');
-		$subjects = model('Subject')->cache();
-		if($subjects[$id] && $this->pay_types[$type] && $user_id){
-			$total_amount = $subjects[$id]['price'] > 0 ? $subjects[$id]['price'] : $this->request->param('price/f');
-			if($total_amount <= 0)
-				return front_ajax_return('invalid request2'); 
-      $subject_name = $subjects[$id]['name'];
-      $attach['user_id'] = $user_id;
-      $attach['subject_id'] = $id;      
-      $code = $this->request->param('promo_code');
-      $amount = 0; //优惠码减免金额
-      if($code){
-        $res = action('promo_code/check');
-        $promo_code = $res->getData();
-        if($promo_code['data']){
-          $promo_code = $promo_code['data']->getData();
-          $amount = $promo_code['amount'] ?: $total_amount * (1 - $promo_code['discount']/10);
-          if($amount != $this->request->post('promo_code_amount'))
-            return front_ajax_return('invalid request');
-          
-          $attach['pc_id'] = $promo_code['id'];
-        }else
-          return front_ajax_return('invalid request'); 
-      }
-      
-      $money = $this->request->param('money/f', 0);
-      if($money){
-        //处理 多终端登录 可能出现的并发问题
-        $redis = new Redis();
-        $redis = $redis->getHandler();
-        $key_exists = 'check_money_'.$user_id;
-        if($redis->decr($key_exists) === -1){
-          $attach['money'] = $money;
-          $user_money = model('User')->where(['id'=>$user_id])->value('money');
-          if($user_money < $money){
-            $redis->delete($key_exists);
-            return front_ajax_return('余额不足',0, $user_money);
-          }elseif($money + $amount + 0.0001 > $total_amount){ //全额使用余额+优惠码支付
-            //继续往下执行
-          }else{
-            // 这里的并发其实解决不了 因为扣款只有在第三方支付成功回调后才会扣
-            // 但删除redis 又不能等到那时候 因为用户可能不付款 一些意外的情况 redis不会被删除 例：用户直接退出了
-            // 所以这里就要把redis的值删了
-            // 不过这种情况极其罕见 并 当前项目来讲也没什么损失 就保持这样做好了
-            // 关系较大的项目 只能全额采用余额付款 不能余额付其中的一部分
-            $redis->delete($key_exists);
-          }
-        }else{
-          return front_ajax_return('当前账户正在其他设备上进行付款操作，请稍后再试或不使用余额付款，并再次提交');
-        }
-      }
-      
-      $pc_id = $this->request->post('promo_code_id/d', 0);
-      // $num = $this->request->post('num/d', 1);
-      $third_party_payed = $total_amount - $money - $amount;
-			$model = Loader::model('PayLog');
-			$pay_log = $model->where([
-				'subject_id' => $id,
-				'subject_name' => $subject_name,
-				'user_id' => $user_id,
-				'total_amount' => $total_amount,
-				'third_party_payed' => $third_party_payed,
-				'money' => $money,
-				// 'num' => $num,
-				'pc_id' => $pc_id,
-				'type' => $type,
-				'status' => 0,
-        'create_time' => ['>',time()-3600]
-			])->find();
-			if(!$pay_log)
-				$pay_log = $model->create([
-					'subject_id' => $id,
-					'subject_name' => $subject_name,
-					'user_id' => $user_id,
-					'total_amount' => $total_amount,
-          'third_party_payed' => $third_party_payed,
-					'money' => $money,
-					// 'num' => $num,
-          'pc_id' => $pc_id,
-					'type' => $type,
-				]);
-      
-      if($money + $amount + 0.0001 > $total_amount){ //全额使用余额+优惠码支付
-        if($money){ //有使用余额支付
-          $redis->delete($key_exists);
-        }
-        $data = [
-          'body' => str_replace('=',';;',base64_encode(json_encode($attach))),
-          'out_trade_no' => $pay_log->id,
-          'subject_name' => $subject_name,
-          'type' => 0
-        ];
-        $this->request->post($data);
-        $this->success();
-        return front_ajax_return('success',2, $money);
-      }
-      
-			switch($type){
-				case 1:
-				case 3:
-				case 4:
-					$trade_type = $this->request->param('trade_type');
-					if($trade_type == 'NATIVE'){
-						$data = [];
-					}else{
-						require_once(ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'WechatPay.php');
-						$pay = new \WechatPay($this->wechatKeys[$type]);
+        $id = $this->request->param('id/d');
+        $type = $this->request->param('type/d');
+        $user_id = $this->request->param('user_id/d');
+        $subjects = model('Subject')->cache();
+        if($subjects[$id] && $this->pay_types[$type] && $user_id){
+            $total_amount = $this->request->param('price/f');
+            $subject_name = $subjects[$id]['name'];
+            $attach['user_id'] = $user_id;
+            $attach['subject_id'] = $id;      
+            $pc_id = $this->request->post('promo_code_id/d', 0);
+            $third_party_payed = $total_amount;
+            $model = Loader::model('PayLog');
+            $pay_log = $model->where([
+                'subject_id' => $id,
+                'subject_name' => $subject_name,
+                'user_id' => $user_id,
+                'total_amount' => $total_amount,
+                'third_party_payed' => $third_party_payed,
+                'money' => $total_amount,
+                // 'num' => $num,
+                'pc_id' => $pc_id,
+                'type' => $type,
+                'status' => 0,
+                'create_time' => ['>',time()-3600]
+            ])->find();
+    
+            if(!$pay_log)
+                $pay_log = $model->create([
+                        'subject_id' => $id,
+                        'subject_name' => $subject_name,
+                        'user_id' => $user_id,
+                        'total_amount' => $total_amount,
+                        'third_party_payed' => $third_party_payed,
+                        'money' => $total_amount,
+                        // 'num' => $num,
+                        'pc_id' => $pc_id,
+                        'type' => $type,
+                ]);
+              
+                switch($type){
+                        case 1:
+                        case 3:
+                        case 4:
+                                $trade_type = $this->request->param('trade_type');
+                                if($trade_type == 'NATIVE'){
+                                        $data = [];
+                                }else{
+                                        require_once(ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'WechatPay.php');
+                                        $pay = new \WechatPay($this->wechatKeys[$type]);
 
-						$data = [
-							'body' => $subject_name,
-							'attach' => str_replace('=',';;',base64_encode(json_encode($attach))),
-							'total_fee' => $third_party_payed * 100,
-							'spbill_create_ip' => $this->request->ip(),
-							'out_trade_no' => $pay_log->id < 10 ? "0".$pay_log->id : $pay_log->id,
-							'notify_url' => $this->request->domain()."/api/pay_log/success/type/$type/",
-							'trade_type' => in_array($type,[3,4]) ? 'JSAPI' : 'APP', //JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付
-						];
-						// print_r($data);
-						if(in_array($type,[3,4])){
-							$openid = $this->request->post('openid') ?? Loader::model('User')->where(['id'=>$user_id])->value('wechat_openid');
-							if(!$openid){ 
-								return front_ajax_return('please bind wechat first'); 
-							} 
-							$data['openid'] = $openid;
-						}
-						$data = $pay->getInfo($data);
-					}
-					break;
-				case 2:
-					$data = $this->alipay([
-						'body' => str_replace('=',';;',base64_encode(json_encode($attach))),
-						'subject' => $subject_name,
-						'total_amount' => $third_party_payed,
-						'out_trade_no' => $pay_log->id
-					]);
-					break;
-				default:
-					$data = [];
-					break;
-			}
-			return front_ajax_return($pay_log->id,1,$data);
-		}
+                                        $data = [
+                                                'body' => $subject_name,
+                                                'attach' => str_replace('=',';;',base64_encode(json_encode($attach))),
+                                                'total_fee' => $third_party_payed * 100,
+                                                'spbill_create_ip' => $this->request->ip(),
+                                                'out_trade_no' => $pay_log->id < 10 ? "0".$pay_log->id : $pay_log->id,
+                                                'notify_url' => $this->request->domain()."/api/pay_log/success/type/$type/",
+                                                'trade_type' => in_array($type,[3,4]) ? 'JSAPI' : 'APP', //JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付
+                                        ];
+                                        
+                                        // print_r($data);
+                                        if(in_array($type,[3,4])){
+                                                $openid = $this->request->post('openid') ?? Loader::model('User')->where(['id'=>$user_id])->value('openid');
+                                                if(!$openid){ 
+                                                        return front_ajax_return('please bind wechat first'); 
+                                                } 
+                                                $data['openid'] = $openid;
+                                        }
+                                       
+                                        $data = $pay->getInfo($data);
+                                }
+                                break;
+                        case 2:
+                                $data = $this->alipay([
+                                        'body' => str_replace('=',';;',base64_encode(json_encode($attach))),
+                                        'subject' => $subject_name,
+                                        'total_amount' => $third_party_payed,
+                                        'out_trade_no' => $pay_log->id
+                                ]);
+                                break;
+                        default:
+                                $data = [];
+                                break;
+                }
+                return front_ajax_return($pay_log->id,0,$data);
+            }
 	}
 
 	public function qrcode($pay_log_id,$type){

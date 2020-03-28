@@ -1,0 +1,79 @@
+[ 2020-03-24T14:22:05+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/api/auction_equipment/getlist
+[ log ] wow_game.net/index.php/api/auction_equipment/getlist [运行时间：0.452026s][吞吐率：2.21req/s] [内存消耗：2,109.53kb] [文件加载：60]
+[ info ] [ LANG ] E:\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'auction_equipment',
+    2 => 'getlist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0fevo0ji7j02lcnv63psdtisag',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3928.4 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'wow_game.net',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\AuctionEquipment->getList[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\api\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.189010s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_auction_equipment` [ RunTime:0.050002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `wow_auction_equipment` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_auction_equipment` ORDER BY id desc LIMIT 0,20 [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_auction_log` [ RunTime:0.054003s ]
+[ sql ] [ SQL ] SELECT `auction_equipment_id`,max(price) as price,`u`.`id`,`u`.`nickname`,`u`.`avatar` FROM `wow_auction_log` `equipment` INNER JOIN `wow_user` `u` ON `u`.`id`=`equipment`.`user_id` WHERE  `auction_equipment_id` IN (18,17,16,15,14,13,12,11,10,9,8,7,6,5,1) GROUP BY auction_equipment_id [ RunTime:0.030002s ]
+
+---------------------------------------------------------------
+[ 2020-03-24T15:58:40+08:00 ] 127.0.0.1 127.0.0.1 POST /index.php/api/pay_log/add
+[ log ] wow_game.net/index.php/api/pay_log/add [运行时间：2.625150s][吞吐率：0.38req/s] [内存消耗：2,228.77kb] [文件加载：65]
+[ info ] [ LANG ] E:\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'pay_log',
+    2 => 'add',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'connection' => 'close',
+  'content-length' => '30',
+  'accept-encoding' => 'gzip, deflate, br',
+  'host' => 'wow_game.net',
+  'postman-token' => '923a8695-339d-41d9-94be-eb96e86dd4ef',
+  'cache-control' => 'no-cache',
+  'accept' => '*/*',
+  'user-agent' => 'PostmanRuntime/7.23.0',
+  'content-type' => 'application/x-www-form-urlencoded',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+  'type' => '4',
+  'user_id' => '1',
+  'price' => '10',
+)
+[ info ] [ RUN ] app\api\controller\PayLog->add[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\PayLog.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.189010s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_subject` [ RunTime:0.055004s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_subject` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_pay_log` [ RunTime:0.049003s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_pay_log` WHERE  `subject_id` = 1  AND `subject_name` = '余额充足'  AND `user_id` = 1  AND `total_amount` = 10  AND `third_party_payed` = 10  AND `money` = 10  AND `pc_id` = 0  AND `type` = 4  AND `status` = 0  AND `create_time` > 1585033118 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] INSERT INTO `wow_pay_log` (`subject_id` , `subject_name` , `user_id` , `total_amount` , `third_party_payed` , `money` , `pc_id` , `type` , `update_time` , `create_time`) VALUES (1 , '余额充足' , 1 , 10 , 10 , 10 , 0 , 4 , 1585036717 , 1585036717) [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_user` [ RunTime:0.054003s ]
+[ sql ] [ SQL ] SELECT `openid` FROM `wow_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [8]Trying to get property of non-object[E:\phpstudy\PHPTutorial\WWW\wow_game\sdks\wechat_pay\WechatPay.php:183]
+
+---------------------------------------------------------------

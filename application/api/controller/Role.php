@@ -4,6 +4,7 @@ namespace app\api\controller;
 \think\Loader::import('controller/Controller', \think\Config::get('traits_path') , EXT);
 
 use app\api\Controller;
+use think\Config;
 
 class Role extends Controller
 {
@@ -24,6 +25,16 @@ class Role extends Controller
   }
 
   protected function aftergetList(&$data){
-
+    $role_list = $data->toArray();
+  
+    $newData = [];
+    $colors = Config::get('colors');
+    foreach ($role_list['data'] as $key => $value) {
+          $newData[$value['occupation_id']] ['name'] = $value['occupation_name'];
+          $newData[$value['occupation_id']] ['color'] = isset($colors[$value['occupation_name']]) ? $colors[$value['occupation_name']] : '';
+    	  $newData[$value['occupation_id']] ['list'][] = $value;
+    }
+    $role_list['data'] = $newData;
+    $data = $role_list;
   }
 }

@@ -3,6 +3,8 @@ namespace app\common\model;
 
 use think\Db;
 use think\Model;
+use think\Config;
+
 
 class TeamMember extends Model
 {
@@ -75,11 +77,17 @@ class TeamMember extends Model
                     break;
             }
         }
-
+  		$newData = [];
+ 		$colors = Config::get('colors');
+ 	    foreach ($list as $list_key => $list_value) {
+      		$newData[$list_value['occupation_id']] ['name'] = $list_value['occupation_name'];
+            $newData[$list_value['occupation_id']] ['color'] = isset($colors[$list_value['occupation_name']]) ? $colors[$list_value['occupation_name']] : '';
+      		$newData[$list_value['occupation_id']] ['list'][] = $list_value;
+  		}
         $result = [
             'code' => 0,
             'msg' => "success",
-            "data" => $list
+            "data" => $newData
         ];
         return json($result) ;
     }

@@ -24,12 +24,12 @@ class Index extends Controller
 
     public function index()
     {
-        
         // 读取数据库模块列表生成菜单项
         $nodes = Loader::model('AdminNode', 'logic')->getMenu();
- 
+
         // 节点转为树
         $tree_node = list_to_tree($nodes);
+
         // 显示菜单项
         $menu = [];
         $groups_id = [];
@@ -47,11 +47,9 @@ class Index extends Controller
 
         // 获取授权节点分组信息
         $groups_id = array_unique($groups_id);
-       
         if (!$groups_id) {
             exception("没有权限");
         }
-   
         $groups = Db::name("AdminGroup")->where(['id' => ['in', $groups_id], 'status' => "1"])->order("sort asc,id asc")->field('id,name,icon')->select();
 
         $this->view->assign('groups', $groups);
