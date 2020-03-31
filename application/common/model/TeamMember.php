@@ -8,10 +8,11 @@ use think\Config;
 
 class TeamMember extends Model
 {
-    // 1-团长,2-正式团员,3-未审核团员
+    // 1-团长,2-正式团员,3-未审核团员 4地板
     const IDENTITY_TEAM_LEADER = 1;
     const IDENTITY_TEAM_MEMBER = 2;
     const IDENTITY_TEAM_MEMBER_CONFIRM = 3;
+     const IDENTITY_TEAM_MEMBER_DIBAN = 4;
 
     // 1-未踢出,2-踢出
     const IS_DEL_CREATE = 1;
@@ -283,5 +284,10 @@ class TeamMember extends Model
         ];
 
         return json($result);
+    }
+    //检查是否地板
+    public function checkFloor($data)
+    {
+        return $this->field('id,user_id,is_floor')->where($data)->find();
     }
 }

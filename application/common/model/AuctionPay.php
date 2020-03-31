@@ -7,7 +7,7 @@ use app\common\model\ConfirmPayment;
 use app\common\model\AuctionEquipment;
 use app\common\model\TeamMember;
 use think\Db;
-
+use app\common\validate\AuctionPay as AuctionPayValidate;
 class AuctionPay extends Model
 {
     // 指定表名,不含前缀
@@ -25,17 +25,20 @@ class AuctionPay extends Model
 
     public function apy($data)
     {
+      	$validate = new AuctionPayValidate();
+        if (!$validate->check($data)) {
+             return ajax_return_adv_error($validate->getError());
+        }
         $user = model('user')->where(['id'=>$data['user_id']])->find();
         if(!$user) {
             return ajax_return_adv_error('用户不存在');
         }
-        if($user['balance']<$data['price']){
-            return ajax_return_adv_error('你户余额不足,请充值');
-        }
+
         /**判断是装备拍卖,还是地板拍卖 如果equipment_id == 0是地板拍卖*/
-        if($data['equipment_id'] === 0){ //拍卖地板
+        if($data['equipment_id'] == 0){ //拍卖地板
               Db::startTrans();
-            $diban = model('team_member')->where(['team_id'=>$data['team_id'],'identity'=> TeamMember::IDENTITY_TEAM_MEMBER])->find();
+           $diban = model('auction_pay')->where(['team_id'=>$data['team_id'],'equipment_id'=>0])->find();
+          
             if($diban) return ajax_return_adv_error('地板已拍卖');
             $auctionPayDaya['team_id'] = $data['team_id']; 
             $auctionPayDaya['equipment_id'] = 0; 
@@ -55,10 +58,15 @@ class AuctionPay extends Model
             $auction_pay  = model('auction_pay')->save($auctionPayDaya);
             //修改团的收支金额
             $team = model('team')->where(['id'=>$data['team_id']])->find();
+          
             if($data['currency_type'] == self::CURRENCY_TYPE_MONEY){ //用钱购买
+                if($user['balance']<$data['price']){
+                    return ajax_return_adv_error('你户余额不足,请充值');
+                }
                 //扣钱
                 $user->balance -= $data['price'];
                 $user_result = $user->save();
+              
                 //记录扣钱日志
                 $user_moneyLog = model('UserMoneyLog')->data([
                     'user_id' => $data['user_id'],
@@ -68,9 +76,12 @@ class AuctionPay extends Model
                     'controller' => 'auction_pay',
                     'action' => 'buy'
                 ])->save();
-                $team->price += $data['price'];
+              
+                $team->amount += $data['price'];
                 $teamResult = $team->save();
-                if(!$user_result || !$user_moneyLog || !$teamResult){
+                $team_member = model('team_member')->where(['team_id'=>$data['team_id'],'user_id'=>$data['user_id']])->where('is_floor','neq',1)->update(['is_floor'=> 1]);
+               
+                if(!$user_result || !$user_moneyLog || !$teamResult || !$team_member){
                     // 回滚事务
                     Db::rollback();
                     return ajax_return_adv_error('购买地板失败');
@@ -79,6 +90,7 @@ class AuctionPay extends Model
             }
            // $team_member = model('team_member')->where(['team_id'=>$data['team_id'],'user_id'=>$data['user_id']])->where('identity','neq',TeamMember::IDENTITY_TEAM_MEMBER)->update();
             if ($auction_pay){
+              
                  // 提交事务
                 Db::commit();
                 return ajax_return('地板购买成功');
@@ -90,6 +102,7 @@ class AuctionPay extends Model
             
             
         }else{ //拍卖装备
+            
             $payment = model('confirm_payment')->where(['id'=>$data['confirm_payment_id'],'status'=> ConfirmPayment::STATUS_ON,'user_id'=>$data['user_id']])->find();
             if (!$payment) {
                 return ajax_return_adv_error('确认订单不存在无法支付');
@@ -114,8 +127,8 @@ class AuctionPay extends Model
             if ($equipment['type'] == AuctionEquipment::TYPE_STREAM_SHOT){
                return ajax_return_adv_error('该装备正已流拍');
             }
-            if ($equipment['pay_end_time']<time()){
-                 return ajax_return_adv_error('已过最后的付款时间无法,进行支付');
+            if ($payment['pay_end_time']<time()){
+                // return ajax_return_adv_error('已过最后的付款时间无法,进行支付');
             }
             $auctionPayDaya['team_id'] = $data['team_id']; 
             $auctionPayDaya['equipment_id'] = $data['equipment_id']; 
@@ -125,12 +138,14 @@ class AuctionPay extends Model
             $auctionPayDaya['price'] = $data['price']; 
             if($data['currency_type'] == self::CURRENCY_TYPE_GLOD) {
                 $auctionPayDaya['confirm_status'] = self::CONFIRM_STATUS_TEAM_MENBER;
+                 $auctionPayDaya['pay_type'] = self::PAY_TYPE_YES; 
             }
             if($data['currency_type'] == self::CURRENCY_TYPE_MONEY) {
                 $auctionPayDaya['confirm_status'] = self::CONFIRM_STATUS_MONEY;
+                $auctionPayDaya['pay_type'] = self::PAY_TYPE_NO; 
             }
             $auctionPayDaya['currency_type'] = $data['currency_type'];
-            $auctionPayDaya['pay_type'] = self::PAY_TYPE_NO; 
+           
             $auctionPayDaya['create_time'] = time();
 
             $auction_pay  = model('auction_pay')->save($auctionPayDaya); //未支付
@@ -139,19 +154,21 @@ class AuctionPay extends Model
 
             
             if($auction_pay){
+                $time = time();
                 //关闭显示确认
                 $payment->status = ConfirmPayment::STATUS_OFF;
                 $paymentResult = $payment->save();
-                $auction_pay->pay_time = time();
-                $auction_pay->pay_type = self::PAY_TYPE_YES;
-                $auctionPayResult = $auction_pay->save();
+                $auctionPayResult = model('auction_pay')->where($auctionPayDaya)->update(['pay_time'=> $time,'pay_type'=>self::PAY_TYPE_YES]);
                 //修改团的收支金额
                 $team = model('team')->where(['id'=>$data['team_id']])->find();
                 if($equipment['currency_type'] == self::CURRENCY_TYPE_GLOD){
                     //$team->gold_coin += $data['price'];
-                    $type = AuctionEquipment::TYPE_OF_ChECK;
+                    $type = AuctionEquipment::TYPE_OF_CHECK;
                 }
                 if($equipment['currency_type'] == self::CURRENCY_TYPE_MONEY){
+                    if($user['balance']<$data['price']){
+                        return ajax_return_adv_error('你户余额不足,请充值');
+                    }
                     //扣钱
                     $user->balance -= $data['price'];
                     $user_result = $user->save();
@@ -164,10 +181,12 @@ class AuctionPay extends Model
                         'controller' => 'auction_pay',
                         'action' => 'buy'
                     ])->save();
-                      $team->price += $data['price'];
+                      $team->amount += $data['price'];
                       $teamResult = $team->save();
-                    if($user_result && $user_moneyLog && $teamResult){
-                         $type = AuctionEquipment::TYPE_STREAM_SHOT;
+                  	
+                 $type = AuctionEquipment::TYPE_SUCCESSFUL_TRANSACTION;
+                    if(!$user_result && !$user_moneyLog && !$teamResult){
+                        
                         // 回滚事务
                         Db::rollback();
                         return ajax_return_adv_error('购买失败');
@@ -179,9 +198,10 @@ class AuctionPay extends Model
                 $actionResult =$auctionEquipmentModel->where(['id'=>$auction_log['auction_equipment_id'],'team_id'=>$data['team_id'],'type'=>AuctionEquipment::TYPE_OF_CREATE])
                         ->update(['type'=>$type,'user_id'=>$data['user_id']]);
                 if($actionResult && $paymentResult && $auctionPayResult){
+
                     // 提交事务
                     Db::commit();
-                    return ajax_return('购买成功');
+                   return ajax_return([],'操作成功');
                 }
 
 
@@ -200,18 +220,24 @@ class AuctionPay extends Model
        if ($auction_pay){
             Db::startTrans();
            $team = model('team')->where(['id'=>$auction_pay['team_id']])->find();
-           $team->gold_coin = $auction_pay->price;
+           $team->gold_coin += $auction_pay->price;
            $team_member = 1;
+           $auction_equipment_result = 1;
            if ($auction_pay['equipment_id'] == 0){ //成为地板
                
-               $team_member = model('team_member')->where(['team_id'=>$auction_pay['team_id'],'user_id'=>$auction_pay['user_id']])->where('identity','neq',TeamMember::IDENTITY_TEAM_MEMBER)->update(['identity'=> TeamMember::IDENTITY_TEAM_MEMBER]);
+               $team_member = model('team_member')->where(['team_id'=>$auction_pay['team_id'],'user_id'=>$auction_pay['user_id']])->where('is_floor','neq',1)->update(['is_floor'=> 1]);
                
+           }else if($auction_pay['equipment_id'] > 0){
+             $payment  = model('confirm_payment')->where(['id'=>$auction_pay['confirm_payment_id']])->find();
+             $auction_equipment_result = model('auction_equipment')->where(['id'=>$payment['auction_equipment_id']])->update(['type'=> AuctionEquipment::TYPE_SUCCESSFUL_TRANSACTION]);
            }
            $result  = $team->save();
-           if($result && $team_member){
+           $auction_pay->confirm_status = self::CONFIRM_STATUS_TEAM;
+           $result = $auction_pay->save();
+           if($result && $team_member && $auction_equipment_result && $result){
                    
                 Db::commit();
-                return ajax_return('操作成功');
+               return ajax_return([],'操作成功');
            }
        }
         // 回滚事务
@@ -221,5 +247,18 @@ class AuctionPay extends Model
     /**交易成功*/
     public function payOrder($confirm_payment_id){
         
+    }
+    
+    /**检查是否审核已购买*/
+    public function checkReview($user_ids,$confirm_payment_id)
+    {
+        $data['confirm_status'] = self::CONFIRM_STATUS_TEAM_MENBER;
+        $data['currency_type'] = self::CURRENCY_TYPE_GLOD;
+        $data['pay_type'] = self::PAY_TYPE_YES;
+        $result = $this->field('id,confirm_payment_id')->where('user_id','in',$user_ids)->where('confirm_payment_id','in',$confirm_payment_id)->where($data)->order('id desc')->select();
+        if(!$result) return $result;
+        $result = $result->toArray();
+        $result = array_columns($result, "id","confirm_payment_id");
+        return $result;
     }
 }

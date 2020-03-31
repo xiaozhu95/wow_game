@@ -19,6 +19,10 @@ class AuctionEquipment extends Model
     const TYPE_OF_CREATE = 3; //我的交易(拍卖结束后支付时间前的这一段时间)
     const TYPE_OF_CHECK= 4; //待确认
     
+    const CURRENCY_TYPE_GOLD = 1;
+    const CURRENCY_TYPE_MONEY = 2;
+
+
 
     /**批量添加装备*/
     public function add($data)
@@ -47,4 +51,5 @@ class AuctionEquipment extends Model
     {
         
     }
+    
 }

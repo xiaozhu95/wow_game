@@ -15,7 +15,7 @@ class AuctionPay extends Validate
         "user_id" => "require|integer",
         "price" => "require|integer",
         "currency_type" => "require",
-        "pay_type" => "require",
+//        "pay_type" => "require",
      
     ];
 //    public function checkTeam($team_id, $default, $data)

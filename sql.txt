@@ -111,3 +111,16 @@ ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0（钱支付为零） 
 
 ALTER TABLE `wow_auction_equipment`
 ADD COLUMN `add_price`  int NULL COMMENT '每次加价必须大于或等于' AFTER `currency_type`;
+
+ALTER TABLE `wow_user_money_log`
+ADD COLUMN `controller`  text NULL AFTER `amount`;
+
+ALTER TABLE `wow_user_money_log`
+ADD COLUMN `action`  varchar(255) NULL AFTER `controller`;
+
+ALTER TABLE `wow_user_money_log`
+ADD COLUMN `money`  decimal(8,2) NULL AFTER `action`;
+
+
+ALTER TABLE `wow_team_member` ADD `is_floor` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 不是地板 1是' AFTER `is_del`;
+

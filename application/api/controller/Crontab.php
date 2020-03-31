@@ -15,4 +15,9 @@ class Crontab extends Controller
         $steaming = new EquipmentStreaming();
         $steaming->worker();
     }
+    public function test()
+    {
+         $steaming = new EquipmentStreaming();
+         $steaming->auctionMaxPrice(12);
+    }
 }

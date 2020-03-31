@@ -57,11 +57,13 @@ class AuctionLog extends Validate
         }
         $where["team_id"] = $data['team_id'];
         $where['equipment_id'] = $data['equipment_id'];
+        $where['auction_equipment_id'] = $data['auction_equipment_id'];
         $list = Db::name("AuctionLog")->field('max(price) as price')->where($where)->find();
         if(!$list['price']){
-            $list['price'] = $minPrice;
+            $list['price'] = $auction_equipment['price'];
         }
-        if(($list['price'] + $auction_equipment['price'])>$price){
+
+        if(($list['price'] + $auction_equipment['add_price'])>$price){
             $currency_type = "";
             if($auction_equipment['currency_type'] == 1){
                 $currency_type = '金币';
@@ -69,7 +71,7 @@ class AuctionLog extends Validate
             if($auction_equipment['currency_type'] == 2){
                 $currency_type = '元';
             }
-            return '竞拍价格低于上次出价格'.$auction_equipment['price'].$currency_type;
+            return '竞拍价格低于当前最高价';
         }
         return true;
     }

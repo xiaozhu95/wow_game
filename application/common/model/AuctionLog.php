@@ -16,12 +16,20 @@ class AuctionLog extends Model
     public function auctionType($ids)
     {
        
-        $list = $this->alias('equipment')
-                ->join('user u','u.id=equipment.user_id')
-                ->where("auction_equipment_id",'in',$ids)->field('auction_equipment_id,max(price) as price,u.id,u.nickname,u.avatar')->group("auction_equipment_id")->select();
+            $sql = 'select user.id,a.auction_equipment_id,a.price,user.nickname,user.avatar from wow_auction_log a 
+join 
+(select auction_equipment_id,max(price) price from wow_auction_log group by auction_equipment_id) b
+on
+
+a.auction_equipment_id=b.auction_equipment_id and a.price=b.price
+
+JOIN wow_user user
+
+on user.id =a.user_id';
+         $list = \think\Db::query($sql);
 
         if($list){
-             $list = $list->toArray();
+            
              $list = array_columns($list, "price,id,nickname,avatar", "auction_equipment_id");
              
         }

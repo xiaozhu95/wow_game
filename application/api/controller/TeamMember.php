@@ -17,7 +17,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ½«³ÉÔ±Ìá³öÍÅ¶Ó
+     * å°†æˆå‘˜æå‡ºå›¢é˜Ÿ
      */
     public function removeTeamMember ()
     {
@@ -40,7 +40,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ½«³ÉÔ±ÉóºË½øÈëÍÅ¶Ó
+     * å°†æˆå‘˜å®¡æ ¸è¿›å…¥å›¢é˜Ÿ
      */
     public function checkTeamMember ()
     {
@@ -64,7 +64,7 @@ class TeamMember extends Controller
 
     /**
      * @return mixed
-     * ÓÃ»§ÍË³öÍÅ
+     * ç”¨æˆ·é€€å‡ºå›¢
      */
     public function userQuitTeam ()
     {
@@ -77,7 +77,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ÍÅ³¤½âÉ¢ÍÅ
+     * å›¢é•¿è§£æ•£å›¢
      */
     public function teamLeaderDissolutionTeam ()
     {
@@ -99,7 +99,7 @@ class TeamMember extends Controller
 
     /**
      * @return mixed
-     * ÅĞ¶ÏÓÃ»§ÍÅĞÅÏ¢
+     * åˆ¤æ–­ç”¨æˆ·å›¢ä¿¡æ¯
      */
     public function userTeamIdentity ()
     {
@@ -109,10 +109,10 @@ class TeamMember extends Controller
 
         return $teamMemberMode->getUserIdentity($teamId, $userId);
     }
-
+  
     /**
      * @return \think\response\Json
-     * ÓÃÓÚÂÖÑ¯¸ÃÍÅÊÇ·ñ¹Ø±ÕºÍ¸ÃÓÃ»§ÊÇ·ñ±»Ìß³öÍÅ
+     * ç”¨äºè½®è¯¢è¯¥å›¢æ˜¯å¦å…³é—­å’Œè¯¥ç”¨æˆ·æ˜¯å¦è¢«è¸¢å‡ºå›¢
      */
     public function ajaxPullTeamStatusAndUserStatus ()
     {
@@ -121,11 +121,53 @@ class TeamMember extends Controller
         $teamMode = $this->getModel("Team");
         $teamMemberMode = $this->getModel("TeamMember");
         $auctionFloorMode = $this->getModel("AuctionFloor");
+        $distributionMode = $this->getModel("Distribution");
 
-        $teamInfo = $teamMode->teamStatus($teamId);    // ÍÅĞÅÏ¢
-        $teamMemberInfo = $teamMemberMode->teamMemberStatus($teamId, $userId);    // ÍÅÔ±ĞÅÏ¢
-        $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // µØ°åĞÅÏ¢
-        $auctionFloorBuyInfo = [];    // µØ°å¹ºÂòĞÅÏ¢
+        $teamInfo = $teamMode->teamStatus($teamId);    // å›¢ä¿¡æ¯
+        $teamMemberInfo = $teamMemberMode->teamMemberStatus($teamId, $userId);    // å›¢å‘˜ä¿¡æ¯
+        $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // åœ°æ¿ä¿¡æ¯
+        $distributionInfo = $distributionMode->distributionInfo($teamId);    // åˆ†é…ä¿¡æ¯
+      
+      
+      
+        $floor = [];
+        $team_info = model('team')->where(['id'=>$teamId])->find();
+      
+        $result = model('TeamMember')->checkFloor(['team_id'=>$teamId,'is_floor'=>1]); //åˆ¤æ–­æ˜¯å¦æ˜¯åœ°æ¿
+        $floor['is_floor'] = 0; //ä¸æ˜¯åœ°æ¿
+        if($result){
+            $floor['is_floor'] = 1; //æ˜¯åœ°æ¿
+            $user = model('user')->field('id,nickname,avatar')->where('id','in',$result['user_id'])->find();
+            
+            $role = model('role');
+            $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
+
+            $user_info = $role->arrayList(['service_id'=>$role_info['service_id'],'camp_id'=>$role_info['camp_id']],$result['user_id']);
+            $floor['user']['id'] = $result['user_id'];
+            $floor['user']['nickname'] = isset($user_info[$result['user_id']]['role_name']) ? $user_info[$result['user_id']]['role_name'] : '';
+            $floor['user']['avatar'] = isset($user['avatar']) ? $user['avatar'] : "";
+        }
+        $pay = model('AuctionPay')->where(['team_id'=>$teamId,'confirm_status'=> \app\common\model\AuctionPay::CONFIRM_STATUS_TEAM_MENBER,'currency_type'=> \app\common\model\AuctionPay::CURRENCY_TYPE_GLOD,'pay_type'=> \app\common\model\AuctionPay::PAY_TYPE_YES])->find();
+        if($pay->toArray()){
+            $floor['is_floor'] = 3; //æ˜¯å¾…å›¢é•¿å®¡æ ¸
+            $floor['order_id'] = $pay['id'];
+            $user = model('user')->field('id,nickname,avatar')->where('id','in',$pay['user_id'])->find();
+            $role = model('role');
+            $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
+            $user_info = $role->arrayList(['service_id'=>$role_info['service_id'],'camp_id'=>$role_info['camp_id']],$pay['user_id']);
+            $floor['user']['id'] = $result['user_id'];
+            $floor['user']['nickname'] = isset($user_info[$pay['user_id']]['role_name']) ? $user_info[$pay['user_id']]['role_name'] : '';
+            $floor['user']['avatar'] = isset($user['avatar']) ? $user['avatar'] : "";
+        }
+      
+      
+      
+        if ($distributionInfo) {
+            $distributionInfo = 1;    // è¡¨ç¤ºå·²ç»åˆ†é…
+        } else {
+            $distributionInfo = 0;    // è¡¨ç¤ºæœªåˆ†é…
+        }
+        $auctionFloorBuyInfo = [];    // åœ°æ¿è´­ä¹°ä¿¡æ¯
 
         $result = [
             'code' => 0,
@@ -135,21 +177,23 @@ class TeamMember extends Controller
                 "teamMemberInfo" => $teamMemberInfo,
                 "auctionFloorInfo" => $auctionFloorInfo,
                 "auctionFloorBuyInfo" => $auctionFloorBuyInfo,
+                "distributionInfo" => $distributionInfo,
+                'floor' => $floor,
             ]
         ];
 
         return json($result);
     }
-
+  
     /**
      * @return mixed
-     * »ñÈ¡ÕıÊ½ÍÅÔ±ĞÅÏ¢
+     * è·å–æ­£å¼å›¢å‘˜ä¿¡æ¯
      */
     public function getTeamMemberInfo ()
     {
         $teamId = input("get.team_id");
         $teamMemberMode = $this->getModel("TeamMember");
 
-        return $teamMemberMode->getTeamMemberInfo($teamId);    // ÕıÊ½ÍÅÔ±ĞÅÏ¢
-    }
+        return $teamMemberMode->getTeamMemberInfo($teamId);    // æ­£å¼å›¢å‘˜ä¿¡æ¯
+    }  
 }
