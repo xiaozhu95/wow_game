@@ -147,7 +147,8 @@ class TeamMember extends Controller
             $floor['user']['nickname'] = isset($user_info[$result['user_id']]['role_name']) ? $user_info[$result['user_id']]['role_name'] : '';
             $floor['user']['avatar'] = isset($user['avatar']) ? $user['avatar'] : "";
         }
-        $pay = model('AuctionPay')->where(['team_id'=>$teamId,'confirm_status'=> \app\common\model\AuctionPay::CONFIRM_STATUS_TEAM_MENBER,'currency_type'=> \app\common\model\AuctionPay::CURRENCY_TYPE_GLOD,'pay_type'=> \app\common\model\AuctionPay::PAY_TYPE_YES])->find();
+        $pay = model('AuctionPay')->where(['team_id'=>$teamId,'equipment_id'=>0,'confirm_status'=> \app\common\model\AuctionPay::CONFIRM_STATUS_TEAM_MENBER,'currency_type'=> \app\common\model\AuctionPay::CURRENCY_TYPE_GLOD,'pay_type'=> \app\common\model\AuctionPay::PAY_TYPE_YES])->find();
+
         if($pay){
             $floor['is_floor'] = 3; //ÊÇ´ıÍÅ³¤ÉóºË
             $floor['order_id'] = $pay['id'];

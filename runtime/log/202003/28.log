@@ -1,0 +1,124 @@
+[ 2020-03-28T14:44:45+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/admin
+[ log ] wow_game.net/index.php/admin [运行时间：0.591034s][吞吐率：1.69req/s] [内存消耗：6,219.29kb] [文件加载：70]
+[ info ] [ LANG ] E:\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0fevo0ji7j02lcnv63psdtisag',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'purpose' => 'prefetch',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3928.4 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'wow_game.net',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.102006s ]
+[ info ] [ RUN ] app\admin\controller\Index->index[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] E:\phpstudy\PHPTutorial\WWW\wow_game\public/../application/admin\view\index\index.html [ array (
+  0 => 'groups',
+  1 => 'menu',
+) ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ RUN ] app\admin\widget\Index->menu[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\admin\widget\Index.php ]
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.066003s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.173010s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_admin_node` [ RunTime:0.056003s ]
+[ sql ] [ SQL ] SELECT `id`,`pid`,`name`,`group_id`,`title`,`type` FROM `wow_admin_node` WHERE  (  status=1 AND group_id > 0 ) ORDER BY sort ASC [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_admin_group` [ RunTime:0.052003s ]
+[ sql ] [ SQL ] SELECT `id`,`name`,`icon` FROM `wow_admin_group` WHERE  `id` IN (2,1,4,6,7,3,5)  AND `status` = 1 ORDER BY sort asc,id asc [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_web_log_all` [ RunTime:0.050002s ]
+[ sql ] [ SQL ] INSERT INTO `wow_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '127.0.0.1' , '本机地址 本机地址  ' , 'Windows 7' , 'Chrome(79.0.3928.4)' , 'http://wow_game.net/index.php/admin' , 'admin' , 'Index' , 'index' , 'GET' , 'a:0:{}' , 1585377885) [ RunTime:0.014000s ]
+
+---------------------------------------------------------------
+[ 2020-03-28T14:44:54+08:00 ] 127.0.0.1 127.0.0.1 GET /index.php/api/sms/sms/mobile/15925816225/code/reg
+[ log ] wow_game.net/index.php/api/sms/sms/mobile/15925816225/code/reg [运行时间：0.326019s][吞吐率：3.07req/s] [内存消耗：2,037.48kb] [文件加载：56]
+[ info ] [ LANG ] E:\phpstudy\PHPTutorial\WWW\wow_game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'sms',
+    2 => 'sms',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0fevo0ji7j02lcnv63psdtisag',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3928.4 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'wow_game.net',
+)
+[ info ] [ PARAM ] array (
+  'mobile' => '15925816225',
+  'code' => 'reg',
+)
+[ info ] [ RUN ] app\api\controller\Sms->sms[ E:\phpstudy\PHPTutorial\WWW\wow_game\application\api\controller\Sms.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=wow_game;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_user` [ RunTime:0.062004s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_user` WHERE  `mobile` = '15925816225' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `wow_sms` [ RunTime:0.053003s ]
+[ sql ] [ SQL ] SELECT * FROM `wow_sms` WHERE  `mobile` = '15925816225'  AND `code` = 'reg'  AND `ctime` > 1585377294  AND `status` = 1 ORDER BY id desc LIMIT 1 [ RunTime:0.003000s ]
+[ sql ] [ SQL ] INSERT INTO `wow_sms` (`mobile` , `code` , `params` , `content` , `ctime` , `ip` , `status`) VALUES ('15925816225' , 'reg' , '{\"code\":371299}' , '【杭州异构科技】验证码371299，请勿告诉他人。' , 1585377894 , '127.0.0.1' , 1) [ RunTime:0.045003s ]
+
+---------------------------------------------------------------
