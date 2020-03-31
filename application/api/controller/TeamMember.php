@@ -121,10 +121,52 @@ class TeamMember extends Controller
         $teamMode = $this->getModel("Team");
         $teamMemberMode = $this->getModel("TeamMember");
         $auctionFloorMode = $this->getModel("AuctionFloor");
+        $distributionMode = $this->getModel("Distribution");
 
         $teamInfo = $teamMode->teamStatus($teamId);    // 团信息
         $teamMemberInfo = $teamMemberMode->teamMemberStatus($teamId, $userId);    // 团员信息
         $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // 地板信息
+        $distributionInfo = $distributionMode->distributionInfo($teamId);    // 分配信息
+
+
+
+        $floor = [];
+        $team_info = model('team')->where(['id'=>$teamId])->find();
+
+        $result = model('TeamMember')->checkFloor(['team_id'=>$teamId,'is_floor'=>1]); //判断是否是地板
+        $floor['is_floor'] = 0; //不是地板
+        if($result){
+            $floor['is_floor'] = 1; //是地板
+            $user = model('user')->field('id,nickname,avatar')->where('id','in',$result['user_id'])->find();
+
+            $role = model('role');
+            $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
+
+            $user_info = $role->arrayList(['service_id'=>$role_info['service_id'],'camp_id'=>$role_info['camp_id']],$result['user_id']);
+            $floor['user']['id'] = $result['user_id'];
+            $floor['user']['nickname'] = isset($user_info[$result['user_id']]['role_name']) ? $user_info[$result['user_id']]['role_name'] : '';
+            $floor['user']['avatar'] = isset($user['avatar']) ? $user['avatar'] : "";
+        }
+        $pay = model('AuctionPay')->where(['team_id'=>$teamId,'confirm_status'=> \app\common\model\AuctionPay::CONFIRM_STATUS_TEAM_MENBER,'currency_type'=> \app\common\model\AuctionPay::CURRENCY_TYPE_GLOD,'pay_type'=> \app\common\model\AuctionPay::PAY_TYPE_YES])->find();
+        if($pay){
+            $floor['is_floor'] = 3; //是待团长审核
+            $floor['order_id'] = $pay['id'];
+            $user = model('user')->field('id,nickname,avatar')->where('id','in',$pay['user_id'])->find();
+            $role = model('role');
+            $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
+            $user_info = $role->arrayList(['service_id'=>$role_info['service_id'],'camp_id'=>$role_info['camp_id']],$pay['user_id']);
+            $floor['user']['id'] = $result['user_id'];
+            $floor['user']['nickname'] = isset($user_info[$pay['user_id']]['role_name']) ? $user_info[$pay['user_id']]['role_name'] : '';
+            $floor['user']['avatar'] = isset($user['avatar']) ? $user['avatar'] : "";
+        }
+
+
+
+        if ($distributionInfo) {
+            $distributionInfo = 1;    // 表示已经分配
+        } else {
+            $distributionInfo = 0;    // 表示未分配
+        }
         $auctionFloorBuyInfo = [];    // 地板购买信息
 
         $result = [
@@ -135,6 +177,8 @@ class TeamMember extends Controller
                 "teamMemberInfo" => $teamMemberInfo,
                 "auctionFloorInfo" => $auctionFloorInfo,
                 "auctionFloorBuyInfo" => $auctionFloorBuyInfo,
+                "distributionInfo" => $distributionInfo,
+                'floor' => $floor,
             ]
         ];
 
@@ -151,5 +195,17 @@ class TeamMember extends Controller
         $teamMemberMode = $this->getModel("TeamMember");
 
         return $teamMemberMode->getTeamMemberInfo($teamId);    // 正式团员信息
+    }
+
+    /**
+     * @return mixed
+     * 获取该用户参加的团信息
+     */
+    public function userTeamInfo ()
+    {
+        $params = input("post.");
+        $teamMemberMode = $this->getModel("TeamMember");
+
+        return $teamMemberMode->getUserTeamInfo($params);    // 正式团员信息
     }
 }

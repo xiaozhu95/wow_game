@@ -111,3 +111,50 @@ ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0（钱支付为零） 
 
 ALTER TABLE `wow_auction_equipment`
 ADD COLUMN `add_price`  int NULL COMMENT '每次加价必须大于或等于' AFTER `currency_type`;
+
+
+
+CREATE TABLE `wow_distribution` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`content`  text NULL COMMENT '分配内容' ,
+`status`  tinyint(1) NULL COMMENT '0-开始，1-同意，2-失败' ,
+`team_id`  int(11) NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+;
+
+ALTER TABLE `wow_distribution`
+ADD COLUMN `create_time`  bigint NULL AFTER `team_id`;
+
+
+
+CREATE TABLE `wow_distribution` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`content`  text NULL COMMENT '分配内容' ,
+`status`  tinyint(1) NULL COMMENT '0-开始，1-同意，2-失败' ,
+`team_id`  int(11) NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+;
+
+ALTER TABLE `wow_distribution`
+ADD COLUMN `create_time`  bigint NULL AFTER `team_id`;
+
+
+
+
+
+CREATE TABLE `wow_user_question` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`content`  text NULL COMMENT '问题内容' ,
+`team_id`  int(11) NULL ,
+`create_time`  bigint NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+;
+ALTER TABLE `wow_user_question`
+CHANGE COLUMN `team_id` `user_id`  int(11) NULL DEFAULT NULL AFTER `content`;
+
