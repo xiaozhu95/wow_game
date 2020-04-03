@@ -17,7 +17,19 @@ class User extends Controller
 	protected static $blacklist = ['getlist'];
 	private $db_field = "openid";
 	private $db_field_allowed = ["openid", "wechat_openid_2", "wechat_openid_3"];
-	
+
+	public function getUserInfo ()
+    {
+        $data = $this->request->param();
+        $model = $this->getModel();
+        $userInfo =  $model->getUserInfo(['id'=>$data["user_id"]]);
+        $result = [
+            'code' => 0,
+            'msg' => 'usccess',
+            'data' => $userInfo,
+        ];
+        return json($result);
+    }
 	public function account(){
 		$uid = $this->request->post("user_id");
 		$sign = $this->request->post("sign");

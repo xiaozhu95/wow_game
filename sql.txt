@@ -169,3 +169,9 @@ ADD COLUMN `money`  decimal(8,2) NULL AFTER `action`;
 ALTER TABLE `wow_team_member` ADD `is_floor` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 不是地板 1是' AFTER `is_del`;
 
 
+ALTER TABLE `wow_role`
+MODIFY COLUMN `grade`  float(10,2) NULL DEFAULT NULL AFTER `role_name`,
+MODIFY COLUMN `equipment_grade`  float(10,2) NULL DEFAULT NULL AFTER `talent`;
+
+
+

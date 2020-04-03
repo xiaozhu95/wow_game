@@ -8,11 +8,10 @@ use think\Config;
 
 class TeamMember extends Model
 {
-    // 1-团长,2-正式团员,3-未审核团员 4地板
+    // 1-团长,2-正式团员,3-未审核团员
     const IDENTITY_TEAM_LEADER = 1;
     const IDENTITY_TEAM_MEMBER = 2;
     const IDENTITY_TEAM_MEMBER_CONFIRM = 3;
-     const IDENTITY_TEAM_MEMBER_DIBAN = 4;
 
     // 1-未踢出,2-踢出
     const IS_DEL_CREATE = 1;
@@ -56,7 +55,6 @@ class TeamMember extends Model
             ->join("Role r", "tm.role_id=r.id", "right")
             ->where(["tm.is_sign_out" => TeamMember::IS_DEL_CREATE])
             ->where(["tm.is_del" => TeamMember::NOT_SIGN_OUT])
-            ->where("tm.is_del" ,"<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
             ->order("tm.identity asc")
             ->select()
             ->toArray();
@@ -79,13 +77,13 @@ class TeamMember extends Model
                     break;
             }
         }
-  		$newData = [];
- 		$colors = Config::get('colors');
- 	    foreach ($list as $list_key => $list_value) {
-      		$newData[$list_value['occupation_id']] ['name'] = $list_value['occupation_name'];
+        $newData = [];
+        $colors = Config::get('colors');
+        foreach ($list as $list_key => $list_value) {
+            $newData[$list_value['occupation_id']] ['name'] = $list_value['occupation_name'];
             $newData[$list_value['occupation_id']] ['color'] = isset($colors[$list_value['occupation_name']]) ? $colors[$list_value['occupation_name']] : '';
-      		$newData[$list_value['occupation_id']] ['list'][] = $list_value;
-  		}
+            $newData[$list_value['occupation_id']] ['list'][] = $list_value;
+        }
         $result = [
             'code' => 0,
             'msg' => "success",
@@ -202,15 +200,16 @@ class TeamMember extends Model
      */
     public function teamLeaderDissolutionTeam ($teamId, $teamUserId)
     {
-        $team = Team::where("id", $teamId)->where("isdel", Team::IS_DEL_OPEN)->where("user_id", $teamUserId)->find();
+        $team = Team::where("id", $teamId)->where("isdel","<>", 2)->where("user_id", $teamUserId)->find();
         if (empty($team)) {
             $result = [
-                'code' => 0,
+                'code' => 1,
                 'msg' => '团队不存在!',
             ];
             return json($result);
         }
-        if ($team->gold_coin || $team->amount) {
+
+        if ($team->gold_coin != 0 || $team->amount != 0) {
             $result = [
                 'code' => 1,
                 'msg' => '团队存在余额，不能解散!',
@@ -221,14 +220,15 @@ class TeamMember extends Model
         Db::startTrans();
         try {
             $team->isdel = Team::IS_DEL_CLOSE;
-            $team->save();
             $room = new Room();
             $room->status = Room::ROOM_STATUS_CLOSE;
-            $room->save();
-            $result = [
-                'code' => 0,
-                'msg' => '解散成功!',
-            ];
+            if ($team->save() && $room->save())  {
+                Db::commit();
+                $result = [
+                    'code' => 0,
+                    'msg' => '解散成功!',
+                ];
+            }
         } catch (\Exception $exception) {
             $result = [
                 'code' => 1,
@@ -288,11 +288,7 @@ class TeamMember extends Model
         return json($result);
     }
 
-    /**
-     * @param $params
-     * @return \think\response\Json
-     * 获取该用户参加团的信息
-     */
+    // 获取该用户参加团的信息
     public function getUserTeamInfo ($params)
     {
         $teamRoomInfo = $this
@@ -303,6 +299,10 @@ class TeamMember extends Model
             ->where("tm.identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
             ->select()->toArray();
 
+        $distributionMode = new Distribution();
+        foreach ($teamRoomInfo as $key => $value) {
+            $teamRoomInfo[$key]["distributionInfo"] = empty($distributionMode->distributionInfo($value["team_id"])) ? 0 : 1 ;    // 分配信息;
+        }
         $result = [
             'code' => 0,
             'msg' => "success",

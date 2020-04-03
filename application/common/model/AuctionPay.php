@@ -23,6 +23,32 @@ class AuctionPay extends Model
     const PAY_TYPE_YES = 1; //已支付
     const PAY_TYPE_NO = 2; //未支付
 
+    /**
+     * @param $data
+     * @return \think\response\Json
+     * 获取支付纪录
+     */
+    public function apyList ($data)
+    {
+        $team = new Team();
+        $teamInfo = $team->field("	gold_coin, amount")->where(["id" => $data["team_id"]])->find();
+        $params = $this->where(["pay_type" => AuctionPay::PAY_TYPE_YES])->where(["team_id" => $data["team_id"]]);
+        $currencyCoin = $params->where(["currency_type" => AuctionPay::CURRENCY_TYPE_GLOD])->select()->toArray();
+        $currencyMoney = $params->where(["currency_type" => AuctionPay::CURRENCY_TYPE_MONEY])->select()->toArray();
+
+        $result = [
+            'code' => 0,
+            'msg' => 'success',
+            'data' => [
+                'currencyCoin' => $currencyCoin,
+                'currencyMoney' => $currencyMoney,
+                "teaminfo" => $teamInfo
+            ]
+        ];
+
+        return json($result);
+    }
+
     public function apy($data)
     {
       	$validate = new AuctionPayValidate();
