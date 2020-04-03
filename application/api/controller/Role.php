@@ -37,4 +37,15 @@ class Role extends Controller
     $role_list['data'] = $newData;
     $data = $role_list;
   }
+  
+  /**添加删除角色*/
+  public function delete($id,$user_id)
+  { 
+    $model = $this->getModel();
+    $result = $model->where(['id'=>$id,'user_id'=>$user_id])->delete();
+    if ($result) {
+        return ajax_return('删除成功');
+    }
+    return ajax_return_adv_error('删除失败');
+  }
 }

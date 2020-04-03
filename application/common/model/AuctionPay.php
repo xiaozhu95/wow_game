@@ -63,7 +63,7 @@ class AuctionPay extends Model
         /**判断是装备拍卖,还是地板拍卖 如果equipment_id == 0是地板拍卖*/
         if($data['equipment_id'] == 0){ //拍卖地板
               Db::startTrans();
-           $diban = model('auction_pay')->where(['team_id'=>$data['team_id'],'equipment_id'=>0])->find();
+          $diban = model('auction_pay')->where(['team_id'=>$data['team_id'],'equipment_id'=>0])->find();
           
             if($diban) return ajax_return_adv_error('地板已拍卖');
             $auctionPayDaya['team_id'] = $data['team_id']; 
@@ -74,6 +74,7 @@ class AuctionPay extends Model
             $auctionPayDaya['price'] = $data['price']; 
             $auctionPayDaya['currency_type'] = $data['currency_type'];
             $auctionPayDaya['pay_type'] = self::PAY_TYPE_YES; 
+          	$auctionPayDaya['pay_time']  = time();
             $auctionPayDaya['create_time'] = time();
             if($data['currency_type'] == self::CURRENCY_TYPE_GLOD) {
                 $auctionPayDaya['confirm_status'] = self::CONFIRM_STATUS_TEAM_MENBER;
@@ -203,7 +204,7 @@ class AuctionPay extends Model
                         'user_id' => $data['user_id'],
                         'amount' => -$data['price'],
                         'type' => 0,
-                        'msg' => '购买装备' . $auction_pay['equipment_name'],
+                        'msg' => '购买装备' . $data['equipment_name'],
                         'controller' => 'auction_pay',
                         'action' => 'buy'
                     ])->save();

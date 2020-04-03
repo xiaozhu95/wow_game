@@ -25,7 +25,7 @@ class PayLog extends Controller
 		4 => [ // 小程序
 			'app_id' => 'wxa07d866227c5c901', // APPID (开户邮件中可查看)
 			'mch_id' => '1502367711', // 商户号 (开户邮件中可查看)
-			'app_key' => 'fbdbcda9e93b2c8f7275d8a792491bb5' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
+			'app_key' => '5b7f679757d945388e72bc3a7bbf0f21' // 商户支付密钥 (https://pay.weixin.qq.com/index.php/account/api_cert)
 		]
 	];
 	private $alipayrsaPublicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmwTFRV01G5R2ErVM/RVvOHC6HlsvQ8en1KfLtQTOuP6VzXRBgCoUPZQMzco1oEaznvB9aEbGeHVXTvhuCV4QaEQ7LjYBYyyfmLKhoBOutBr/A57XYOMRBFMGT55EZXuViB+9kzvmmRzUtl+kUDb9Sa814o7H9+a+EgNhFmJ+UK7Klu4QI9bE/Bm1HBqz+TwfxsP66+M0GhSlgUC/NjCazrsEkD6AusMUoweMscKm9LoyUV60UHjgevepUFlyJdGLQWKyP9NTLwMZi+9Tg2weElBs1WY/eKLDE1EPxnVawWRgeiH1waQDYzSt1KtDzoIjAJ1eB99eEq2AmSEmklJn0wIDAQAB';
@@ -114,6 +114,7 @@ class PayLog extends Controller
 					require_once(ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'WechatPay.php');
 					$pay = new \WechatPay($this->wechatKeys[$type]);
 					$res = $pay->getNotify();
+                                        cache('wechat_pay', $res);
 					if ($res) {
 						$suc = Loader::model('PayLog')->save([
 							'wechat_openid' =>  $res['openid'],
@@ -176,6 +177,7 @@ class PayLog extends Controller
 	
   public function add()
   {
+      
         $id = $this->request->param('id/d');
         $type = $this->request->param('type/d');
         $user_id = $this->request->param('user_id/d');
@@ -232,7 +234,7 @@ class PayLog extends Controller
                                                 'total_fee' => $third_party_payed * 100,
                                                 'spbill_create_ip' => $this->request->ip(),
                                                 'out_trade_no' => $pay_log->id < 10 ? "0".$pay_log->id : $pay_log->id,
-                                                'notify_url' => $this->request->domain()."/api/pay_log/success/type/$type/",
+                                                'notify_url' => $this->request->domain()."index.php/api/pay_log/success/type/$type/",
                                                 'trade_type' => in_array($type,[3,4]) ? 'JSAPI' : 'APP', //JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付
                                         ];
                                         
