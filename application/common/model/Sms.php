@@ -8,8 +8,8 @@ class Sms extends Model
 {
     // 指定表名,不含前缀
     protected $name = 'sms';
-    
-    
+
+
     const STATUS_UNUSED = 1;        //状态 未使用
     const STATUS_USED = 2;          //已使用
 
@@ -31,28 +31,52 @@ class Sms extends Model
 
     ];
 
+    /**
+     * 登陆注册的时候，发送短信验证码
+     */
+    public function sms($mobile, $code)
+    {
+        $result = [
+            'code' => 1,
+            'data'   => '',
+            'msg'    => '成功'
+        ];
+
+        $userInfo = model('user')->where(array('mobile' => $mobile))->find();
+        if ($code == 'reg') {
+            //注册
+            if ($userInfo) {
+                $result['msg'] = '此账号已经注册过';
+                return json($result);
+            }
+        } elseif ($code == 'login') {
+            //登陆
+        } elseif ($code === 'veri') {
+            // 找回密码
+        } else {
+            //其他业务逻辑
+            $result['msg'] = '无此业务类型';
+            return json($result);
+        }
+
+        //没问题了，就去发送短信验证码
+        return $this->send($mobile, $code, []);
+    }
+
     public function send($mobile,$code,$params)
     {
-       
         if(!$mobile){
             return ajax_return_adv_error('电话号码不存在');
         }
         //如果是登陆注册等的短信，增加校验
         if($code == 'reg' || $code == 'login' || $code== 'veri'){
-       
             $smsInfo = $this->where(['mobile'=>$mobile,'code'=>$code])->where('ctime', 'gt', time()-60*10)->where('status', 'eq', self::STATUS_UNUSED)->order('id desc')->find();
-        
             if($smsInfo){
-              
-               
                 if(time() - $smsInfo['ctime'] < 180){
-                   
                     return ajax_return_adv_error('两次发送时间间隔小于180秒');
                 }
                 $params = json_decode($smsInfo['params'],true);
-               
             }else{
-               
                 $params = [
                     'code'=> rand(100000,999999)
                 ];
@@ -62,7 +86,6 @@ class Sms extends Model
             $status = self::STATUS_USED;
         }
         $str = $this->temp($code,$params);
-       
         if($str == ''){
             return ajax_return_adv_error('类型不存在');
         }
@@ -75,9 +98,55 @@ class Sms extends Model
         $data['status'] = $status;
         $this->save($data);
 
-        
-        $re = $this->send_sms($mobile,$str,$code,$params);
+        $re = $this->sendsms($mobile,$str,$code,$params);
         return $re;
+    }
+
+    public function sendsms($mobile,$content,$code,$params)
+    {
+        $host = "http://47.98.130.42:7862/sms";
+        $path = "";
+        $method = "GET";
+        // $appcode = "你自己的AppCode";
+        //$headers = array();
+        //array_push($headers, "Authorization:APPCODE " . $appcode);
+
+        $content = urlencode($content);
+        $querys = "action=send&account=940052&password=EchzeA&mobile={$mobile}&content={$content}&extno=1069016&rt=json";
+
+        // \think\Log::info('Shenbosms', ['mobile'=>$mobile,'content'=>$content,'request'=>$querys]);
+        $url = $host . $path . "?" . $querys;
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        //   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        //curl_setopt($curl, CURLOPT_HEADER, true); 如不输出json, 请打开这行代码，打印调试头部状态码。
+        //状态码: 200 正常；400 URL无效；401 appCode错误； 403 次数用完； 500 API网管错误
+        if (1 == strpos("$".$host, "https://"))
+        {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        }
+        $out_put = curl_exec($curl);
+        $result = json_decode($out_put,true);
+        if($result['status'] == 0){
+            $result = [
+                'code' => 0,
+                'data' => '',
+                'msg' => '发送成功'
+            ];
+        }else{
+            $result = [
+                'code' => 0,
+                'data' => '',
+                'msg' => '发送失败'
+            ];
+        }
+        return json($result);
     }
 
     public function check($phone,$ver_code,$code){
@@ -90,14 +159,14 @@ class Sms extends Model
 
         $where[] = ['status', 'eq', self::STATUS_UNUSED];
         $sms_info = $this->where(['mobile'=>$phone,'code'=>$code,'status'=>self::STATUS_UNUSED])->order('id desc')->find();
-      
+
         if($sms_info){
-          
+
             if($sms_info['ctime'] + 60 * 5>time()){
                 $params = json_decode($sms_info['params'],true);
-              
+
                 if($params['code'] == $ver_code){
-                    $this->where(['mobile'=>$phone,'code'=>$code,'status'=>self::STATUS_UNUSED])->save(array('status'=>self::STATUS_USED));
+                    $this->where(['mobile'=>$phone,'code'=>$code,'status'=>self::STATUS_UNUSED])->update(array('status'=>self::STATUS_USED));
                     return 0;//验证成功
                 }else{
                     return 1;//验证码有误
@@ -117,7 +186,7 @@ class Sms extends Model
             case 'reg':
                 // 账户注册
                 // $params['code'] = 验证码
-            	
+
                 $msg = "【杭州异构科技】验证码".$params['code']."，请勿告诉他人。";
                 break;
             case 'login':
@@ -254,89 +323,6 @@ class Sms extends Model
         return $msg;
     }
 
-    /***
-     * 发送短信
-     * @param $mobile
-     * @param $content
-     * @param $code
-     * @param $params
-     * @return array
-     */
-    private function send_sms($mobile, $content, $code, $params)
-    {
-        $result = [
-            'code' => 1,
-            'data' => '',
-            'msg' => '发送失败'
-        ];
-//        $re = hook('sendsms', ['params' => [
-//            'mobile'  => $mobile,
-//            'content' => $content,
-//            'code'    => $code,
-//            'params'  => $params,
-//        ]]);
-     
-        $re = $this->sendsms($mobile,$content,$code,$params);
-      
-        if($re && is_array($re)){
-            if (isset($re['status']) && $re['status']) {
-                $result['code'] = 0;
-                $result['msg'] = "发送成功";
-            } else {
-                $result['code'] = 1;
-                $result['msg'] = isset($re['msg']) ? $re['msg'] : '发送失败';
-            }
-        }
-        return ajax_return($result);
-    }
-    public function sendsms($mobile,$content,$code,$params)
-    {
-        $host = "http://47.98.130.42:7862/sms";
-        $path = "";
-        $method = "GET";
-       // $appcode = "你自己的AppCode";
-        //$headers = array();
-        //array_push($headers, "Authorization:APPCODE " . $appcode);
-      
-      	$content = urlencode($content);
-        $querys = "action=send&account=940052&password=EchzeA&mobile={$mobile}&content={$content}&extno=1069016&rt=json";
-      
-       // \think\Log::info('Shenbosms', ['mobile'=>$mobile,'content'=>$content,'request'=>$querys]);
-        $url = $host . $path . "?" . $querys;
-     
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($curl, CURLOPT_URL, $url);
-     //   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_FAILONERROR, false);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        //curl_setopt($curl, CURLOPT_HEADER, true); 如不输出json, 请打开这行代码，打印调试头部状态码。
-        //状态码: 200 正常；400 URL无效；401 appCode错误； 403 次数用完； 500 API网管错误
-        if (1 == strpos("$".$host, "https://"))
-        {
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        }
-        $out_put = curl_exec($curl);
-        $result = json_decode($out_put,true);
-       if(!$result['status']){
-            $result = [
-                'status' => TRUE,
-                'data' => '',
-                'msg' => '发送成功'
-            ];
-       }else{
-         //  \think\Log::error($out_put);
-            $result = [
-                'status' => FALSE,
-                'data' => '',
-                'msg' => '发送成功'
-            ];
-       }
-       return $result;
-    }
-
     protected function tableWhere($post)
     {
         $where = [];
@@ -395,75 +381,35 @@ class Sms extends Model
     }
 
 
-    /**
-     * 登陆注册的时候，发送短信验证码
-     */
-    public function sms($mobile, $code)
-    {
-        $result = [
-            'code' => 1,
-            'data'   => '',
-            'msg'    => '成功'
-        ];
-
-        $userInfo = model('user')->where(array('mobile' => $mobile))->find();
-        
-        if ($code == 'reg') {
-            //注册
-            if ($userInfo) {
-                $result['msg'] = '此账号已经注册过';
-                return $result;
-            }
-          //  $code = 'login';        //手机短信注册和手机短信登陆是一个接口，所以，在这要换算成login，详见smsLogin方法
-        //  ;
-            //判断账号状态
-//            if($userInfo->status != self::STATUS_NORMAL) {
-//                $result['msg'] = '此账号已停用';
-//                return $result;
-//            }
-        } elseif ($code == 'login') {
-            //登陆
-        } elseif ($code === 'veri') {
-            // 找回密码
-        } else {
-            //其他业务逻辑
-            $result['msg'] = '无此业务类型';
-            return $result;
-        }
-
-        //没问题了，就去发送短信验证码
-    
-        return $this->send($mobile, $code, []);
-    }
-   
     /** 手机号验证并绑定手机号*/
     public function smsVeri($data)
     {
-         $result = array(
+        $result = array(
             'code' => 1,
             'data'   => '',
             'msg'    => ''
         );
         if (!isset($data['mobile'])) {
             $result['msg'] = '请输入手机号码';
-            return $result;
+            return json($result);
         }
         if (!isset($data['code'])) {
             $result['msg'] = '请输入验证码';
-            return $result;
+            return json($result);
         }
-       
-         //判断是否是用户名登陆
-        if ($smsStatus = $this->check($data['mobile'], $data['code'], 'reg')) {
-            if($smsStatus == 1){
-                 $result['msg'] = '短信验证码错误';
-            }elseif($smsStatus==2){
-                 $result['msg'] = '短信验证码过期,请重新发送';
-            }
-           
-            return $result;
+
+        //判断是否是用户名登陆
+        $smsStatus = $this->check($data['mobile'], $data['code'], 'reg');
+        if($smsStatus == 1){
+            $result['msg'] = '短信验证码错误';
+            return json($result);
+        }elseif($smsStatus==2){
+            $result['msg'] = '短信验证码过期,请重新发送';
+            return json($result);
         }
-        $userInfo = $this->where(['id'=>$data['user_id']])->find();
+        $user = new User();
+        $userInfo = $user->where(['id'=>$data['user_id']])->find();
+
         if($userInfo){
             $userInfo->mobile = $data['mobile'];
             if($userInfo->save()){
@@ -473,9 +419,10 @@ class Sms extends Model
             }else{
                 $result['msg'] = "手机号保存失败";
             }
+            return json($result);
         }else{
             $result['msg'] = "用户不存在";
         }
-        return $result;
+        return json($result);
     }
 }

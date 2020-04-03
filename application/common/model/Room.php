@@ -83,7 +83,6 @@ class Room extends Model
             if ($params['high_hps']) {
                 $params['high_dps'] = json_encode($params['high_hps']);
             }
-            var_dump(array_merge($params,$otherInfo));exit;
             $this->data(array_merge($params,$otherInfo))->save();
 
             // 创建团
@@ -162,9 +161,17 @@ class Room extends Model
         $team = new Team();
         $teamInfo = $team->where(['room_id' => $roomInfo->id])->find();
         // 进入团
+
         $teamMemberModel = \model("TeamMember");
-        $teamId = $teamMemberModel->add($params["user_info"], $teamInfo->id, TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM);
-        if ($teamId) {
+        $teamMemberInfo = $teamMemberModel->where(["user_id" => $params["user_info"]["user_id"]])->find();
+        if ($teamMemberInfo) {
+            $teamMemberInfo->is_del = TeamMember::IS_DEL_CREATE;
+            $teamSaveInfo = $teamMemberInfo->save();
+        } else {
+            $teamSaveInfo = $teamMemberModel->add($params["user_info"], $teamInfo->id, TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM);
+        }
+
+        if ($teamSaveInfo) {
             $result = [
                 'code' => 0,
                 'msg' => "加入成功",
@@ -240,10 +247,10 @@ class Room extends Model
         // currency_type 1-人民币，2-金币,  status 补贴类型，1-百分比，2-固定比例
         if ($params["currency_type"] == 1) {
             $balance = $teamInfo->amount - $roomInfo->expenditure;
-            $userDistributionInfo = $this->calculationMoneySubsidy($balance, $params["status"], $params["subsidy"], $teamMemberNum, $teamInfo->gold_coin);
+            $userDistributionInfo = $this->calculationMoneySubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"],  $teamMemberNum, $teamInfo->gold_coin);
         } elseif ($params["currency_type"] == 2) {
             $balance = $teamInfo->gold_coin - $roomInfo->expenditure;
-            $userDistributionInfo = $this->calculationGoldCoinSubsidy($balance, $params["status"], $params["subsidy"], $teamMemberNum);
+            $userDistributionInfo = $this->calculationGoldCoinSubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"], $teamMemberNum, $teamInfo->amount);
         }
         $result = $this->userDistributionInfo($userDistributionInfo, $params['team_id']);
         $result = [
@@ -254,7 +261,7 @@ class Room extends Model
         return json($result);
     }
 
-    private function calculationMoneySubsidy ($balance, $status, $subsidy, $teamMemberNum, $goldCoin)
+    private function calculationMoneySubsidy ($balance, $status, $subsidy,$currencyType, $teamMemberNum, $goldCoin)
     {
         $arrayUserSubsidy = array();
         $notMoneyUserNum = 0;
@@ -284,9 +291,11 @@ class Room extends Model
                 if ($arrayUserSubsidyValue == 0) {
                     $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
                     $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
                 } else {
                     $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
                     $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
                 }
                 $i++;
             }
@@ -299,7 +308,6 @@ class Room extends Model
                     $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
                 }
             }
-            return $userDistributionInfo;
         }
         elseif ($status == 2) {    // 2-固定比例
             foreach ($subsidy as $subsidyKey => $subsidyValue) {
@@ -322,9 +330,11 @@ class Room extends Model
                 if ($arrayUserSubsidyValue == 0) {
                     $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
                     $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
                 } else {
                     $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
                     $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
                 }
                 $i++;
             }
@@ -337,23 +347,108 @@ class Room extends Model
                     $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
                 }
             }
-            return $userDistributionInfo;
         }
+        return $userDistributionInfo;
     }
 
-
-    private function calculationGoldCoinSubsidy ($balance, $status, $subsidy)
+    private function calculationGoldCoinSubsidy ($balance, $status, $subsidy,$currencyType, $teamMemberNum, $goldCoin)
     {
-        if ($status == 1) {
+        $arrayUserSubsidy = array();
+        $notMoneyUserNum = 0;
+        $userDistributionInfo = array();
+        $i = 0;
 
-        } elseif ($status == 2) {
-            // 如果存在
+        if ($status == 1) {    // 1-百分比
+            foreach ($subsidy as $subsidyKey => $subsidyValue) {
+                $subsidyRate = (int)$subsidyValue["value"] /100;
+                foreach ($subsidyValue["user_id"] as $subsidyUserIdKey => $subsidyUserIdValue) {
+                    if (array_key_exists($subsidyUserIdValue, $arrayUserSubsidy)) {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $arrayUserSubsidy[$subsidyUserIdValue]  + bcmul($balance , $subsidyRate, 2);
+                    } else {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = bcmul($balance , $subsidyRate, 2);
+                    }
+                }
+                if ($subsidyValue["name"] == "不分钱") {
+                    $notMoneyUserNum = count($subsidyValue["user_id"]);
+                }
+            }
+
+            $balance = $balance - array_sum($arrayUserSubsidy);
+            $haveMoneyUserNum = $teamMemberNum - $notMoneyUserNum;
+            $everyMoney = bcdiv($balance, $haveMoneyUserNum, 2);
+
+            foreach ($arrayUserSubsidy as $arrayUserSubsidyKey => $arrayUserSubsidyValue) {
+                if ($arrayUserSubsidyValue == 0) {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
+                } else {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
+                }
+                $i++;
+            }
+
+            $userEveryOneGoldCoin = $this->calculationGoldCoin($goldCoin, $haveMoneyUserNum);
+            foreach ($userDistributionInfo as $userDistributionInfoKey=> $userDistributionInfoValue) {
+                if ($userDistributionInfoValue["money"] == 0) {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = 0;
+                } else {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
+                }
+            }
         }
+        elseif ($status == 2) {    // 2-固定比例
+            foreach ($subsidy as $subsidyKey => $subsidyValue) {
+                foreach ($subsidyValue["user_id"] as $subsidyUserIdKey => $subsidyUserIdValue) {
+                    if (array_key_exists($subsidyUserIdValue, $arrayUserSubsidy)) {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $arrayUserSubsidy[$subsidyUserIdValue] + (int)$subsidyValue["value"];
+                    } else {
+                        $arrayUserSubsidy[$subsidyUserIdValue] = $subsidyValue["value"];
+                    }
+                }
+                if ($subsidyValue["name"] == "不分钱") {
+                    $notMoneyUserNum = count($subsidyValue["user_id"]);
+                }
+            }
+            $balance = $balance - array_sum($arrayUserSubsidy);
+            $haveMoneyUserNum = $teamMemberNum - $notMoneyUserNum;
+            $everyMoney = bcdiv($balance, $haveMoneyUserNum, 2);
+
+            foreach ($arrayUserSubsidy as $arrayUserSubsidyKey => $arrayUserSubsidyValue) {
+                if ($arrayUserSubsidyValue == 0) {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
+                } else {
+                    $userDistributionInfo[$i]["userId"] = $arrayUserSubsidyKey;
+                    $userDistributionInfo[$i]["money"] = $everyMoney + $arrayUserSubsidyValue;
+                    $userDistributionInfo[$i]["currency_type"] = $currencyType;
+                }
+                $i++;
+            }
+
+            $userEveryOneGoldCoin = $this->calculationGoldCoin($goldCoin, $haveMoneyUserNum);
+            foreach ($userDistributionInfo as $userDistributionInfoKey=> $userDistributionInfoValue) {
+                if ($userDistributionInfoValue["money"] == 0) {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = 0;
+                } else {
+                    $userDistributionInfo[$userDistributionInfoKey]['goldGoin'] = $userEveryOneGoldCoin;
+                }
+            }
+        }
+        return $userDistributionInfo;
     }
 
     public function calculationGoldCoin ($goldCoin, $haveMoneyUserNum)
     {
         return $surplusMoney = bcdiv($goldCoin, $haveMoneyUserNum, 2);
+    }
+
+    public function calculationAmount ($amount, $haveMoneyUserNum)
+    {
+        return $surplusMoney = bcdiv(amount, $haveMoneyUserNum, 2);
     }
 
     public function userDistributionInfo ($userDistributionInfo, $teamId)
@@ -365,5 +460,44 @@ class Room extends Model
         }
 
         return $userDistributionInfo;
+    }
+
+    public function confirmDistribution ($params)
+    {
+        $allParams = $params["params"];
+        $userId= array_column($allParams, "userId");
+        $team_id = 0;
+
+        // 获取团id
+        if (is_array($allParams[0]["userInfo"])) {
+            $team_id = $allParams[0]["userInfo"]["team_id"];
+        }
+
+        $distribution = new Distribution();
+        $distribution->content = json_encode($allParams);
+        $distribution->status = Distribution::STATUS_START;
+        $distribution->team_id = $team_id;
+        $distribution->create_time = time();
+        $saveResult = $distribution->save();
+        if ($saveResult) {
+            $userModel = new User();
+            $userMobile = $userModel->field("mobile")->where("id", "in", $userId)->select()->toArray();
+            $userMobile = array_column($userMobile, "mobile");
+
+            $sms = new Sms();
+            foreach ($userMobile as $value) {
+                //$sms->sendsms($value, "【杭州异构科技】提醒：请到魔兽团吧小程序-我的--团账单中确认分账方式，请在您在十分钟内确认，如未确认，默认同意该团长的分账方式", "", "");
+            }
+            $result = [
+                'code' => 0,
+                'msg' => "分配成功"
+            ];
+        } else {
+            $result = [
+                'code' => 1,
+                'msg' => "分配失败!"
+            ];
+        }
+        return json($result);
     }
 }

@@ -7,14 +7,14 @@ use app\api\Controller;
 
 class Sms extends Controller
 {
-   use \app\api\traits\controller\Controller;
+    use \app\api\traits\controller\Controller;
 
     protected function filter(&$map)
     {
-      $model = $this->getModel();
-      
+        $model = $this->getModel();
+
     }
-  
+
     /**
      * 发送登陆注册短信，type为1注册，为2登陆
      * @return array|mixed
@@ -24,25 +24,25 @@ class Sms extends Controller
         $result = [
             'code' => 1,
             'data' => [],
-            'msg' => '成功'
+            'msg' => '失败'
         ];
         $userModel = $this->getModel();
         if (!input("?param.mobile")) {
             $result['msg'] = '请输入手机号码';
-            return $result;
+            return json($result);
         }
         //code的值可以为loign，reg，veri
         if (!input("?param.code")) {
             $result['msg'] = '缺少核心参数';
-            return $result;
+            return json($result);
         }
         $code = input('param.code');
         $type = input('param.type');
         if ($type == 'bind') { //绑定会员，这个if迟早要拿掉，绑定的话，也发送login状态就行
             $code = 'login';
         }
-       
-        return $userModel->sms(input('param.mobile'), $code);
+
+        return $userModel->send(input('param.mobile'), $code, []);
     }
     /**
      * 短信验证码登陆，手机短信验证注册账号
@@ -55,19 +55,19 @@ class Sms extends Controller
      */
     public function smsLogin()
     {
-        
+
         $platform = input('param.platform', 1);
         $userModel = $this->getModel();
         $data = input('param.');
-       
+
         $user_id = input('user_id', 0);
         if(!$user_id){
             return ajax_return_adv_error('user_id不存在');
         }
         $data['user_id'] = $user_id;
-        return json($userModel->smsVeri($data));
+        return $userModel->smsVeri($data);
     }
-    
+
 
     protected function aftergetList(&$data){
 

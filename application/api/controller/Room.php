@@ -84,12 +84,27 @@ class Room extends Controller
         return $model->getList($roomId, $teamId);
     }
 
-    // 计算用户分账的钱
+    /**
+     * @return mixed
+     * 计算用户分账的钱
+     */
     public function calculationUserSubsidy ()
     {
         $params = input("post.");
 
         $model = $this->getModel();
         return $model->calculationUserSubsidy($params);
+    }
+
+    /**
+     * @return mixed
+     *  确认分账
+     */
+    public function confirmDistribution ()
+    {
+        $params = input("post.");
+
+        $model = $this->getModel();
+        return $model->confirmDistribution($params);
     }
 }

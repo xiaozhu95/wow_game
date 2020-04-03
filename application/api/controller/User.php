@@ -80,8 +80,18 @@ class User extends Controller
 			}
 		}
 	}
-	
-	public function pushReg(){
+
+    /*一微信键获取手机号*/
+    public function wxappInfo()
+    {
+        $userModel = $this->getModel();
+        $params = input("post.");
+        return $userModel->wxappInfo($params);
+    }
+
+
+
+    public function pushReg(){
 		$uid = $this->request->post("user_id");
 		$reg_id = $this->request->post("registrationID");
 		$platform = $this->request->post("platform/d");

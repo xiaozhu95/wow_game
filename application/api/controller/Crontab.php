@@ -5,6 +5,7 @@ namespace app\api\controller;
 
 use app\api\Controller;
 use app\crontab\EquipmentStreaming;
+use app\crontab\Distribution;
 
 class Crontab extends Controller
 {
@@ -15,9 +16,10 @@ class Crontab extends Controller
         $steaming = new EquipmentStreaming();
         $steaming->worker();
     }
-    public function test()
+
+    public function doDistributionWorker ()
     {
-         $steaming = new EquipmentStreaming();
-         $steaming->auctionMaxPrice(12);
+        $steaming = new Distribution();
+        $steaming->worker();
     }
 }

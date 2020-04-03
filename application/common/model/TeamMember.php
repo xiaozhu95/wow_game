@@ -56,6 +56,7 @@ class TeamMember extends Model
             ->join("Role r", "tm.role_id=r.id", "right")
             ->where(["tm.is_sign_out" => TeamMember::IS_DEL_CREATE])
             ->where(["tm.is_del" => TeamMember::NOT_SIGN_OUT])
+            ->where("tm.is_del" ,"<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
             ->order("tm.identity asc")
             ->select()
             ->toArray();
@@ -88,7 +89,8 @@ class TeamMember extends Model
         $result = [
             'code' => 0,
             'msg' => "success",
-            "data" => $newData
+            "data" => $newData,
+            "list" => $list,
         ];
         return json($result) ;
     }
@@ -270,7 +272,7 @@ class TeamMember extends Model
      */
     public function getTeamMemberInfo ($teamId)
     {
-        $ieamMemberInfo = $this
+        $teamMemberInfo = $this
             ->where(["team_id" => $teamId])
             ->where("identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
             ->where(["is_del"=> TeamMember::IS_DEL_CREATE])
@@ -280,7 +282,31 @@ class TeamMember extends Model
         $result = [
             'code' => 0,
             'msg' => "success",
-            'data' => $ieamMemberInfo
+            'data' => $teamMemberInfo
+        ];
+
+        return json($result);
+    }
+
+    /**
+     * @param $params
+     * @return \think\response\Json
+     * 获取该用户参加团的信息
+     */
+    public function getUserTeamInfo ($params)
+    {
+        $teamRoomInfo = $this
+            ->alias('tm')
+            ->join("team t", "tm.team_id=t.id", "left")
+            ->join("room r", "t.room_id=r.id", "left")
+            ->where(["tm.user_id" => $params["user_id"]])
+            ->where("tm.identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
+            ->select()->toArray();
+
+        $result = [
+            'code' => 0,
+            'msg' => "success",
+            'data' => $teamRoomInfo
         ];
 
         return json($result);
