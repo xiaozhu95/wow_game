@@ -35,6 +35,15 @@ class AuctionEquipment extends Controller
        $result = model('confirm_payment')->confirm($data);
        return ajax_return($result);
     }
+    /**订单记录*/
+    public function auctionOrderList()
+    {
+        $user_id = $this->request->param('user_id',0);
+        $data ['user_id'] = $user_id;
+        $result = model('confirm_payment')->orderList($user_id);
+        return ajax_return($result);
+    }
+
     protected function aftergetList(&$data){
       $team_info = model('team')->where(['id'=>$data['team_id']])->find();
       if(!$team_info){
