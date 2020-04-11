@@ -27,9 +27,7 @@ class Role extends Validate
         'occupation_id'=> 'integer',
         'occupation_name' =>'require',
         'role_name' => 'require|max:15',
-        'grade' => 'integer',
         'talent' => 'require|check:0',
-        'equipment_grade' => 'integer'
     ];
     protected $message = [
         'user_id.require' => '用户ID必填',

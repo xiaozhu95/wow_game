@@ -6,43 +6,42 @@ ALTER TABLE `wow_room`
 DROP COLUMN `purple`,
 DROP COLUMN `blue`,
 DROP COLUMN `green`,
-ADD COLUMN `floor_status`  tinyint(1) NULL COMMENT 'ÊÇ·ñ¿ªÆôµ×°å£¬1-¿ªÆô£¬2-²»¿ªÆô' AFTER `high_hps`;
+ADD COLUMN `floor_status`  tinyint(1) NULL COMMENT 'æ˜¯å¦å¼€å¯åº•æ¿ï¼Œ1-å¼€å¯ï¼Œ2-ä¸å¼€å¯' AFTER `high_hps`;
 
 
 CREATE TABLE `wow_auction_floor`  (
   `id` bigint(12) UNSIGNED NOT NULL AUTO_INCREMENT,
   `team_id` int(11) NOT NULL DEFAULT 0,
-  `currency_type` int(11) NOT NULL DEFAULT 1 COMMENT '1-½ğ±Ò,2-ÈËÃñ±Ò',
-  `purple` tinyint(1) NULL DEFAULT NULL COMMENT '×Ï',
-  `blue` tinyint(1) NULL DEFAULT NULL COMMENT 'À¶',
-  `green` tinyint(1) NULL DEFAULT NULL COMMENT 'ÂÌ',
-  `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT 'ÆğÅÄ¼Û¸ñ',
-  `add_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT 'Ã¿´Î¼Û¸ñ',
-  `end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '½áÊøÊ±¼ä',
-  `pay_end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'Ö§¸¶½áÊøÊ±¼ä',
-  `create_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '´´½¨Ê±¼ä',
-  `update_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT '¸üĞÂÊ±¼ä',
+  `currency_type` int(11) NOT NULL DEFAULT 1 COMMENT '1-é‡‘å¸,2-äººæ°‘å¸',
+  `purple` tinyint(1) NULL DEFAULT NULL COMMENT 'ç´«',
+  `blue` tinyint(1) NULL DEFAULT NULL COMMENT 'è“',
+  `green` tinyint(1) NULL DEFAULT NULL COMMENT 'ç»¿',
+  `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT 'èµ·æ‹ä»·æ ¼',
+  `add_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT 'æ¯æ¬¡ä»·æ ¼',
+  `end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'ç»“æŸæ—¶é—´',
+  `pay_end_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'æ”¯ä»˜ç»“æŸæ—¶é—´',
+  `create_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_time` bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 
 ALTER TABLE `wow_team`
-ADD COLUMN `role_id`  int(11) NULL COMMENT '½ÇÉ«id' AFTER `user_role_name`,
-ADD COLUMN `identity`  tinyint(1) NULL COMMENT 'Éí·İ1-ÍÅ³¤£¬2-Î´È·ÈÏÍÅÔ±£¬3-È·ÈÏÍÅÔ±' AFTER `gold_coin`;
+ADD COLUMN `role_id`  int(11) NULL COMMENT 'è§’è‰²id' AFTER `user_role_name`,
+ADD COLUMN `identity`  tinyint(1) NULL COMMENT 'èº«ä»½1-å›¢é•¿ï¼Œ2-æœªç¡®è®¤å›¢å‘˜ï¼Œ3-ç¡®è®¤å›¢å‘˜' AFTER `gold_coin`;
 ALTER TABLE `wow_team`
-MODIFY COLUMN `user_role_name`  char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '½ÇÉ«Ãû' AFTER `room_id`,
-ADD COLUMN `attar`  varchar(255) NULL DEFAULT NULL COMMENT 'ÓÃ»§Í·Ïñ' AFTER `amount`;
+MODIFY COLUMN `user_role_name`  char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'è§’è‰²å' AFTER `room_id`,
+ADD COLUMN `attar`  varchar(255) NULL DEFAULT NULL COMMENT 'ç”¨æˆ·å¤´åƒ' AFTER `amount`;
 
 
 ALTER TABLE `wow_auction_log`
-ADD COLUMN `auction_equipment_id`  int(11) NULL COMMENT '¾ºÅÄµÄID' AFTER `team_id`;
+ADD COLUMN `auction_equipment_id`  int(11) NULL COMMENT 'ç«æ‹çš„ID' AFTER `team_id`;
 
 ALTER TABLE `wow_auction_equipment`
-ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 ½»Ò×ÖĞ 1 ½»Ò×³É¹¦ 2Á÷ÅÄ' AFTER `boss_id`,
-ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT '½»Ò×³É¹¦ÊÇ²Å»á³öÏÖÓÃ»§id' AFTER `type`;
+ADD COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 äº¤æ˜“ä¸­ 1 äº¤æ˜“æˆåŠŸ 2æµæ‹' AFTER `boss_id`,
+ADD COLUMN `user_id`  int(11) NULL DEFAULT 0 COMMENT 'äº¤æ˜“æˆåŠŸæ˜¯æ‰ä¼šå‡ºç°ç”¨æˆ·id' AFTER `type`;
 
 ALTER TABLE `wow_auction_equipment`
-
 ENGINE=InnoDB;
 
 ALTER TABLE `wow_team`
@@ -58,34 +57,34 @@ ALTER TABLE `wow_auction_floor`
 ENGINE=InnoDB;
 
 ALTER TABLE `wow_room`
-MODIFY COLUMN `high_dps`  varchar(255) NULL DEFAULT NULL COMMENT 'DPSĞè¸ßÓÚµÚÒ»ÃûµÄ°Ù·Ö±È' AFTER `expenditure`,
-MODIFY COLUMN `high_hps`  varchar(255) NULL DEFAULT NULL COMMENT 'HPSĞè¸ßÓÚµÚÒ»ÃûµÄ°Ù·Ö±È' AFTER `high_dps`;
+MODIFY COLUMN `high_dps`  varchar(255) NULL DEFAULT NULL COMMENT 'DPSéœ€é«˜äºç¬¬ä¸€åçš„ç™¾åˆ†æ¯”' AFTER `expenditure`,
+MODIFY COLUMN `high_hps`  varchar(255) NULL DEFAULT NULL COMMENT 'HPSéœ€é«˜äºç¬¬ä¸€åçš„ç™¾åˆ†æ¯”' AFTER `high_dps`;
 
 
 ALTER TABLE `wow_team`
 DROP COLUMN `identity`;
 
 ALTER TABLE `wow_team_member`
-ADD COLUMN `role_id`  int(11) NULL COMMENT '½ÇÉ«id' AFTER `avatar`;
+ADD COLUMN `role_id`  int(11) NULL COMMENT 'è§’è‰²id' AFTER `avatar`;
 
 
 ALTER TABLE `wow_team_member`
-ADD COLUMN `user_role_name`  varchar(255) NULL COMMENT '½ÇÉ«Ãû³Æ' AFTER `role_id`;
+ADD COLUMN `user_role_name`  varchar(255) NULL COMMENT 'è§’è‰²åç§°' AFTER `role_id`;
 
 
 
 ALTER TABLE `wow_team`
-CHANGE COLUMN `attar` `avatar`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ÓÃ»§Í·Ïñ' AFTER `amount`;
+CHANGE COLUMN `attar` `avatar`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·å¤´åƒ' AFTER `amount`;
 
 ALTER TABLE `wow_room`
 ADD COLUMN `note`  varchar(255) NULL AFTER `status`;
 
-MODIFY COLUMN `pay_end_time`  bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'Ö§¸¶×îºó½áÊøÊ±¼ä' AFTER `end_time`,
-ADD COLUMN `finsih_after_time`  int(10) NULL DEFAULT 0 COMMENT 'ÅÄÂôÊ±¼ä' AFTER `price`,
-ADD COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT '±£ÁôÁ½¸ö¿ÉÒÔÖ§¸¶µÄÊ±¼ä' AFTER `finsih_after_time`;
+MODIFY COLUMN `pay_end_time`  bigint(122) UNSIGNED NULL DEFAULT NULL COMMENT 'æ”¯ä»˜æœ€åç»“æŸæ—¶é—´' AFTER `end_time`,
+ADD COLUMN `finsih_after_time`  int(10) NULL DEFAULT 0 COMMENT 'æ‹å–æ—¶é—´' AFTER `price`,
+ADD COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT 'ä¿ç•™ä¸¤ä¸ªå¯ä»¥æ”¯ä»˜çš„æ—¶é—´' AFTER `finsih_after_time`;
 
 ALTER TABLE `wow_auction_equipment`
-MODIFY COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT 'Á½´ÎÖ§¸¶µÄÊ±¼ä¼ä¸ôd' AFTER `finsih_after_time`;
+MODIFY COLUMN `pay_after_time`  int(10) NULL DEFAULT 0 COMMENT 'ä¸¤æ¬¡æ”¯ä»˜çš„æ—¶é—´é—´éš”d' AFTER `finsih_after_time`;
 
 
 ALTER TABLE `wow_role`
@@ -94,28 +93,28 @@ ADD COLUMN `race_name`  varchar(255) NULL AFTER `race_id`;
 
 
 ALTER TABLE `wow_pay_log`
-ADD COLUMN `subject_id`  int(11) NULL COMMENT 'Ö§¸¶ÀàĞÍ' AFTER `equipment_id`;
+ADD COLUMN `subject_id`  int(11) NULL COMMENT 'æ”¯ä»˜ç±»å‹' AFTER `equipment_id`;
 
 ALTER TABLE `wow_pay_log`
 ADD COLUMN `subject_name`  varchar(255) NULL AFTER `subject_id`;
 
 
 ALTER TABLE `wow_pay_log`
-ADD COLUMN `confirm_payment_id`  int(11) NULL DEFAULT 0 COMMENT 'È·ÈÏ¶©µ¥Ö§¸¶ID' AFTER `subject_name`;
+ADD COLUMN `confirm_payment_id`  int(11) NULL DEFAULT 0 COMMENT 'ç¡®è®¤è®¢å•æ”¯ä»˜ID' AFTER `subject_name`;
 
 
 ALTER TABLE `wow_auction_pay`
-ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0£¨Ç®Ö§¸¶ÎªÁã£© 1 ÍÅÔ±  2 ÍÅ³¤È·ÈÏ£¨¶©µ¥Î´ÎªÍê³É×´Ì¬£©' AFTER `confirm_payment_id`;
+ADD COLUMN `confirm_status`  tinyint(1) NULL DEFAULT 0 COMMENT '0ï¼ˆé’±æ”¯ä»˜ä¸ºé›¶ï¼‰ 1 å›¢å‘˜  2 å›¢é•¿ç¡®è®¤ï¼ˆè®¢å•æœªä¸ºå®ŒæˆçŠ¶æ€ï¼‰' AFTER `confirm_payment_id`;
 
 
 
 ALTER TABLE `wow_auction_equipment`
-ADD COLUMN `add_price`  int NULL COMMENT 'Ã¿´Î¼Ó¼Û±ØĞë´óÓÚ»òµÈÓÚ' AFTER `currency_type`;
+ADD COLUMN `add_price`  int NULL COMMENT 'æ¯æ¬¡åŠ ä»·å¿…é¡»å¤§äºæˆ–ç­‰äº' AFTER `currency_type`;
 
 CREATE TABLE `wow_distribution` (
 `id`  int(11) NOT NULL AUTO_INCREMENT ,
-`content`  text NULL COMMENT '·ÖÅäÄÚÈİ' ,
-`status`  tinyint(1) NULL COMMENT '0-¿ªÊ¼£¬1-Í¬Òâ£¬2-Ê§°Ü' ,
+`content`  text NULL COMMENT 'åˆ†é…å†…å®¹' ,
+`status`  tinyint(1) NULL COMMENT '0-å¼€å§‹ï¼Œ1-åŒæ„ï¼Œ2-å¤±è´¥' ,
 `team_id`  int(11) NULL ,
 PRIMARY KEY (`id`)
 )
@@ -129,8 +128,8 @@ ADD COLUMN `create_time`  bigint NULL AFTER `team_id`;
 
 CREATE TABLE `wow_distribution` (
 `id`  int(11) NOT NULL AUTO_INCREMENT ,
-`content`  text NULL COMMENT '·ÖÅäÄÚÈİ' ,
-`status`  tinyint(1) NULL COMMENT '0-¿ªÊ¼£¬1-Í¬Òâ£¬2-Ê§°Ü' ,
+`content`  text NULL COMMENT 'åˆ†é…å†…å®¹' ,
+`status`  tinyint(1) NULL COMMENT '0-å¼€å§‹ï¼Œ1-åŒæ„ï¼Œ2-å¤±è´¥' ,
 `team_id`  int(11) NULL ,
 PRIMARY KEY (`id`)
 )
@@ -146,7 +145,7 @@ ADD COLUMN `create_time`  bigint NULL AFTER `team_id`;
 
 CREATE TABLE `wow_user_question` (
 `id`  int(11) NOT NULL AUTO_INCREMENT ,
-`content`  text NULL COMMENT 'ÎÊÌâÄÚÈİ' ,
+`content`  text NULL COMMENT 'é—®é¢˜å†…å®¹' ,
 `team_id`  int(11) NULL ,
 `create_time`  bigint NULL ,
 PRIMARY KEY (`id`)
@@ -166,36 +165,78 @@ ALTER TABLE `wow_user_money_log`
 ADD COLUMN `money`  decimal(8,2) NULL AFTER `action`;
 
 
-ALTER TABLE `wow_team_member` ADD `is_floor` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 ²»ÊÇµØ°å 1ÊÇ' AFTER `is_del`;
+ALTER TABLE `wow_team_member` ADD `is_floor` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 ä¸æ˜¯åœ°æ¿ 1æ˜¯' AFTER `is_del`;
 
 
-ALTER TABLE `wow_user`
-ADD COLUMN `credit_num`  int(5) NULL DEFAULT 0 COMMENT 'ÉÏÕ÷ĞÅµÄ´ÎÊı (Ô½µÍÔ½ºÃ ×îµÍ0)' AFTER `balance`;
+ALTER TABLE `wow_role`
+MODIFY COLUMN `grade`  float(10,2) NULL DEFAULT NULL AFTER `role_name`,
+MODIFY COLUMN `equipment_grade`  float(10,2) NULL DEFAULT NULL AFTER `talent`;
 
 
-ALTER TABLE `wow_user`
-ADD COLUMN `freeze_money`  decimal(10,2) NULL DEFAULT 0.00 COMMENT '¶³½á½ğ¶î' AFTER `balance`;
+ALTER TABLE `wow_room` CHANGE `room_num` `room_num` VARCHAR(255) NULL DEFAULT NULL COMMENT 'æˆ¿é—´åç§°';
 
-ALTER TABLE `wow_auction_equipment`
-ADD COLUMN `parent_id`  bigint(12) NOT NULL DEFAULT 0 COMMENT '¸¸¼¶ID' AFTER `id`;
+ALTER TABLE `wow_distribution`
+MODIFY COLUMN `status`  tinyint(1) NULL DEFAULT NULL COMMENT '0-å¼€å§‹ï¼Œ1-å¼€å§‹æŠ•ç¥¨ï¼Œ2-åŒæ„ï¼Œ3-å¤±è´¥' AFTER `content`;
 
-ALTER TABLE `wow_auction_equipment`
-ADD COLUMN `push_times`  tinyint(1) NULL DEFAULT 3 COMMENT 'µÚÒ»ÂÖ Ä¬ÈÏÍÆËÍ 3´Î µÚ¶şÂÖ ÍÆËÍ 5´Î ' AFTER `parent_id`;
+ALTER TABLE `wow_credit`
+ENGINE=InnoDB;
 
-ALTER TABLE `wow_auction_equipment`
-ADD COLUMN `push_num`  int(3) NULL DEFAULT 1 COMMENT 'ÍÆËÍÁË¼¸´Î ±íÊ¾ÔÚ¼¸´ÎÍÆËÍºóÓĞÈË¹ºÂò' AFTER `push_times`;
-
-
-ALTER TABLE `wow_auction_equipment`
-DROP COLUMN `pay_end_time`,
-ADD COLUMN `pay_money`  decimal(10,2) NOT NULL DEFAULT 0 COMMENT 'Ö§¸¶½ğ¶î' AFTER `end_time`,
-ADD COLUMN `pay_time`  int(10) NULL AFTER `pay_money`,
-ADD COLUMN `pay_user_id`  int(11) NULL AFTER `pay_time`,
-ADD COLUMN `pay_role_id`  int(11) NULL AFTER `pay_user_id`,
-ADD COLUMN `pay_role_name`  varchar(200) NULL AFTER `pay_role_id`;
+ALTER TABLE `wow_credit`
+MODIFY COLUMN `type`  tinyint(1) NULL DEFAULT 0 COMMENT '0 å¤±ä¿¡ 1 å†»ç»“' AFTER `des`;
 
 
-ALTER TABLE `wow_auction_log`
-ADD COLUMN `role_id`  int(11) NULL AFTER `auction_equipment_id`,
-ADD COLUMN `role_name`  varchar(120) NULL COMMENT '½ÇÉ«Ãû³Æ' AFTER `role_id`;
+CREATE TABLE `wow_credit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` int(11) DEFAULT '0' COMMENT 'ä¿¡èª‰å€¼ å¯ä¸ºè´Ÿæ•° å¦‚æœä¸ºå†»ç»“åˆ™è¡¨ç¤ºå†»ç»“çš„é‡‘é¢',
+  `equipment_id` int(11) NOT NULL DEFAULT '0' COMMENT 'è£…å¤‡çš„Id',
+  `equipemnt_name` varchar(50) DEFAULT NULL COMMENT 'è£…å¤‡åç§°',
+  `user_id` int(11) DEFAULT '0' COMMENT 'å¤±ä¿¡çš„ç”¨æˆ·ID',
+  `team_id` int(11) DEFAULT NULL COMMENT 'å›¢ID',
+  `room_id` int(11) DEFAULT '0' COMMENT 'æˆ¿é—´ID',
+  `room_name` varchar(255) DEFAULT NULL COMMENT 'æˆ¿é—´åç§°',
+  `des` varchar(300) DEFAULT NULL COMMENT 'è¯¦ç»†è¯´æ˜',
+  `type` tinyint(1) DEFAULT '0' COMMENT '0 å¤±ä¿¡ 1 å†»ç»“ 2 å›¢é•¿å¤±ä¿¡',
+  `create_time` int(10) DEFAULT NULL COMMENT 'æ—¶é—´',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='//å¾ä¿¡è¡¨';
+
+
+CREATE TABLE `wow_team_leader_credit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT '0' COMMENT 'å¤±ä¿¡çš„ç”¨æˆ·ID',
+  `team_id` int(11) DEFAULT NULL COMMENT 'å›¢ID',
+  `room_id` int(11) DEFAULT '0' COMMENT 'æˆ¿é—´ID',
+  `room_num` varchar(255) DEFAULT NULL COMMENT 'æˆ¿é—´å·ç ',
+  `role_id` int(11) DEFAULT '0' COMMENT 'å¤±ä¿¡çš„ç”¨æˆ·çš„è§’è‰²ID',
+  `type` tinyint(1) DEFAULT '0' COMMENT '0 å¤±ä¿¡ 1 å¢ä¿¡',
+  `role_name` int(11) DEFAULT '0' COMMENT 'å¤±ä¿¡çš„ç”¨æˆ·çš„è§’è‰²åç§°',
+  `des` varchar(300) DEFAULT NULL COMMENT 'è¯¦ç»†è¯´æ˜',
+  `create_time` int(11) DEFAULT NULL COMMENT 'æ—¶é—´',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='//å›¢é•¿ä¿¡ç”¨è¡¨';
+
+
+
+
+CREATE TABLE `wow_user_subsidy_template` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`user_id`  int(11) NULL COMMENT 'ç”¨æˆ·id' ,
+`subsidy_template`  text NULL COMMENT 'è¡¥è´´æ¨¡æ¿' ,
+PRIMARY KEY (`id`)
+)
+;
+
+ALTER TABLE `wow_user_subsidy_template`
+add COLUMN `create_time`  int(11) NULL DEFAULT NULL AFTER `subsidy_template`;
+
+
+
+
+
+
+
+
+
+
+
 

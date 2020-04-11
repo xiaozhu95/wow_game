@@ -83,6 +83,9 @@ class Room extends Model
             if ($params['high_hps']) {
                 $params['high_dps'] = json_encode($params['high_hps']);
             }
+            if ($params['subsidy']) {
+                $params['subsidy'] = json_encode($params['subsidy']);
+            }
             $this->data(array_merge($params,$otherInfo))->save();
 
             // 创建团
@@ -106,7 +109,6 @@ class Room extends Model
                 ]
             ];
         } catch (\Exception $e) {
-            return $e;
             Db::rollback();
             $result = [
                 'code' => 1,
@@ -126,10 +128,9 @@ class Room extends Model
         $teammember = TeamMember::where("user_id",$userId)
             ->where(["is_del" => TeamMember::IS_DEL_CREATE])
             ->where(["is_sign_out"=> TeamMember::NOT_SIGN_OUT])
-            ->where("identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
             ->select()->toArray();
 
-        return Team::where("id","in",array_column($teammember, "team_id"))->find();
+        return Team::where("id","in",array_column($teammember, "team_id"))->where("isdel" , "<>", Team::IS_DEL_CLOSE)->find();
     }
 
 
@@ -161,11 +162,12 @@ class Room extends Model
         $team = new Team();
         $teamInfo = $team->where(['room_id' => $roomInfo->id])->find();
         // 进入团
-
         $teamMemberModel = \model("TeamMember");
-        $teamMemberInfo = $teamMemberModel->where(["user_id" => $params["user_info"]["user_id"]])->find();
+        $teamMemberInfo = $teamMemberModel->where(["user_id" => $params["user_info"]["user_id"]])->where(["team_id" => $teamInfo->id])->find();
         if ($teamMemberInfo) {
             $teamMemberInfo->is_del = TeamMember::IS_DEL_CREATE;
+            $teamMemberInfo->is_sign_out = TeamMember::NOT_SIGN_OUT;
+            $teamMemberInfo->identity = TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM;
             $teamSaveInfo = $teamMemberInfo->save();
         } else {
             $teamSaveInfo = $teamMemberModel->add($params["user_info"], $teamInfo->id, TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM);
@@ -197,7 +199,7 @@ class Room extends Model
     {
         $existenceRoomNum = $this->field("room_num")->where(['status' => Room::ROOM_STATUS_OPEN])->select()->toArray();
         Room::$roomNum = array_column($existenceRoomNum, "room_num");
-        $roomNumber = $this->createRoomNumberString();
+        $roomNumber = (string)$this->createRoomNumberString();
 
         $result = [
             'code' => 0,
@@ -230,7 +232,7 @@ class Room extends Model
         if (in_array($str, Room::$roomNum)) {
             $this->createRoomNumberString();
         }
-        return $str;
+        return (string)$str;
     }
 
     // 计算补贴方式
@@ -244,14 +246,27 @@ class Room extends Model
         $teamMemberInfo = $teamMember->where(["team_id" => $params['team_id']])->select()->toArray();
         $teamMemberNum = count($teamMemberInfo);
 
-        // currency_type 1-人民币，2-金币,  status 补贴类型，1-百分比，2-固定比例
-        if ($params["currency_type"] == 1) {
-            $balance = $teamInfo->amount - $roomInfo->expenditure;
-            $userDistributionInfo = $this->calculationMoneySubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"],  $teamMemberNum, $teamInfo->gold_coin);
-        } elseif ($params["currency_type"] == 2) {
-            $balance = $teamInfo->gold_coin - $roomInfo->expenditure;
-            $userDistributionInfo = $this->calculationGoldCoinSubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"], $teamMemberNum, $teamInfo->amount);
+        // currency_type 1-金币，2-人民币,  status 补贴类型，1-百分比，2-固定比例
+        if (!empty($params["subsidy"])) {
+            if ($params["currency_type"] == 1) {
+                $balance = $teamInfo->gold_coin - $roomInfo->expenditure;
+                $userDistributionInfo = $this->calculationGoldCoinSubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"], $teamMemberNum, $teamInfo->amount);
+            } elseif ($params["currency_type"] == 2) {
+                $balance = $teamInfo->amount - $roomInfo->expenditure;
+                $userDistributionInfo = $this->calculationMoneySubsidy($balance, $params["status"], $params["subsidy"],$params["currency_type"],  $teamMemberNum, $teamInfo->gold_coin);
+
+            }
+        } else {
+            if ($params["currency_type"] == 1) {
+                $goldCoin = $teamInfo->gold_coin - $roomInfo->expenditure;
+                $balance = $teamInfo->amount ;
+            } elseif ($params["currency_type"] == 2) {
+                $balance = $teamInfo->amount - $roomInfo->expenditure;
+                $goldCoin = $teamInfo->gold_coin;
+            }
+            $userDistributionInfo = $this->averageDistribution($balance, $teamMemberNum, $goldCoin, $teamMemberInfo, $params["currency_type"]);
         }
+
         $result = $this->userDistributionInfo($userDistributionInfo, $params['team_id']);
         $result = [
             'code' => 0,
@@ -259,6 +274,31 @@ class Room extends Model
             'data' => $result,
         ];
         return json($result);
+    }
+
+    /**
+     * @param $balance
+     * @param $teamMemberNum
+     * @param $goldCoin
+     * @param $teamMemberInfo
+     * @param $currencyType
+     * @return array
+     * 没有补贴则对团里的每个进行均分
+     */
+    private function averageDistribution ($balance, $teamMemberNum, $goldCoin, $teamMemberInfo, $currencyType)
+    {
+        $everyMoney = bcdiv($balance, $teamMemberNum, 2);
+        $everyGold = bcdiv($goldCoin, $teamMemberNum, 2);
+        $userDistributionInfo = array();
+
+        foreach ($teamMemberInfo  as  $key =>  $value)  {
+            $userDistributionInfo[$key]["userId"] = $value["user_id"];
+            $userDistributionInfo[$key]["money"] = $everyMoney;
+            $userDistributionInfo[$key]["currency_type"] = $currencyType;
+            $userDistributionInfo[$key]["goldGoin"] = $everyGold;
+        }
+
+        return $userDistributionInfo;
     }
 
     private function calculationMoneySubsidy ($balance, $status, $subsidy,$currencyType, $teamMemberNum, $goldCoin)

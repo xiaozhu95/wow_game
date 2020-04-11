@@ -1,6 +1,7 @@
 <?php
 namespace app\common\model;
 
+use think\Db;
 use think\Model;
 use think\Cache;
 
@@ -32,7 +33,7 @@ class Distribution extends Model
      */
     public function distributionDetail ($teamid, $userId)
     {
-        $findResult = $this->field("content, status")->where(['team_id' => $teamid])->find()->toArray();
+        $findResult = $this->field("content, status, create_time")->where(['team_id' => $teamid])->find()->toArray();
         $content = json_decode($findResult["content"], true);
         $array = array();
         $agreeNum = 0;
@@ -50,7 +51,46 @@ class Distribution extends Model
                 array_push($array, $value);
             }
         }
+        if ($findResult["status"] != Distribution::STATUS_AGREE || $findResult["status"] != Distribution::STATUS_FAIL) {
+            if (time() > strtotime($findResult['create_time']) + 10 * 60 ) {
+                $agreeRate = bcdiv($agreeNum, count($content));
+                $result = $this->where(['team_id' => $teamid])->find();
+                if ($agreeRate > 0.75) {
+                    $result->status = Distribution::STATUS_AGREE;
+                } else {
+                    $result->status = Distribution::STATUS_FAIL;
+                }
+                Db::startTrans();
+                try {
+                    $result->save();
+                    $team = Team::where("id", $teamid)->where("isdel","<>", 2)->find();
+                    $team->isdel = Team::IS_DEL_CLOSE;
+                    $room = Room::where(["id" => $team->room_id])->find();
+                    $room->status = Room::ROOM_STATUS_CLOSE;
+                    $team->save() ;
+                    $room->save();
 
+                    foreach ($content as $contentKey => $contentValue) {
+                        $user = User::where(["id" => $contentValue["userId"]])->find();
+                        $user->balance = $user->balance + $contentValue["money"];
+                        $user->save();
+                        //记录扣钱日志
+                       model('UserMoneyLog')->data([
+                            'user_id' => $contentValue["userId"],
+                            'amount' => -$contentValue["money"],
+                            'type' => 0,
+                            'msg' => '账目分钱' ,
+                            'controller' => 'distribution',
+                            'action' => 'distributionDetail'
+                        ])->save();
+                    }
+                    //Db::commit();
+                } catch (\Exception $e) {
+                    $this->rollback();
+                }
+
+            }
+        }
         return json([
             'code' => 0,
             'msg' => 'success',
