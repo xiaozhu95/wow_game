@@ -83,4 +83,8 @@ class UserMoneyLog extends Controller
     {
         return model('auction_pay')->review($order_id);
     }
+    public function refuse($order_id)
+    {
+        return model('auction_pay')->refuse($order_id);
+    }
 }

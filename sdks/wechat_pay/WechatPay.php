@@ -78,6 +78,31 @@ class WechatPay
 		return $response;
 	}
 
+	public function selfPayTouser($xml)
+    {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL            => "https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers", //东南亚 apihk 其他 apius 国内 api
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER     => array('Content-Type: text/xml'),
+            CURLOPT_POSTFIELDS     => $xml,
+            CURLOPT_VERBOSE => true
+        ));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        // get the prepay id from response
+        $xml = simplexml_load_string($result);
+        return (string)$xml->prepay_id;
+    }
+        
+        public function arr2xml($arr){
+            $simxml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><xml></xml>');//创建simplexml对象  
+            foreach($arr as $k=>$v){  
+                $simxml->addChild($k,$v);  
+            } 
+            return $simxml->saveXML();  
+        }
 	/**
 	 * Generate a nonce string
 	 *
@@ -122,6 +147,7 @@ class WechatPay
 	 */
 	public function getNotify() {
 		$postXml = file_get_contents('php://input');   // 接受通知参数；
+                cache('post',$postXml);
 		if (empty($postXml)) {
 			return false;
 		}

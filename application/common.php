@@ -216,6 +216,29 @@ function subtext($text, $length)
     	$xml .= $wrapper ? "</$wrapper>" : "";
 		return $xml;
 	}
+    /**
+	 * Get xml from array
+	 */
+	function arrTowXml($arr, $wrapper='xml', $real_key='')
+	{
+		$xml = $wrapper ? "<$wrapper>" : "";
+		foreach ($arr as $key => $val) {
+			if (is_numeric($val)) {
+                                   $xml .= sprintf("<%s>%s</%s>", $key, $val, $key);
+			} elseif (is_array($val)) {
+        if($val['key'])
+				  $xml .= sprintf("<%s>%s</%s>", $key, $this->getXMLFromArray($val['value'], '', $val['key']), $key);
+        else if($real_key)
+				  $xml .= sprintf("<%s>%s</%s>", $real_key, $this->getXMLFromArray($val,''), $real_key);
+        else
+				  $xml .= sprintf("<%s>%s</%s>", $key, $val, $key);
+			} else {
+				$xml .= sprintf("<%s>%s</%s>", $key, $val, $key);
+			}
+		}
+    	$xml .= $wrapper ? "</$wrapper>" : "";
+		return $xml;
+	}
 /*
  *
  *  返回数组中指定多列

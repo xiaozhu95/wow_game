@@ -116,6 +116,7 @@ class PayLog extends Controller
 					$res = $pay->getNotify();
                                         cache('wechat_pay', $res);
 					if ($res) {
+                                            
 						$suc = Loader::model('PayLog')->save([
 							'wechat_openid' =>  $res['openid'],
 							'trade_no' => $res['transaction_id'],
@@ -313,15 +314,26 @@ class PayLog extends Controller
 				}
 		}
 	}
-  
-  public function cron(){
-    $time = time() - 3600;
-    //因为cron设置了  每1分钟更新一次 所以时间为 between -60到0
-		$pc_ids = model('PayLog')->where(['status'=>0,'create_time'=>['between', ($time - 60).','.$time],'pc_id'=>['>',0]])->value('group_concat(pc_id)');
-		if($pc_ids)
-    	model('PromoCodeLog')->destroy(['pc_id'=>['in',$pc_ids], 'status'=>1]);
     
-    //设置完了之后将pay_log的状态改为失效 采用数据库形式更新 这样不会自动更新update_time
-    model('PayLog')->where(['status'=>0,'create_time'=>['between', ($time - 60).','.$time]])->update(['status'=>2]);
-	}
+    public function payToUser()
+    {
+        require_once(ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'WechatPay.php');
+        $configs = [
+            'app_id' => '15646549', // 商户账号appid
+            'mch_id' => '0132456789', //商户号
+            'app_key' => '', //支付秘钥
+        ];
+        $pay = new \WechatPay($configs);
+        
+        $data['withdraw_ids'] = "xxxxxxx"; // 商户订单号
+        $data['openid'] = "123123123" ; //用户openid
+        $data['amount'] = 1; //金额
+        $data['desc'] = "用户体现"; // 企业付款备注
+        $data['ip'] = $this->request->ip(); 
+        
+       $arr  = $pay->payToUser($data);
+       $xml = arrTowXml($arr);
+       $result = $pay->selfPayTouser($xml);
+       var_dump($result);
+    }
 }

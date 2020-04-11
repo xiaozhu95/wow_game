@@ -13,6 +13,18 @@ class Team extends Model
     const IS_DEL_CLOSE = 2;    // 解散
 
 
+    public function getList ($teamId)
+    {
+        $findResult =  $this->where(["id" => $teamId])->find();
+        $result = [
+            'code' => 0,
+            'msg' => 'success',
+            'data' => $findResult
+        ];
+
+        return json($result);
+    }
+
     /**
      * @param $userInfo
      * @param $room_id
@@ -55,7 +67,7 @@ class Team extends Model
      */
     public function startTeam ($teamId)
     {
-        $resultSave = $this->where(["team_id" => $teamId])
+        $resultSave = $this->where(["id" => $teamId])
             ->update([
                 'isdel' => Team::IS_DEL_OPEN
             ]);
@@ -73,18 +85,14 @@ class Team extends Model
         return json($result);
     }
 
-    /**
-     * @param $teamId
-     * @return array|false|\PDOStatement|string|Model
-     * 获取团状态
-     */
+    // 获取团状态
     public function teamStatus ($teamId)
     {
         return $this->field("id, room_id, isdel")->where(["id" => $teamId])->find();
     }
-
     public function teamCheck($data)
     {
+
         return $this->field('id,user_id')->where($data)->find();
     }
 }

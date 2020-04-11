@@ -44,4 +44,31 @@ on user.id =a.user_id';
     {
         return $this->hasOne('BossArms','id','equipment_id')->field('id,name,icon');
     }
+    /**添加竞拍日志*/
+    public function addLog($data){
+        
+        $validate = new \app\common\validate\AuctionLog();
+        if (!$validate->check($data)) { //
+                return ajax_return_adv_error($validate->getError());
+        }
+        return ajax_return($this->save($data));
+    }
+
+    //获取该物品拍卖日志前三
+    public function actionThreePrice($auction_equipment_id)
+    {
+        $model = model('auction_log');
+        $list = $model->where(['auction_equipment_id'=>$auction_equipment_id])->order('price desc')->limit(3)->select();
+
+        return $list;
+    }
+
+    //获取该物品拍卖日志前五
+    public function actionFivePrice($auction_equipment_id)
+    {
+        $model = model('auction_log');
+        $list = $model->where(['auction_equipment_id'=>$auction_equipment_id])->order('price desc')->limit(5)->select();
+
+        return $list;
+    }
 }

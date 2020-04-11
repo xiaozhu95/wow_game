@@ -26,7 +26,7 @@ class ConfirmPayment extends Model
         $confirm_payment_list = model('confirm_payment')->alias('payment')
             ->join('auction_equipment e','payment.auction_equipment_id = e.id','left')
             ->join('auction_log log','payment.auction_log_id = log.id','left')
-            ->field('e.id,e.team_id,e.boss_id,e.type,e.user_id,e.equipment_id,e.equipment_name,e.currency_type,log.price,e.finsih_after_time,e.pay_after_time,e.end_time,e.pay_end_time,payment.id as confirm_payment_id,log.id as auction_log_id')
+            ->field('e.id,e.team_id,payment.pay_end_time,e.boss_id,e.type,e.user_id,e.equipment_id,e.equipment_name,e.currency_type,log.price,e.finsih_after_time,e.pay_after_time,e.end_time,payment.id as confirm_payment_id,log.id as auction_log_id')
             ->where('payment.user_id = e.user_id')
             ->where('e.type','in',[AuctionEquipment::TYPE_OF_CREATE])
             ->where(['payment.status'=> self::STATUS_ON])
@@ -42,7 +42,6 @@ class ConfirmPayment extends Model
             $is_team = 0;
            $confirm_payment_list = $confirm_payment_list ->where(['e.user_id'=>$data['user_id']]);
          
-          
         }
       	
        $confirm_payment_list = $confirm_payment_list->select();
@@ -50,7 +49,7 @@ class ConfirmPayment extends Model
             ->join('auction_equipment e','payment.auction_equipment_id = e.id','left')
             ->join('auction_log log','payment.auction_log_id = log.id','left')
             ->join('auction_pay pay','payment.id = pay.confirm_payment_id','left')
-            ->field('e.id,e.team_id,e.boss_id,e.type,e.user_id,e.equipment_id,e.equipment_name,e.currency_type,log.price,e.finsih_after_time,e.pay_after_time,e.end_time,e.pay_end_time,payment.id as confirm_payment_id,log.id as auction_log_id,pay.confirm_status')
+            ->field('e.id,e.team_id,payment.pay_end_time,e.boss_id,e.type,e.user_id,e.equipment_id,e.equipment_name,e.currency_type,log.price,e.finsih_after_time,e.pay_after_time,e.end_time,payment.id as confirm_payment_id,log.id as auction_log_id,pay.confirm_status')
             ->where('payment.user_id = e.user_id')
             ->where('pay.pay_type','in', AuctionPay::PAY_TYPE_YES)
             ->where(['e.team_id'=>$data['team_id']]);  
@@ -65,7 +64,9 @@ class ConfirmPayment extends Model
         $role = model('role');
         $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
         $confirm_payment_list = $confirm_payment_list->toArray();
-      	
+        foreach ($confirm_payment_list as $key => $value) {
+            $confirm_payment_list[$key] ['confirm_status'] = 0;
+        }
         if($confirm_payment_list_pay){
             $confirm_payment_list_pay = $confirm_payment_list_pay->toArray();
             foreach ($confirm_payment_list_pay as $list_pay_key => $list_pay_value) {
@@ -97,17 +98,20 @@ class ConfirmPayment extends Model
     	$times = time();
         foreach ($confirm_payment_list as $key => $value) {
           	
-          	$total = $auction_info[$value['id']];
-          	$total = 2 - $total; //两次支付时间
-            if($total<0){
-              	$total = 0;
-            }
+//            $total = $auction_info[$value['id']];
+//            $total = 2 - $total; //两次支付时间
+//            if($total<0){
+//              	$total = 0;
+//            }
             //pay_end_time 是最后的支付时间（这个是两次支付的时间）
-            $end_after_pay = $value['pay_end_time'] - ($total * 60 * $value['pay_after_time'] + $times) ;
-          	if($end_after_pay<0){
+//            $end_after_pay = $value['pay_end_time'] - ($total * 60 * $value['pay_after_time'] + $times) ;
+//          	if($end_after_pay<0){
+//              	$end_after_pay = 0;
+//            }
+            $end_after_pay = $value['pay_end_time']-time();
+            if($end_after_pay<0){
               	$end_after_pay = 0;
             }
-          	
             $confirm_payment_list[$key]['user'] = isset($user[$value['user_id']]) ? $user[$value['user_id']]   : [];
           	if( $confirm_payment_list[$key]['user']){
               	 $confirm_payment_list[$key]['user']['nickname'] = $user_info[$value['user_id']]['role_name'];

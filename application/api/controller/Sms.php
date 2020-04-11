@@ -68,7 +68,60 @@ class Sms extends Controller
         return $userModel->smsVeri($data);
     }
 
-
+    /**
+     * 公众号支付
+     * 手机验证码
+     * 
+     */
+    public function smsTelLogindd()
+    {
+        $mobile = $this->request->param('mobile');
+        $code = "h5Pay";
+        $model = $this->getModel();
+   
+        $result = $model->smsTelLogin($mobile,$code);
+        return $result;
+    }
+    /**
+     * 公众号支付
+     * 验证
+     */
+    public function smsVery($mobile,$code)
+    {
+       
+        $result = array(
+            'code' => 1,
+            'data'   => '',
+            'msg'    => ''
+        );
+        if (!isset($mobile)) {
+            $result['msg'] = '请输入手机号码';
+            return json($result);
+        }
+        if (!isset($code)) {
+            $result['msg'] = '请输入验证码';
+            return json($result);
+        }
+        $model = $this->getModel();
+        //判断是否是用户名登陆
+        $smsStatus = $model->check($data['mobile'], $data['code'], 'reg');
+        if($smsStatus == 1){
+            $result['msg'] = '短信验证码错误';
+            return json($result);
+        }elseif($smsStatus==2){
+            $result['msg'] = '短信验证码过期,请重新发送';
+            return json($result);
+        }
+        $user = new app\common\model\User();
+        $userInfo = $user->where(['mobile'=>$mobile])->find();
+        if(!$userInfo){
+             $result['msg'] = '请到微信异构注册后在充值';
+        }else{
+            $result['code'] = 0;
+            $result['data'] = ['user_id'=>$userInfo->id];
+        }
+        return json($result);
+    }
     protected function aftergetList(&$data){
 
     }

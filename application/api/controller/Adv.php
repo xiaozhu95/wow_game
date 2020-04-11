@@ -11,6 +11,7 @@ class Adv extends Controller
 
   protected function filter(&$map)
   {
+
     $time = time();
     $start_time = $this->request->param('start_time', $time);
     $end_time = $this->request->param('end_time', $time);

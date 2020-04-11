@@ -17,7 +17,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ½«³ÉÔ±Ìá³öÍÅ¶Ó
+     * å°†æˆå‘˜æå‡ºå›¢é˜Ÿ
      */
     public function removeTeamMember ()
     {
@@ -40,7 +40,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ½«³ÉÔ±ÉóºË½øÈëÍÅ¶Ó
+     * å°†æˆå‘˜å®¡æ ¸è¿›å…¥å›¢é˜Ÿ
      */
     public function checkTeamMember ()
     {
@@ -64,7 +64,7 @@ class TeamMember extends Controller
 
     /**
      * @return mixed
-     * ÓÃ»§ÍË³öÍÅ
+     * ç”¨æˆ·é€€å‡ºå›¢
      */
     public function userQuitTeam ()
     {
@@ -77,7 +77,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ÍÅ³¤½âÉ¢ÍÅ
+     * å›¢é•¿è§£æ•£å›¢
      */
     public function teamLeaderDissolutionTeam ()
     {
@@ -99,7 +99,7 @@ class TeamMember extends Controller
 
     /**
      * @return mixed
-     * ÅĞ¶ÏÓÃ»§ÍÅĞÅÏ¢
+     * åˆ¤æ–­ç”¨æˆ·å›¢ä¿¡æ¯
      */
     public function userTeamIdentity ()
     {
@@ -112,7 +112,7 @@ class TeamMember extends Controller
 
     /**
      * @return \think\response\Json
-     * ÓÃÓÚÂÖÑ¯¸ÃÍÅÊÇ·ñ¹Ø±ÕºÍ¸ÃÓÃ»§ÊÇ·ñ±»Ìß³öÍÅ
+     * ç”¨äºè½®è¯¢è¯¥å›¢æ˜¯å¦å…³é—­å’Œè¯¥ç”¨æˆ·æ˜¯å¦è¢«è¸¢å‡ºå›¢
      */
     public function ajaxPullTeamStatusAndUserStatus ()
     {
@@ -123,20 +123,21 @@ class TeamMember extends Controller
         $auctionFloorMode = $this->getModel("AuctionFloor");
         $distributionMode = $this->getModel("Distribution");
 
-        $teamInfo = $teamMode->teamStatus($teamId);    // ÍÅĞÅÏ¢
-        $teamMemberInfo = $teamMemberMode->teamMemberStatus($teamId, $userId);    // ÍÅÔ±ĞÅÏ¢
-        $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // µØ°åĞÅÏ¢
-        $distributionInfo = $distributionMode->distributionInfo($teamId);    // ·ÖÅäĞÅÏ¢
+        $teamInfo = $teamMode->teamStatus($teamId);    // å›¢ä¿¡æ¯
+        $teamMemberInfo = $teamMemberMode->teamMemberStatus($teamId, $userId);    // å›¢å‘˜ä¿¡æ¯
+        $auctionFloorInfo = $auctionFloorMode->getAuctionFloor($teamId);    // åœ°æ¿ä¿¡æ¯
+        $distributionInfo = $distributionMode->distributionInfo($teamId);    // åˆ†é…ä¿¡æ¯
 
 
 
         $floor = [];
         $team_info = model('team')->where(['id'=>$teamId])->find();
-
-        $result = model('TeamMember')->checkFloor(['team_id'=>$teamId,'is_floor'=>1]); //ÅĞ¶ÏÊÇ·ñÊÇµØ°å
-        $floor['is_floor'] = 0; //²»ÊÇµØ°å
+        $amount  =  isset($team_info['amount']) ? $team_info['amount'] : 0;
+        $gold_coin	= isset($team_info['gold_coin']) ? $team_info['gold_coin'] : 0;
+        $result = model('TeamMember')->checkFloor(['team_id'=>$teamId,'is_floor'=>1]); //åˆ¤æ–­æ˜¯å¦æ˜¯åœ°æ¿
+        $floor['is_floor'] = 0; //ä¸æ˜¯åœ°æ¿
         if($result){
-            $floor['is_floor'] = 1; //ÊÇµØ°å
+            $floor['is_floor'] = 1; //æ˜¯åœ°æ¿
             $user = model('user')->field('id,nickname,avatar')->where('id','in',$result['user_id'])->find();
 
             $role = model('role');
@@ -150,7 +151,7 @@ class TeamMember extends Controller
         $pay = model('AuctionPay')->where(['team_id'=>$teamId,'equipment_id'=>0,'confirm_status'=> \app\common\model\AuctionPay::CONFIRM_STATUS_TEAM_MENBER,'currency_type'=> \app\common\model\AuctionPay::CURRENCY_TYPE_GLOD,'pay_type'=> \app\common\model\AuctionPay::PAY_TYPE_YES])->find();
 
         if($pay){
-            $floor['is_floor'] = 3; //ÊÇ´ıÍÅ³¤ÉóºË
+            $floor['is_floor'] = 3; //æ˜¯å¾…å›¢é•¿å®¡æ ¸
             $floor['order_id'] = $pay['id'];
             $user = model('user')->field('id,nickname,avatar')->where('id','in',$pay['user_id'])->find();
             $role = model('role');
@@ -164,16 +165,17 @@ class TeamMember extends Controller
 
 
         if ($distributionInfo) {
-            $distributionInfo = 1;    // ±íÊ¾ÒÑ¾­·ÖÅä
+            $distributionInfo = 1;    // è¡¨ç¤ºå·²ç»åˆ†é…
         } else {
-            $distributionInfo = 0;    // ±íÊ¾Î´·ÖÅä
+            $distributionInfo = 0;    // è¡¨ç¤ºæœªåˆ†é…
         }
-        $auctionFloorBuyInfo = [];    // µØ°å¹ºÂòĞÅÏ¢
-
+        $auctionFloorBuyInfo = [];    // åœ°æ¿è´­ä¹°ä¿¡æ¯
         $result = [
             'code' => 0,
             'msg' => "success",
             'data' => [
+                'amount' => $amount,
+                'gold_coin' => $gold_coin,
                 "teamInfo" => $teamInfo,
                 "teamMemberInfo" => $teamMemberInfo,
                 "auctionFloorInfo" => $auctionFloorInfo,
@@ -188,25 +190,25 @@ class TeamMember extends Controller
 
     /**
      * @return mixed
-     * »ñÈ¡ÕıÊ½ÍÅÔ±ĞÅÏ¢
+     * è·å–æ­£å¼å›¢å‘˜ä¿¡æ¯
      */
     public function getTeamMemberInfo ()
     {
         $teamId = input("get.team_id");
         $teamMemberMode = $this->getModel("TeamMember");
 
-        return $teamMemberMode->getTeamMemberInfo($teamId);    // ÕıÊ½ÍÅÔ±ĞÅÏ¢
+        return $teamMemberMode->getTeamMemberInfo($teamId);    // æ­£å¼å›¢å‘˜ä¿¡æ¯
     }
 
     /**
      * @return mixed
-     * »ñÈ¡¸ÃÓÃ»§²Î¼ÓµÄÍÅĞÅÏ¢
+     * è·å–è¯¥ç”¨æˆ·å‚åŠ çš„å›¢ä¿¡æ¯
      */
     public function userTeamInfo ()
     {
         $params = input("post.");
         $teamMemberMode = $this->getModel("TeamMember");
 
-        return $teamMemberMode->getUserTeamInfo($params);    // ÕıÊ½ÍÅÔ±ĞÅÏ¢
+        return $teamMemberMode->getUserTeamInfo($params);    // æ­£å¼å›¢å‘˜ä¿¡æ¯
     }
 }

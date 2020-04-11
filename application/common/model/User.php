@@ -97,6 +97,12 @@ class User extends Model
     {
         return $this->hasOne('UserProfile')->setEagerlyType(0);
     }
+    
+    /**返回用户信息*/
+    public function userInfo($user_id)
+    {
+        return $this->where(['id'=>$user_id])->find();
+    }
 
     /*一微信键获取手机号*/
     public function wxappInfo($params)

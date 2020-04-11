@@ -169,3 +169,33 @@ ADD COLUMN `money`  decimal(8,2) NULL AFTER `action`;
 ALTER TABLE `wow_team_member` ADD `is_floor` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 不是地板 1是' AFTER `is_del`;
 
 
+ALTER TABLE `wow_user`
+ADD COLUMN `credit_num`  int(5) NULL DEFAULT 0 COMMENT '上征信的次数 (越低越好 最低0)' AFTER `balance`;
+
+
+ALTER TABLE `wow_user`
+ADD COLUMN `freeze_money`  decimal(10,2) NULL DEFAULT 0.00 COMMENT '冻结金额' AFTER `balance`;
+
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `parent_id`  bigint(12) NOT NULL DEFAULT 0 COMMENT '父级ID' AFTER `id`;
+
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `push_times`  tinyint(1) NULL DEFAULT 3 COMMENT '第一轮 默认推送 3次 第二轮 推送 5次 ' AFTER `parent_id`;
+
+ALTER TABLE `wow_auction_equipment`
+ADD COLUMN `push_num`  int(3) NULL DEFAULT 1 COMMENT '推送了几次 表示在几次推送后有人购买' AFTER `push_times`;
+
+
+ALTER TABLE `wow_auction_equipment`
+DROP COLUMN `pay_end_time`,
+ADD COLUMN `pay_money`  decimal(10,2) NOT NULL DEFAULT 0 COMMENT '支付金额' AFTER `end_time`,
+ADD COLUMN `pay_time`  int(10) NULL AFTER `pay_money`,
+ADD COLUMN `pay_user_id`  int(11) NULL AFTER `pay_time`,
+ADD COLUMN `pay_role_id`  int(11) NULL AFTER `pay_user_id`,
+ADD COLUMN `pay_role_name`  varchar(200) NULL AFTER `pay_role_id`;
+
+
+ALTER TABLE `wow_auction_log`
+ADD COLUMN `role_id`  int(11) NULL AFTER `auction_equipment_id`,
+ADD COLUMN `role_name`  varchar(120) NULL COMMENT '角色名称' AFTER `role_id`;
+

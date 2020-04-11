@@ -18,6 +18,7 @@ class AuctionEquipment extends Model
     const TYPE_STREAM_SHOT = 2; //流拍
     const TYPE_OF_CREATE = 3; //我的交易(拍卖结束后支付时间前的这一段时间)
     const TYPE_OF_CHECK= 4; //待确认
+    const TYPE_OF_TOWAUCTION= 5; //转第二次拍卖
     
     const CURRENCY_TYPE_GOLD = 1;
     const CURRENCY_TYPE_MONEY = 2;

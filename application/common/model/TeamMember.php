@@ -301,6 +301,7 @@ class TeamMember extends Model
             ->join("room r", "t.room_id=r.id", "left")
             ->where(["tm.user_id" => $params["user_id"]])
             ->where("tm.identity","<>", TeamMember::IDENTITY_TEAM_MEMBER_CONFIRM)
+           ->order('id desc')
             ->select()->toArray();
 
         $result = [
