@@ -14,17 +14,13 @@
         <thead>
             <tr class="text-c">
                 {include file="th" /}
-                <th width="100">操作</th>
             </tr>
         </thead>
         <tbody>
             {volist name="list" id="vo"}
             <tr class="text-c">
                 {include file="td" /}
-                <td class="f-14">
-                    {$vo.status|show_status=$vo.id} {tp:menu menu='password' url='password:id=$vo.id' title='改密' class='label-secondary' /} {tp:menu
-                    menu='sedit' /}
-                </td>
+
             </tr>
             {/volist}
         </tbody>

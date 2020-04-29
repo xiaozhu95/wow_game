@@ -1,6 +1,7 @@
 <?php
 namespace app\common\model;
 
+use think\Db;
 use think\Model;
 use think\Cache;
 
@@ -51,6 +52,8 @@ on user.id =a.user_id';
         if (!$validate->check($data)) { //
                 return ajax_return_adv_error($validate->getError());
         }
+        $list = Db::name("AuctionLog")->field('user_id,price')->where(['id'=>$data['id']])->order('price desc')->find();
+
         return ajax_return($this->save($data));
     }
 
@@ -70,5 +73,10 @@ on user.id =a.user_id';
         $list = $model->where(['auction_equipment_id'=>$auction_equipment_id])->order('price desc')->limit(5)->select();
 
         return $list;
+    }
+    /** 检查是否参与过竞拍*/
+    public function checkIsAuction($team_id,$auction_equipment_id,$user_id)
+    {
+       return $this->field("role_id,role_name,price")->where(['team_id'=>$team_id,'auction_equipment_id'=>$auction_equipment_id,'user_id'=>$user_id])->order("price desc")->find();
     }
 }

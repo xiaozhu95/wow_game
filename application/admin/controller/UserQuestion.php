@@ -5,7 +5,7 @@ namespace app\admin\controller;
 
 use app\admin\Controller;
 
-class Role extends Controller
+class UserQuestion extends Controller
 {
     use \app\admin\traits\controller\Controller;
     // 方法黑名单
@@ -13,5 +13,5 @@ class Role extends Controller
 
     protected static $isdelete = false;
 
-    
+
 }

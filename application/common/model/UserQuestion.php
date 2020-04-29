@@ -30,6 +30,14 @@ class UserQuestion extends Model
         }
         return json($result);
     }
+    public function user()
+    {
+        return $this->belongsTo('user','user_id','id')->field('nickname')->setEagerlyType(0);
+    }
 
+    public function getContentTextAttr($value,$data)
+    {
+        return json_decode($data['content'],true);
+    }
 
 }

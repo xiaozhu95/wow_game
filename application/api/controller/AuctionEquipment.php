@@ -14,14 +14,15 @@ class AuctionEquipment extends Controller
 {
     use \app\api\traits\controller\Controller;
 
+    private $is_team = 0; //判断是不是团长
+    private $team_num = 0; //  待支付 待审核，审核
+    private $team_menber_num = 0; // 待支付 待审核
+    private $user_id = 0;
+
     protected function filter(&$map)
     {
-        //判断是否是团长查看，团员只能看到自己的
         if(isset($map['user_id']) && $map['user_id']){
-            $team_info = model('team')->teamCheck(['user_id'=>$map['user_id']]);
-            if($team_info && $team_info['user_id']==$map['user_id']){
-                unset($map['user_id']);
-            }
+            unset($map['user_id']);
         }
     }
 
@@ -49,11 +50,23 @@ class AuctionEquipment extends Controller
         return ajax_return($result);
     }
 
-    protected function aftergetList(&$data){
+    public function aftergetList(&$data){
+
+        $is_type = $this->request->param('is_type',0);
+        $user_id = $this->request->param('user_id',0);
+        $team_id = $this->request->param('team_id',0);
         //获取当前时间
         $time = time();
         if (!$data){
             return [];
+        }
+        //判断是否是团长查看，团员只能看到自己的
+        if($user_id){
+            $team_info = model('team')->teamCheck(['id'=>$team_id,'user_id'=>$user_id]);
+            if($team_info && $team_info['user_id']==$user_id){
+                $this->is_team = 1;
+                $this->user_id = $team_info['user_id'];
+            }
         }
         if ($data){
             $data = $data->toArray();
@@ -74,7 +87,7 @@ class AuctionEquipment extends Controller
                         }
                         //拍卖正在进行
                         $roleinfo = $auction_log_model->actionFivePrice($value['id']);
-                        $role = isset($roleinfo[0]) ? ['id'=>$roleinfo[0]['id'],'role_id'=>$roleinfo[0]['role_id'],'role_name'=>$roleinfo[0]['role_name'],'price'=>$roleinfo[$value['push_num']]['price']] : [];
+                        $role = isset($roleinfo[0]) ? ['id'=>$roleinfo[0]['id'],'user_id'=>$roleinfo[0]['user_id'],'role_id'=>$roleinfo[0]['role_id'],'role_name'=>$roleinfo[0]['role_name'],'price'=>$roleinfo[$value['push_num']]['price']] : [];
                         $data['data'][$key]['role'] = $role;
                         $data['data'][$key]['price_range'] = isset($role['price']) ? $role['price'].'~'.intval($role['price']+$role['price'] * 0.15) : $value['price'] .'~'. intval($value['price']+$value['price']  * 0.15).'.00';
                     }else{
@@ -91,12 +104,20 @@ class AuctionEquipment extends Controller
                 }
 
                 if($data['data'][$key]['type'] == AuctionEquipmentModel::TYPE_OF_CREATE){
+
                     //2.推送给下一个人
                     $pay_start  = $value['end_time'] + $value['pay_after_time'] * 60 * ($value['push_num']); //推送给一个人的开始时间
                     $pay_end = $value['end_time'] + $value['pay_after_time'] * 60 * ($value['push_num']+1); //推送给一个人的结束时间
 
                     $roleinfo = $auction_log_model->actionFivePrice($value['id']);
-                    $data['data'][$key]['role'] = isset($roleinfo[$value['push_num']]) ? ['id'=>$roleinfo[$value['push_num']]['id'],'role_id'=>$roleinfo[$value['push_num']]['role_id'],'role_name'=>$roleinfo[$value['push_num']]['role_name'],'price'=>$roleinfo[$value['push_num']]['price']] : [];
+                    $data['data'][$key]['role'] = isset($roleinfo[$value['push_num']]) ? ['id'=>$roleinfo[$value['push_num']]['id'],'user_id'=>$roleinfo[$value['push_num']]['user_id'],'role_id'=>$roleinfo[$value['push_num']]['role_id'],'role_name'=>$roleinfo[$value['push_num']]['role_name'],'price'=>$roleinfo[$value['push_num']]['price']] : [];
+                    if(!$this->is_team && isset($data['data'][$key]['role']['user_id']) && $data['data'][$key]['role']['user_id'] != $user_id){
+                        unset($data['data'][$key]);
+                        continue;
+                    }
+
+                    $this->team_num ++;
+                    $this->team_menber_num ++;
                     $auction_count = count($roleinfo); //竞拍的人生
                     if($auction_count>$value['push_times']){
                         $auction_count = $value['push_times'];
@@ -118,23 +139,54 @@ class AuctionEquipment extends Controller
 
                             if (isset($roleinfo[$value['push_num']]) && $roleinfo[$value['push_num']]){
 
-
                                 //找到第上一次
                                 $auction_log = $roleinfo[$value['push_num']];
                                 $team_info = model('team')->field('room_id')->where(['id'=>$auction_log['team_id']])->find();
                                 $room_info = model('room')->field('id,room_num')->where(['id'=>$team_info['room_id']])->find();
 
-                                //添加征信 日志
-                                $credit_result = model('Credit')->auctionadd($auction_log,$room_info);
-
                                 //给用户征信加 +1
                                 $user_info = model('user')->where(['id'=>$auction_log['user_id']])->find();
-                                $user_info->credit_num +=1;
+
+                                if($user_info->credit_num>=2 ){
+
+
+
+                                    $auction_data['team_id'] = $value['team_id'];
+                                    $auction_data['equipment_id'] = $value['equipment_id'];
+                                    $auction_data['equipment_name'] = $value['equipment_name'];
+                                    $auction_data['confirm_payment_id'] = $value['id'];
+                                    $auction_data['user_id'] = $data['data'][$key]['role']['user_id'];
+                                    $auction_data['price'] =   $data['data'][$key]['role']['price'];
+                                    $auction_data['currency_type'] = $value['currency_type'];
+                                    $auction_data['auction_log_id'] = $data['data'][$key]['role']['id'];
+                                    $auction_data['auction_equipment_id'] = $value['id'];
+
+                                    $auctiopay_result = model("AuctionPay")->apy($auction_data);
+
+                                    $flag = json_decode($auctiopay_result->getContent(),true);
+
+                                    if ($flag['code'] ==0){
+                                        $user_info->credit_num-=1;
+                                        $credit_result = model('Credit')->auctionjian($auction_log,$room_info);
+                                        $data['data'][$key]['type'] = AuctionEquipmentModel::TYPE_SUCCESSFUL_TRANSACTION;
+                                    }else{
+                                        $user_info->credit_num +=1;
+                                    }
+
+                                }else{
+                                    $user_info->credit_num +=1;
+                                    //添加征信 日志
+                                    $credit_result = model('Credit')->auctionadd($auction_log,$room_info);
+                                }
+
+
+
                                 $user_info_result = $user_info->save();
 
 
 
                             }else{
+
                                 if ($value['push_times'] == 3 && $value['push_num']>0) { //进行第二次拍卖
                                     $data['data'][$key]['type'] = AuctionEquipmentModel::TYPE_OF_TOWAUCTION;
                                 }else{
@@ -169,8 +221,8 @@ class AuctionEquipment extends Controller
                                     'boss_id' => $auctionEquipmentModel_find['boss_id'],
                                     'parent_id' => $auctionEquipmentModel_find['id'],
                                     'push_times' => 5,
-                                    'finsih_after_time' => 2,
-                                    'pay_after_time' => 3,
+                                    'finsih_after_time' => 10,
+                                    'pay_after_time' => 5,
                                     'equipment_id' => $auctionEquipmentModel_find['equipment_id'],
                                     'equipment_name' => $auctionEquipmentModel_find['equipment_name'],
                                     'price' => $auctionEquipmentModel_find['price'],
@@ -187,74 +239,54 @@ class AuctionEquipment extends Controller
                         }
                     }
                 }
+                if($data['data'][$key]['type'] == AuctionEquipmentModel::TYPE_OF_CHECK){
+                    if(!$this->is_team && $data['data'][$key]['user_id'] != $user_id){
+                        unset($data['data'][$key]);
+                        continue;
+                    }
+                    $this->team_num ++;
+                    $auction_pay_result = model('auction_pay')->field("id")->where(['confirm_payment_id'=>$value['id']])->find();
+                    $order_id = isset($auction_pay_result['id']) ? $auction_pay_result['id'] : 0;
+                    if(!$order_id){
+                        $this->team_menber_num ++;
+                    }
+                    $data['data'][$key]['order_id'] = $order_id;
+                }
+                if($data['data'][$key]['type'] == AuctionEquipmentModel::TYPE_STREAM_SHOT){
+                    //本次处理
+                    $auctionEquipmentModel = new AuctionEquipmentModel();
+                    $auctionEquipmentModel_find  = $auctionEquipmentModel->where(['id'=>$value['id']])->find();
+                    if($auctionEquipmentModel_find->type != AuctionEquipmentModel::TYPE_STREAM_SHOT){
+                        $auctionEquipmentModel_find->type = AuctionEquipmentModel::TYPE_STREAM_SHOT;
+                        $auctionEquipmentModel_find->save();
+                    }
+
+                }
                 $data['data'][$key]['countdown_time'] = $countdown_time;
-            }
 
-        }
-    }
-
-    protected function aftergetListCopy(&$data){
-        $team_id = $this->request->param('team_id');
-        $team_info = model('team')->where(['id'=>$team_id])->find();
-        if(!$team_info){
-            return [];
-        }
-        if($data){
-            $data = $data->toArray();
-            $auctionLog = new AuctionLog();
-            $ids = array_column($data['data'],"id");
-            $ids = array_unique($ids);
-            $equipment_ids = array_column($data['data'],"equipment_id");
-            $equipment_ids = array_unique($equipment_ids);
-            //获取装每一次竞拍的最高价格
-            $auctionLog = $auctionLog->auctionType($ids);
-            $equipment_result = model('boss_arms')->arrayList($equipment_ids);
-            //判断
-            $type = $this->request->param('type');
-            if($type == AuctionEquipmentModel::TYPE_STREAM_SHOT || $type == AuctionEquipmentModel::TYPE_SUCCESSFUL_TRANSACTION){
-                $role = model('role');
-                $role_info =  $role->where(['id'=>$team_info['role_id']])->find();
-                $user_ids = array_column($data['data'], 'user_id');
-                $user_ids = array_unique($user_ids);
-
-                $user_info = $role->arrayList(['service_id'=>$role_info['service_id'],'camp_id'=>$role_info['camp_id']],$user_ids);
-
-                $user = model('user')->field('id,nickname,avatar')->where('id','in',$user_ids)->select();
-                $user = array_columns($user, "nickname,avatar", "id");
-            }
-            foreach ($data['data'] as $key => $value) {
-                $auctionMsg = isset($auctionLog[$value['id']]) ? $auctionLog[$value['id']] : 0;
-                if($auctionMsg === 0){
-                    $data['data'][$key]['is_visit'] = 0;
-                    $data['data'][$key]['user'] = [];
-                }else{
+                $data['data'][$key]['is_visit'] = 0;
+                //判断是否参与过竞拍
+                if($is_type == 1 && !$this->is_team){
+                    $result = model("AuctionLog")->checkIsAuction($team_id,$data['data'][$key]['id'],$user_id);
+                    if(!$result){
+                        unset($data['data'][$key]);
+                        continue;
+                    }
                     $data['data'][$key]['is_visit'] = 1;
-                    $data['data'][$key]['user'] = [
-                        'id' => $auctionMsg['id'],
-                        'nickname' => $auctionMsg['nickname'],
-                        'avatar' => $auctionMsg['avatar'],
-                    ];
-
-                    $data['data'][$key]['price'] = $auctionMsg['price'];
+                    $data['data'][$key]['auction_fail'] = $result;
                 }
-                // 流拍  或者 交易成功
-                if($value['type'] == AuctionEquipmentModel::TYPE_STREAM_SHOT || $value['type'] == AuctionEquipmentModel::TYPE_SUCCESSFUL_TRANSACTION){
-                    $data['data'][$key]['user'] = [
-                        'id' => $value['user_id'],
-                        'nickname' => isset($user_info[$value['user_id']]['role_name']) ? $user_info[$value['user_id']]['role_name'] : '',
-                        'avatar' => isset($user[$value['user_id']]['avatar']) ? $user[$value['user_id']]['avatar'] : "",
-                    ];
-                }
-                $end_time = $value['end_time']- time();
-
-                if($end_time<0){
-                    $end_time = 0;
-                }
-                $data['data'][$key]['end_time'] = $end_time;
-                $data['data'][$key]['equipment_icon'] = isset($equipment_result[$value['equipment_id']]['icon']) ? $equipment_result[$value['equipment_id']]['icon'] : "" ;
-                $data['data'][$key]['equipment_grade'] = isset($equipment_result[$value['equipment_id']]['grade']) ? $equipment_result[$value['equipment_id']]['grade'] : "" ;
-                $data['data'][$key]['equipment_type'] = isset($equipment_result[$value['equipment_id']]['type']) ? $equipment_result[$value['equipment_id']]['type'] : "" ;
             }
+
         }
+        $data['team_num'] = $this->team_num;
+        $data['team_member_num'] = $this->team_menber_num;
+
+        $array = [];
+        foreach ($data["data"] as $key => $value) {
+            $array[] = $value;
+        }
+
+        $data["data"] = $array;
     }
+
 }

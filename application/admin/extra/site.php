@@ -10,11 +10,11 @@
 
 return [
     // 网站信息
-    'name'        => '请修改标题',
-    'title'       => '请修改标题 - 始祖鸟科技技术支持',
-    'version'     => 'v1.3',
-    'keywords'    => '请修改标题',
-    'description' => '请修改标题 - 始祖鸟科技技术支持',
+    'name'        => '魔兽团吧',
+    'title'       => '魔兽团吧 ',
+    'version'     => 'v1.0',
+    'keywords'    => '魔兽团吧',
+    'description' => '魔兽团吧 ',
 
     // 登录地址
     'logout_url'        => 'Pub/logout',

@@ -14,7 +14,7 @@ class UserMoneyLog extends Model
 
 	public function user()
     {
-        return $this->belongsTo('user','user_id','id')->field('id,tel,nickname,avatar')->setEagerlyType(0);
+        return $this->belongsTo('user','user_id','id')->field('id,mobile,nickname,avatar')->setEagerlyType(0);
     }
 
     protected function getTypeTextAttr($value, $data){

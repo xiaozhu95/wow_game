@@ -25,15 +25,7 @@ class User extends Controller
             $map['user.nickname'] = ["like", "%" . $this->request->param("nickname") . "%"];
             unset($map['nickname']);
         }
-        if(isset($map['parent_id'])){
-            $map['user.parent_id'] = $map['parent_id'];
-            unset($map['parent_id']);
-        }
-        if(isset($map['type'])){
-            $map['user.type'] = $map['type'];
-            unset($map['type']);
-        }
-        $map['_relation'] = "parentUser";
+
     }
 
 	

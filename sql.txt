@@ -230,6 +230,8 @@ ALTER TABLE `wow_user_subsidy_template`
 add COLUMN `create_time`  int(11) NULL DEFAULT NULL AFTER `subsidy_template`;
 
 
+ALTER TABLE `wow_auction_log` ADD `is_winner` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 未拍中 1已拍中' AFTER `currency_type`;
+
 
 
 

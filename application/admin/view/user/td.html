@@ -1,13 +1,13 @@
 <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
 <td>
-  {$vo.id} | {$vo.id_text}
+  {$vo.id}
 </td>
-<td>{$vo.tel_text|high_light=$Request.param.tel}</td>
+<td>{$vo.mobile}</td>
 <td>
-  <a title="" href="javascript:;" onclick="layer_open('用户信息', '{:\\think\\Url::build(\'user_profile/edit\',[\'user_id\'=>$vo[\'id\']])}')" style="text-decoration:none" class="ml-5">{$vo.nickname}</a>
+  <a title="" href="javascript:;" onclick="layer_open('用户角色信息', '{:\\think\\Url::build(\'role/index\',[\'user_id\'=>$vo[\'id\']])}')" style="text-decoration:none" class="ml-5">{$vo.nickname}</a>
 </td>
-<td>{$vo.parentUser.tel_text}</td>
-<td>{$vo.wechat_nickname}</td>
-<td>{$vo.money}</td>
-<td>{$vo.type_text}</td>
-<td title="注册时间/IP：{$vo.create_time}/{$vo.create_ip}&#13;最后登录时间/IP：{$vo.last_login_time|date='Y-m-d H:i:s',###}/{$vo.last_login_ip}">{$vo.status|get_status}</td>
+<td> <a title="" href="javascript:;" onclick="layer_open('余额使用记录', '{:\\think\\Url::build(\'user_money_log/index\',[\'user_id\'=>$vo[\'id\'],\'type\'=>0])}')" style="text-decoration:none" class="ml-5">{$vo.balance}</a></td>
+<td><a title="" href="javascript:;" onclick="layer_open('征信违规', '{:\\think\\Url::build(\'user_money_log/index\',[\'user_id\'=>$vo[\'id\'],\'type\'=>1])}')" style="text-decoration:none" class="ml-5">{$vo.credit_num}</a></td>
+<td>{$vo.isdel|get_delete}</td>
+<td>{$vo.ctime}</td>
+

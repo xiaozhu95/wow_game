@@ -209,7 +209,7 @@ class Controller
                 ->order($order_by)
 				->cache($cache)//->fetchSql()
                 ->paginate($listRows, false, ['query' => $this->request->get(),'page'=>$this->request->param(Config::get("paginate.var_page"))]);
-//exit($list);
+
 			if ($return) {
                 // 返回值
                 return $list;

@@ -27,7 +27,8 @@ class Role extends Validate
         'occupation_id'=> 'integer',
         'occupation_name' =>'require',
         'role_name' => 'require|max:15',
-        'talent' => 'require|check:0',
+        'talent' => 'require|checkList:0',
+        'equipment_grade'=>'require'
     ];
     protected $message = [
         'user_id.require' => '用户ID必填',
@@ -41,11 +42,11 @@ class Role extends Validate
         'race_id.require' => '种族',
         'race_id.integer' => '种族ID数字',
         'race_name.require' => '种族名称须填',
-      
+
         'occupation_id.require' => '职业必填',
         'occupation_id.integer' => '职业ID数字',
         'occupation_name.require' => '职业必须填',
-      
+
         'role_name.require' => '必填',
         'role_name.max' => '角色名称不能大于15',
         'grade.integer' => '角色等级',
@@ -53,12 +54,12 @@ class Role extends Validate
         'equipment_grade.require' => '角色装备评分',
     ];
     /**检验是否重复*/
-    protected function check($price, $minPrice, $data)
+    public function checkList($price, $minPrice, $data)
     {
         $result = model('role')->where(['service_id'=>$data['service_id'],'camp_id'=>$data['camp_id'],'race_id'=>$data['race_id'],'occupation_id'=>$data['occupation_id'],'user_id'=>$data['user_id']])->find();
         if ($result){
-           
-           return '添加重复';
+
+            return '添加重复';
         }
         return true;
     }

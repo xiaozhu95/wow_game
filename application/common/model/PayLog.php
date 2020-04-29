@@ -13,7 +13,7 @@ class PayLog extends Model
 	
 	public function user()
     {
-        return $this->belongsTo('User')->field('tel,nickname')->setEagerlyType(0);
+        return $this->belongsTo('User')->field('mobile,nickname')->setEagerlyType(0);
     }
 	
     // protected function getSubjectNameAttr($value, $data)
@@ -25,7 +25,30 @@ class PayLog extends Model
     protected function getTypeTextAttr($value,$data)
     {
 		$texts = Config::get('pay_types');
-        return $texts[$data['type']];
+        return $texts[$data['type']-1];
     }
+    protected function getStatusTextAttr($value,$data)
+    {
+        $texts = ['未付款','已付款','失效'];
+        return $texts[$data['status']];
+    }
+    /**
+     * @param $startTime
+     * @param $endTime
+     * @return float|int
+     * 计算时间段内的消费记录
+     */
+    public function countPayByTime ($startTime, $endTime, $type)
+    {
+        $startTime = strtotime($startTime);
+        $endTime = strtotime($endTime);
+        $where['status'] = 1;
+        if($type>0){
+            $where['type'] = $type;
+        }
 
+        $totalAmountCount = $this->where("create_time", "between", [$startTime, $endTime])->where($where)->sum("total_amount");
+
+        return $totalAmountCount;
+    }
 }

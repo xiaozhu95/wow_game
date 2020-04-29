@@ -40,7 +40,6 @@ trait Controller
         }
 
         $this->datalist($model, $map);
-
         return $this->view->fetch();
     }
 

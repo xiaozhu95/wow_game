@@ -107,22 +107,27 @@ class Sms extends Model
             return ajax_return_adv_error('电话号码不存在');
         }
         $smsInfo = $this->where(['mobile'=>$mobile,'code'=>$code])->where('ctime', 'gt', time()-60*10)->where('status', 'eq', self::STATUS_UNUSED)->order('id desc')->find();
-        if($code == 'h5Pay'){
+
+        if($code == 'h5Pay' || $code == 'pay'){
+
             if($smsInfo){
+
                 if(time() - $smsInfo['ctime'] < 180){
                     return ajax_return_adv_error('两次发送时间间隔小于180秒');
                 }
                 $params = json_decode($smsInfo['params'],true);
             }else{
-               $status = self::STATUS_UNUSED;
                 $params = [
-                       'code'=> rand(100000,999999)
+                    'code'=> rand(100000,999999)
                 ];
             }
-             
+            $status = self::STATUS_UNUSED;
         }else{
-             $status = self::STATUS_USED;
+
+            $status = self::STATUS_USED;
         }
+
+
         $str = "【杭州异构科技】验证码".$params['code']."，请勿告诉他人。";
         $data['mobile'] = $mobile;
         $data['code'] = $code;
@@ -130,12 +135,11 @@ class Sms extends Model
         $data['content'] = $str;
         $data['ctime'] = time();
         $data['ip'] = get_client_ip(0,true);
-        $data['status'] = $status;  
+        $data['status'] = $status;
         $this->save($data);
         $re = $this->sendsms($mobile,$str,$code,$params);
         return $re;
     }
-
     public function sendsms($mobile,$content,$code,$params)
     {
         $host = "http://47.98.130.42:7862/sms";
@@ -458,5 +462,15 @@ class Sms extends Model
             $result['msg'] = "用户不存在";
         }
         return json($result);
+    }
+    public function getCtimeTextAttr($value,$data)
+    {
+
+       return date('Y-m-d H:i:s',$data['ctime']);
+    }
+    public function getStatusTextAttr($value,$data)
+    {
+        $status = [1=>'未使用',2=>'已使用'];
+        return $status[$data['status']];
     }
 }

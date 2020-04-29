@@ -87,15 +87,31 @@ class WechatPay
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER     => array('Content-Type: text/xml'),
             CURLOPT_POSTFIELDS     => $xml,
-            CURLOPT_VERBOSE => true
+            CURLOPT_VERBOSE => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSLCERT => ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'/apiclient_cert.pem',
+            CURLOPT_SSLKEY => ROOT_PATH.'sdks'.DS.'wechat_pay'.DS.'/apiclient_key.pem'
+
         ));
         $result = curl_exec($ch);
         curl_close($ch);
         // get the prepay id from response
-        $xml = simplexml_load_string($result);
+        $xml = $this->FromXml($result);
+        cache('xml',$xml);
         return (string)$xml->prepay_id;
     }
-        
+
+    public function FromXml($xml)
+    {
+        if (!$xml) {
+            throw new Exception("xml数据异常！");
+        }
+        //将XML转为array
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
+        return json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+    }
         public function arr2xml($arr){
             $simxml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><xml></xml>');//创建simplexml对象  
             foreach($arr as $k=>$v){  

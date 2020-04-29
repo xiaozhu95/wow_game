@@ -4,56 +4,49 @@
     <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
         <input type="hidden" name="id" value="{$vo.id ?? ''}">
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
+            <label class="form-label col-xs-3 col-sm-3">手机号：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="pic" value="{$vo.pic ?? ''}" >
+                <input type="text" class="input-text" placeholder="手机号" name="mobile" value="{$vo.mobile ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="link" value="{$vo.link ?? ''}" >
+                <input type="text" class="input-text" placeholder="" name="code" value="{$vo.code ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="target" value="{$vo.target ?? ''}" >
+                <input type="text" class="input-text" placeholder="" name="params" value="{$vo.params ?? ''}" >
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">内容：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="内容" name="content" value="{$vo.content ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="sort" value="{$vo.sort ?? ''}" >
+                <input type="text" class="input-text" placeholder="" name="ctime" value="{$vo.ctime ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
+            <label class="form-label col-xs-3 col-sm-3">ip：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text Wdate" placeholder="" name="start_time" value="{$vo.start_time ?? ''}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >
+                <input type="text" class="input-text" placeholder="ip" name="ip" value="{$vo.ip ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
-            <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text Wdate" placeholder="" name="end_time" value="{$vo.end_time ?? ''}" {literal} onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" {/literal} >
-            </div>
-            <div class="col-xs-3 col-sm-3"></div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
-            <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="type" value="{$vo.type ?? ''}" >
-            </div>
-            <div class="col-xs-3 col-sm-3"></div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
+            <label class="form-label col-xs-3 col-sm-3">状态：</label>
             <div class="formControls col-xs-6 col-sm-6 skin-minimal">
                 <div class="radio-box">
                     <input type="radio" name="status" id="status-1" value="1">
@@ -63,13 +56,6 @@
                     <input type="radio" name="status" id="status-0" value="0">
                     <label for="status-0">禁用</label>
                 </div>
-            </div>
-            <div class="col-xs-3 col-sm-3"></div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">：</label>
-            <div class="formControls col-xs-6 col-sm-6">
-                <input type="text" class="input-text" placeholder="" name="remark" value="{$vo.remark ?? ''}" >
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
@@ -87,7 +73,6 @@
 {/block}
 {block name="script"}
 <script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
-<script type="text/javascript" src="__LIB__/My97DatePicker/WdatePicker.js"></script>
 <script>
     $(function () {
         $("[name='status'][value='{$vo.status ?? ''}']").prop("checked", true);

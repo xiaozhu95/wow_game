@@ -15,7 +15,7 @@ class UserMoneyLog extends Controller
     protected function filter(&$map)
     {
 		if ($this->request->param("tel")) {
-            $map['user.tel'] = ['like', $this->request->param("tel").'%'];
+            $map['user.mobile'] = ['like', $this->request->param("tel").'%'];
         }
 		if ($this->request->param("nickname")) {
             $map['user.nickname'] = $this->request->param("nickname");

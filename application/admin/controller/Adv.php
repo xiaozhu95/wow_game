@@ -11,12 +11,15 @@ class Adv extends Controller
     // 方法黑名单
     protected static $blacklist = [];
 
-    // public  function  type(){
-    //     $list=model("AdvType")->where("status = 1")->field('id,name')->select();
-    //     return json_encode($list);
-    // }
+    protected static $isdelete = false;
 
-
-
-    
+    protected function filter(&$map)
+    {
+        if ($this->request->param("start_time")) {
+            $map['start_time'] = ["like", "%" . $this->request->param("start_time") . "%"];
+        }
+        if ($this->request->param("end_time")) {
+            $map['end_time'] = ["like", "%" . $this->request->param("end_time") . "%"];
+        }
+    }
 }

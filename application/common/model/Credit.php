@@ -103,4 +103,37 @@ class Credit extends Model
 
     }
 
+    /**添加失信日志*/
+    public function auctionjian($log_info,$room_info)
+    {
+
+        //添加冻结日志
+        $log = [
+            // 'value' => $data['price'],
+            'auction_equipment_id' => $log_info['auction_equipment_id'],
+            'equipment_id' => $log_info['equipment_id'],
+            'equipemnt_name' => $log_info['equipment_name'],
+            'user_id' => $log_info['user_id'],
+            'team_id' => $log_info['team_id'],
+            'room_id' => $room_info['id'],
+            'room_name' => $room_info['room_num'],
+            // 'des' => '',
+            'type' => self::TYPE_AUCTION, //失信
+            'is_delete' => 0,
+        ];
+
+        $creat_resut = $this->where($log)->find();
+
+
+
+        $log['value'] = -1; //竞拍失信(失信值,越低越好)
+
+        $log['des'] = '失信值-1，由于你竞拍装备:'.$log_info['equipment_name'] . '支付的金额：'.$log_info['price'] . '时间：' . date('Y-m-d H:i:s');
+
+        //目的是记录最高的价格
+        $credit_add_result = $this->save($log);
+        return $credit_add_result;
+
+    }
+
 }

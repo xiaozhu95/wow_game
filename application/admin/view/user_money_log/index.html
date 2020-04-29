@@ -20,7 +20,7 @@
             <th width="25"><input type="checkbox"></th>
             <th width="">用户</th>
             <th width="">类型</th>
-            <th width="">数量</th>
+            <th width="">金额/征信/提现</th>
             <th width="">备注</th>
             <th width="">时间</th>
             <!-- <th width="">状态</th> -->
@@ -30,7 +30,7 @@
         {volist name="list" id="vo"}
         <tr class="text-c">
             <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
-            <td>{$vo.user.tel|high_light=$Request.param.tel} {$vo.user.nickname|high_light=$Request.param.nickname}</td>
+            <td>{$vo.user.mobile|high_light=$Request.param.mobile} {$vo.user.nickname|high_light=$Request.param.nickname}</td>
             <td>{$vo.type_text}</td>
             <td>{$vo.amount}</td>
             <td>{$vo.msg}</td>

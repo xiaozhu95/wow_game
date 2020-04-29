@@ -65,16 +65,16 @@ class AuctionLog extends Controller
                 return ajax_return_adv_error('房间信息不存在');
             }
 
-            $credit = model('Credit');
+           // $credit = model('Credit');
             //添加冻结
-            $crdit_add_result  = $credit->add($user_id, $data, $room_info);
+           // $crdit_add_result  = $credit->add($user_id, $data, $room_info);
             //统计冻结金额
-            $total_price = $credit->total_price($user_id);
+          //  $total_price = $credit->total_price($user_id);
             //用户的总余额
-            $user_price  = $userInfo->balance + $userInfo->freeze_money;
-            $userInfo->balance = $user_price - $total_price;
-            $userInfo->freeze_money = $total_price;
-            $user_update_result = $userInfo->save();
+           // $user_price  = $userInfo->balance + $userInfo->freeze_money;
+           // $userInfo->balance = $user_price - $total_price;
+           // $userInfo->freeze_money = $total_price;
+           // $user_update_result = $userInfo->save();
         }
         if ($flag['code'] == 0 && $crdit_add_result && $user_update_result ){
             Db::commit();

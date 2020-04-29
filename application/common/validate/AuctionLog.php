@@ -89,18 +89,28 @@ class AuctionLog extends Validate
         $where["team_id"] = $data['team_id'];
         $where['equipment_id'] = $data['equipment_id'];
         $where['auction_equipment_id'] = $data['auction_equipment_id'];
-        $list = Db::name("AuctionLog")->field('max(price) as price')->where($where)->find();
+        // $list = Db::name("AuctionLog")->field('max(price) as price')->where($where)->find();
+        $list = Db::name("AuctionLog")->field('user_id,price')->where($where)->order('price desc')->find();
+
         $auction_price = 0;
+        if(!$list){
+            $list['price'] = 0;
+            $list['user_id'] = 0;
+        }
+        if($list['user_id'] == $data['user_id']){
+            return '你已是出价最高';
+        }
         if(!$list['price']){
             $list['price'] = $auction_equipment['price']; //装起拍价格
             $auction_price = $list['price'];
         }else{
             $auction_price = $list['price'] + $auction_equipment['add_price']; //有人参加竞拍+加上步长
         }
-        //每次最高出价不得高于15%
-        if(($auction_price+$auction_price * 0.15)<$price)
+        $baifenbi = 1;
+        //每次最高出价不得高于100%
+        if(($auction_price+$auction_price * $baifenbi)<$price)
         {
-            return '每次加价范围('.$auction_price.'~'. ($auction_price+$auction_price * 0.15) .')';
+            return '每次出价范围('.$auction_price.'~'. ($auction_price+$auction_price * $baifenbi) .')';
         }
 
 
@@ -113,7 +123,7 @@ class AuctionLog extends Validate
             if($auction_equipment['currency_type'] == 2){
                 $currency_type = '元';
             }
-            return '不能低于上次竞拍的价格加步长';
+            return '每次出价范围('.$auction_price.'~'. ($auction_price+$auction_price * $baifenbi) .')';
         }
         return true;
     }

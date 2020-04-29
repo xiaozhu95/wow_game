@@ -152,7 +152,36 @@ function get_status($status, $imageShow = true, $className = 'status')
 
     return ($imageShow === true) ? $showImg : $showText;
 }
+/**
+ * 显示状态
+ * @param int $status     0|1|-1
+ * @param bool $imageShow true只显示图标|false只显示文字
+ * @return string
+ */
+function get_delete($status, $imageShow = true, $className = 'status')
+{
+    switch ($status) {
 
+        case 1:
+            $showText = '删除';
+            $showImg = '<i class="Hui-iconfont c-danger'.($className ? " ".$className : "").'" title="删除">&#xe6e2;</i>';
+            break;
+        case 0 :
+        default :
+            $showText = '正常';
+            $showImg = '<i class="Hui-iconfont c-success'.($className ? " ".$className : "").'" title="正常">&#xe615;</i>';
+
+    }
+
+    return ($imageShow === true) ? $showImg : $showText;
+}
+
+
+function get_time($time)
+{
+
+   return date('Y-m-d H:i:s',$time);
+}
 /**
  * 从二维数组中取出自己要的KEY值
  * @param  array $arrData

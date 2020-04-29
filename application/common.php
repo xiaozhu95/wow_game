@@ -303,3 +303,29 @@ function get_client_ip($type = 0, $adv = false)
     $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
     return $ip[$type];
 }
+
+/**加密*/
+function encrypt(array $data)
+{
+
+
+    $privateKey = '1234567887654321';
+    $methon = 'AES-128-CBC';
+    $iv = substr(md5(microtime().'codedig'), 0, 16);
+
+    foreach ($data as $key=>$value){
+        $data[$key] =  base64_encode(openssl_encrypt($value, $methon, $privateKey, 1, $iv));
+        $data['vi'] = $iv;
+    }
+    return $data;
+}
+/**解密*/
+ function decrypt($data,$vi)
+{
+
+    $privateKey = "1234567887654321";
+    $iv =   $vi;
+    $decrypted = openssl_decrypt($data, 'AES-128-CBC', $privateKey,0, $iv); // 解密
+    return $decrypted;
+}
+
